@@ -22,7 +22,7 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:persistent="true"
-        android:theme="@style/_TestTheme" >
+        android:theme="@style/AppBaseTheme" >
 
         <receiver
             android:name=".utils.PowerConnectionReceiver"
