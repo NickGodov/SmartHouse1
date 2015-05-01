@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.isosystem.smarthouse.connection.MessageDispatcher;
 import com.isosystem.smarthouse.data.MenuTreeNode;
 import com.isosystem.smarthouse.logging.Logging;
+import com.isosystem.smarthouse.notifications.Notifications;
 
 import java.io.File;
 import java.util.HashMap;
@@ -83,7 +84,6 @@ public class MainMenuPageSendBoolValueActivity extends Activity {
             Logging.v("Исключение при попытке зарегистрировать ресивер");
             e.printStackTrace();
             finish();
-            overridePendingTransition(R.anim.flipin, R.anim.flipout);
         }
 
         // Получение текущей конечной точки
@@ -190,7 +190,6 @@ public class MainMenuPageSendBoolValueActivity extends Activity {
         public void onClick(final View v) {
             mDispatcher.sendBooleanMessage(mOutgoingValueMessage, 1, true);
             ((Activity) mContext).finish();
-            overridePendingTransition(R.anim.flipin, R.anim.flipout);
         }
     };
 
@@ -202,7 +201,6 @@ public class MainMenuPageSendBoolValueActivity extends Activity {
         public void onClick(final View v) {
             mDispatcher.sendBooleanMessage(mOutgoingValueMessage, 0, true);
             ((Activity) mContext).finish();
-            overridePendingTransition(R.anim.flipin, R.anim.flipout);
         }
     };
 
@@ -214,7 +212,6 @@ public class MainMenuPageSendBoolValueActivity extends Activity {
         @Override
         public void onClick(final View v) {
             finish();
-            overridePendingTransition(R.anim.flipin, R.anim.flipout);
         }
     };
 
@@ -228,7 +225,6 @@ public class MainMenuPageSendBoolValueActivity extends Activity {
             Logging.v("Исключение при попытке освободить ресивер");
             e.printStackTrace();
             finish();
-            overridePendingTransition(R.anim.flipin, R.anim.flipout);
         }
         super.onStop();
     }

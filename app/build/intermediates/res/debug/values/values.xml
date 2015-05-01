@@ -17,17 +17,11 @@
     <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="sage">#cceebb</color>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/colors_testtheme.xml -->
-    <eat-comment/>
-    <color name="testtheme_color">#FCFCFD</color>
     <declare-styleable name="com.isosystem.smarthouse.Utils.SeekBarPreference"><attr format="integer" name="minValue"/><attr format="integer" name="maxValue"/></declare-styleable>
     <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="pic_size">96px</dimen>
     <dimen name="px">1px</dimen>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/dimens_testtheme.xml -->
-    <eat-comment/>
-    <dimen name="tab_host_default_height">48dp</dimen>
     <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Настройки</string>
@@ -124,66 +118,6 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/styles_testtheme.xml -->
-    <eat-comment/>
-    <style name="AutoCompleteTextViewTestTheme" parent="android:Widget.Holo.Light.AutoCompleteTextView">
-      <item name="android:dropDownSelector">@drawable/testtheme_list_selector_holo_light</item>
-	    <item name="android:background">@drawable/testtheme_edit_text_holo_light</item>
-  </style>
-    <style name="ButtonTestTheme" parent="android:Widget.Holo.Light.Button">
-	  <item name="android:background">@drawable/testtheme_btn_default_holo_light</item>
-  </style>
-    <style name="ImageButtonTestTheme" parent="android:Widget.Holo.Light.ImageButton">
-	  <item name="android:background">@drawable/testtheme_btn_default_holo_light</item>
-  </style>
-    <style name="ProgressBarTestTheme" parent="android:Widget.Holo.Light.ProgressBar.Horizontal">
-      <item name="android:progressDrawable">@drawable/testtheme_progress_horizontal_holo_light</item>
-      <item name="android:indeterminateDrawable">@drawable/testtheme_progress_indeterminate_horizontal_holo_light</item>
-  </style>
-    <style name="RatingBarBigTestTheme" parent="android:Widget.Holo.Light.RatingBar.Indicator">
-      <item name="android:progressDrawable">@drawable/testtheme_ratingbar_holo_light</item>
-      <item name="android:indeterminateDrawable">@drawable/testtheme_ratingbar_holo_light</item>
-  </style>
-    <style name="RatingBarSmallTestTheme" parent="android:Widget.Holo.Light.RatingBar.Small">
-      <item name="android:progressDrawable">@drawable/testtheme_ratingbar_small_holo_light</item>
-      <item name="android:indeterminateDrawable">@drawable/testtheme_ratingbar_small_holo_light</item>
-  </style>
-    <style name="RatingBarTestTheme" parent="android:Widget.Holo.Light.RatingBar">
-      <item name="android:progressDrawable">@drawable/testtheme_ratingbar_full_holo_light</item>
-      <item name="android:indeterminateDrawable">@drawable/testtheme_ratingbar_full_holo_light</item>
-  </style>
-    <style name="SeekBarTestTheme" parent="android:Widget.Holo.Light.SeekBar">
-      <item name="android:progressDrawable">@drawable/testtheme_scrubber_progress_horizontal_holo_light</item>
-      <item name="android:indeterminateDrawable">@drawable/testtheme_scrubber_progress_horizontal_holo_light</item>
-      <item name="android:thumb">@drawable/testtheme_scrubber_control_selector_holo_light</item>
-  </style>
-    <style name="SpinnerTestTheme" parent="android:Widget.Holo.Light.Spinner">
-      <item name="android:background">@drawable/testtheme_spinner_background_holo_light</item>
-      <item name="android:dropDownSelector">@drawable/testtheme_list_selector_holo_light</item>
-  </style>
-    <style name="TabTestTheme">
-      <item name="android:gravity">center_horizontal</item>
-      <item name="android:paddingLeft">16dip</item>
-      <item name="android:paddingRight">16dip</item>
-      <item name="android:background">@drawable/testtheme_tab_indicator_holo</item>
-      <item name="android:layout_width">0dip</item>
-      <item name="android:layout_weight">1</item>
-      <item name="android:minWidth">80dip</item>
-  </style>
-    <style name="TabTextTestTheme">
-	  <item name="android:textColor">#000000</item>
-      <item name="android:textSize">12sp</item>
-      <item name="android:textStyle">bold</item>
-      <!-- v14 <item name="android:textAllCaps">true</item> -->
-      <item name="android:ellipsize">marquee</item>
-      <item name="android:maxLines">2</item>
-      <item name="android:maxWidth">180dip</item>
-  </style>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/themes_testtheme.xml -->
-    <eat-comment/>
-    <style name="TestTheme" parent="@style/_TestTheme"/>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/styles.xml -->
-    <eat-comment/>
     <style name="Theme.Transparent" parent="android:Theme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -193,55 +127,6 @@
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowAnimationStyle">@null</item>
     </style>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/styles_testtheme.xml -->
-    <eat-comment/>
-    <style name="ToggleTestTheme" parent="android:Widget.Holo.Light.Button.Toggle">
-      <item name="android:background">@drawable/testtheme_btn_toggle_holo_light</item>
-  </style>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/themes_testtheme.xml -->
-    <eat-comment/>
-    <style name="_TestTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-
-    <item name="android:editTextBackground">@drawable/testtheme_edit_text_holo_light</item>
-
-    <item name="android:textColorHighlight">#9933b5e5</item>
-    <item name="android:textSelectHandleLeft">@drawable/testtheme_text_select_handle_left</item>
-    <item name="android:textSelectHandleRight">@drawable/testtheme_text_select_handle_right</item>
-    <item name="android:textSelectHandle">@drawable/testtheme_text_select_handle_middle</item>
-
-    <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewTestTheme</item>
-
-    <item name="android:listChoiceIndicatorMultiple">@drawable/testtheme_btn_check_holo_light</item>
-
-    <item name="android:listChoiceIndicatorSingle">@drawable/testtheme_btn_radio_holo_light</item>
-
-    <item name="android:buttonStyle">@style/ButtonTestTheme</item>
-
-    <item name="android:imageButtonStyle">@style/ImageButtonTestTheme</item>
-
-    <item name="android:dropDownSpinnerStyle">@style/SpinnerTestTheme</item>
-
-    <item name="android:progressBarStyleHorizontal">@style/ProgressBarTestTheme</item>
-
-    <item name="android:seekBarStyle">@style/SeekBarTestTheme</item>
-
-    <item name="android:ratingBarStyle">@style/RatingBarTestTheme</item>
-
-    <item name="android:ratingBarStyleIndicator">@style/RatingBarBigTestTheme</item>
-
-    <item name="android:ratingBarStyleSmall">@style/RatingBarSmallTestTheme</item>
-
-    <item name="android:buttonStyleToggle">@style/ToggleTestTheme</item>
-
-    <item name="android:listChoiceBackgroundIndicator">@drawable/testtheme_list_selector_holo_light</item>
-
-    <item name="android:activatedBackgroundIndicator">@drawable/testtheme_activated_background_holo_light</item>
-
-    <item name="android:fastScrollThumbDrawable">@drawable/testtheme_fastscroll_thumb_holo</item>
-
-  </style>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/styles.xml -->
-    <eat-comment/>
     <style name="button_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

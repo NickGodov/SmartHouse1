@@ -130,7 +130,6 @@ public class MainMenuPageSendPasswordActivity extends Activity {
             mDispatcher.SendValueMessage(mOutgoingValueMessage,
                     password, true);
             ((Activity) mContext).finish();
-            overridePendingTransition(R.anim.flipin, R.anim.flipout);
         }
     };
 
@@ -142,7 +141,6 @@ public class MainMenuPageSendPasswordActivity extends Activity {
         @Override
         public void onClick(final View v) {
             finish();
-            overridePendingTransition(R.anim.flipin, R.anim.flipout);
         }
     };
 }

@@ -5,6 +5,19 @@ import android.content.Intent;
 
 import com.isosystem.smarthouse.logging.Logging;
 
+/**
+ * Класс диспетчера сообщений.
+ * <br>
+ * Данный класс непосредственно осуществляет отправку сообщений контроллеру.
+ * Отсылка происходит следующим образом: когда пользователь нажимает кнопку
+ * "Установить" на планшете, вызывается один из методов формирования сообщений:
+ * {@link #SendValueMessage(String, String, Boolean)} - отсылка int значения
+ * {@link #sendBooleanMessage(String, int, Boolean)} - отсылка булевого значения (0|1)
+ * {@link #SendRawMessage(String)} - отсылка сообщения, которое ввел настройщик
+ * Каждый из методов, после формирования сообщения, вызывает метод {@link #Send(String)}, который
+ * запускает {@link USBSendService} и передает ему сформированное сообщение для отсылки
+ *
+ */
 public class MessageDispatcher {
 
 	private Context mContext;
@@ -14,21 +27,23 @@ public class MessageDispatcher {
 	}
 
 	/**
-	 * Отправка значения контроллеру
+	 * Формирование значения контроллеру для последующей отправки
 	 * В качестве входных аргументов получаем префикс сообщения (вводится настройщиком при создании окна
-	 * и отсылаемое значение в формате int
-	 * Сообщение формируется как [префикс][количество символов][значение]
-	 * Например, если префикс: Z, а на выходе 150, то сообщение будет Z3150
+	 * и отсылаемое значение в формате int).
+	 * Сообщение формируется как [префикс],[значение]
+	 * Например, если префикс: Z, а на выходе 150, то сообщение будет Z,150
+	 *
+	 * @param prefix префикс сообщения
+	 * @param value отсылаемое значение
+	 * @param isSending реальная отсылка или тест
 	 */
 	public String SendValueMessage(String prefix, String value, Boolean isSending) {
 		StringBuilder sendingMessage = new StringBuilder();
 		
 		sendingMessage.append(prefix);
-		sendingMessage.append(value.length());
+		sendingMessage.append(",");
 		sendingMessage.append(value);
-		
-		Logging.v("Отсылаемое значение:" + sendingMessage.toString());
-		
+
 		if (isSending) {
 			Send(sendingMessage.toString());
 		}
@@ -37,23 +52,19 @@ public class MessageDispatcher {
 	}
 	
 	/**
-	 * Отправка булевого значения контроллеру
-	 * Формат сообщения: [префикс][0|1]
+	 * Формирование булевого значения контроллеру
+	 * Формат сообщения: [префикс],[0|1]
 	 * 
 	 * @param value интовое значение (0 или 1)
-	 * @return отосланное сообщение
+	 * @return Сформированное сообщение
 	 */
 	public String sendBooleanMessage (String prefix, int value, Boolean isSending) {
 		StringBuilder sendingMessage = new StringBuilder();
 		
 		sendingMessage.append(prefix);
+		sendingMessage.append(",");
 		sendingMessage.append(value);
-		
-		/** Если нужно отправить в ascii-кодировке
-		sendingMessage.append(EncodingUtils.getAsciiBytes(Globals.SEND_MESSAGE_BOOLEAN_PREFIX));
-		sendingMessage.append(EncodingUtils.getAsciiBytes(String.valueOf(value)));
-		*/
-		
+
 		if (isSending) {
 			Send(sendingMessage.toString());
 		}
@@ -62,12 +73,17 @@ public class MessageDispatcher {
 	}
 	
 	/**
-	 * Отправка значения без изменений
+	 * Формирование сообщения без изменений
 	 */
 	public void SendRawMessage (String message) {
 		Send(message);
 	}
 
+	/**
+	 * Запуск {@link USBSendService} для отправки сообщения.
+	 *
+	 * @param message сообщение
+	 */
 	private void Send(String message) {
 		Intent i = new Intent(mContext.getApplicationContext(),
 				USBSendService.class);

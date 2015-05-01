@@ -185,10 +185,11 @@ public class MainMenuPageSendIntValueActivity extends Activity {
                         Notifications.showError(mContext, mInvalidValueText);
                     } else {
                         // 3. Значение прошло валидацию и отсылается контроллеру
+
                         mDispatcher.SendValueMessage(mOutgoingValueMessage,
                                 evalResult.numericRoundedResult, true);
-                        ((Activity) mContext).finish();
-                        overridePendingTransition(R.anim.flipin, R.anim.flipout);
+
+                                ((Activity) mContext).finish();
                     }
                 }
             }
@@ -202,7 +203,6 @@ public class MainMenuPageSendIntValueActivity extends Activity {
         @Override
         public void onClick(final View v) {
             finish();
-            overridePendingTransition(R.anim.flipin, R.anim.flipout);
         }
     };
 
@@ -220,7 +220,6 @@ public class MainMenuPageSendIntValueActivity extends Activity {
             Logging.v("Исключение при попытке зарегистрировать ресивер");
             e.printStackTrace();
             finish();
-            overridePendingTransition(R.anim.flipin, R.anim.flipout);
         }
     }
 
@@ -234,7 +233,6 @@ public class MainMenuPageSendIntValueActivity extends Activity {
                 Logging.v("Исключение при попытке освободить ресивер");
                 e.printStackTrace();
                 finish();
-                overridePendingTransition(R.anim.flipin, R.anim.flipout);
             }
         }
         super.onStop();

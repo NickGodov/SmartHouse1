@@ -50,7 +50,6 @@ public class MyApplication extends Application {
 	 * 1) Проверяем наличие внешних папок; <br>
 	 * 2) Получаем объект-обработчик; <br>
 	 * 3) Загружаем дерево меню с помощью объекта-обработчика.
-	 *
 	 */
 	@Override
 	public void onCreate() {
