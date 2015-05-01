@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name = "app_name">Умный дом</string>
+    <string name = "action_settings">Настройки</string>
+    <string name = "title_activity_main_settings">MainSettingsActivity</string>
+    <string name = "title_add_menu_item_activity">Добавить пункт меню</string>
+    <string name = "title_activity_settings">Настройки</string>
+    <string name = "title_activity_add_menu_item_send_value">Добавление пункта главного меню</string>
+    <string name = "title_activity_add_menu_item_send_password">Добавление нового пункта меню (ввод пароля)</string>
+    <string name = "title_activity_add_menu_item_send_bool">Добавление нового пункта меню (ввод булевого значения)</string>
+
+    <!-- globals -->
+    <string name="global_accept">Подтвердить</string>
+    <string name="global_cancel">Отмена</string>
+    <string name="global_back">Назад</string>
+
+
+    <!-- Добавление нового конечного пункта -->
+    <string name = "header_text_tooltip">Текст, который будет показываться в качестве заголовка окна, формат - строка</string>
+    
+    <string name = "summary">Процент от максимальной яркости, текущее значение: %1$d</string>
+    <string name = "dialog_title">Яркость затеменного экрана (%)</string>
+    
+    <!-- Сообщения исключения -->
+    <string name = "exception_reload_menu_tree">Исключение при перезаписи меню</string>
+    
+    <string name = "company_url">  " www.l-control.com.ua"</string>
+    <string name = "company_phone">"     (048) 73&#8211;73&#8211;494 "</string>
+    
+	<string name = "title_alarm_messages">Сообщения</string>
+        
+    <!-- fragment_dialog_change_password.xml-->
+    <string name = "change_password_old_password">Старый пароль</string>
+    <string name = "change_password_new_password">Новый пароль</string>
+
+    <!-- fragment_dialog_check_password.xml -->
+    <string name = "password">Пароль</string>
+
+    <!-- time_dialog_slider.xml -->
+    <string name = "time_dialog_screen_dim">Затухание экрана</string>
+    <string name = "time_dialog_start_time">Начальное время</string>
+    <string name = "time_dialog_end_time">Конечное время</string>
+
+    <!-- fragment_general_settings.xml -->
+    <string name = "general_settings_import_export">Импорт/экспорт файлов</string>
+    <string name = "general_settings_prefs">Настройки</string>
+    <string name = "general_settings_close_app">Закрыть приложение</string>
+
+    <!-- activity_settings_formscreen_add.xml -->
+    <string name = "settings_formscreen_add_screen_prefs_header">Параметры окна форматированного вывода</string>
+    <string name = "settings_formscreen_add_screen_title">Название окна</string>
+    <string name = "settings_formscreen_start_transfer_message">Сообщение о начале передачи данных</string>
+    <string name = "settings_formscreen_end_transfer_message">Сообщение о конце передачи данных</string>
+    <string name = "settings_formscreen_grid_image">Выбор изображения для плитки окна вывода</string>
+
+    <!-- activity_settings_mainmenu_add.xml -->
+    <string name = "settings_mainmenu_add_prefs_header">Параметры пункта меню</string>
+    <string name = "settings_mainmenu_add_page_title">Название окна</string>
+    <string name = "settings_mainmenu_add_move_to">Переместить в</string>
+    <string name = "settings_mainmenu_add_menu_item_type">Тип пункта меню</string>
+    <string name = "settings_mainmenu_add_menu_item_submenu">Подменю</string>
+    <string name = "settings_mainmenu_add_menu_item_point">Конечная точка</string>
+    <string name = "settings_mainmenu_add_point_type">Тип конечной точки</string>
+    <string name = "settings_mainmenu_add_grid_image">Выбор изображения для плитки меню</string>
+
+    <!-- activity_settings_mainmenu_add_*.xml -->
+    <string name = "settings_add_menu_item_labels_header">Настройка надписей</string>
+    <string name = "settings_add_menu_item_title">* Текст заголовка</string>
+    <string name = "settings_add_menu_item_description">* Пояснительный текст</string>
+    <string name = "settings_add_menu_item_error">* Сообщение об ошибке</string>
+    <string name = "settings_add_menu_item_image_header">* Изображение для окна конечной точки</string>
+    <string name = "settings_add_menu_item_incoming_message_process_header">Обработка входящего значения</string>
+    <string name = "settings_add_menu_item_incoming_formula">Формула для входящего значения</string>
+    <string name = "settings_add_menu_item_fraction_digits">Количество знаков после запятой</string>
+    <string name = "settings_add_menu_item_outgoing_message_process_header">Обработка исходящего значения</string>
+    <string name = "settings_add_menu_item_outgoing_formula">Формула для исходящего значения</string>
+    <string name = "settings_add_menu_item_outgoing_bool_validation">Булевая формула валидации значения</string>
+    <string name = "settings_add_menu_item_send_message_header">Обмен сообщениями с контроллером</string>
+    <string name = "settings_add_menu_item_send_message_get_value">* Запрос значения от контроллера</string>
+    <string name = "settings_add_menu_item_send_message_prefix">* Префикс для отправки исходящего значения</string>
+    <!-- _send_bool.xml -->
+    <string name = "settings_add_menu_item_bool_labels_header">Надписи для булевых значений</string>
+    <string name = "settings_add_menu_item_bool_incoming_false">Входящее значение 0</string>
+    <string name = "settings_add_menu_item_bool_incoming_true">Входящее значение 1</string>
+    <string name = "settings_add_menu_item_bool_outgoing_false">Исходящее значение 0</string>
+    <string name = "settings_add_menu_item_bool_outgoing_true">Исходящее значение 1</string>
+    <!-- _send_message.xml -->
+    <string name = "settings_add_menu_item_send_message">* Сообщение контроллеру</string>
+
+    <!-- activity_page_send_*.xml-->
+    <string name = "activity_page_send_dummy_header_text">Заголовок</string>
+    <string name = "activity_page_send_dummy_description_text">Введите значение и нажмите кнопку "Установить"</string>
+    <string name = "activity_page_send_current_value">Текущее значение</string>
+    <string name = "activity_page_send_new_value">Новое значение</string>
+    <string name = "activity_page_send_set_up_value">Установить</string>
+    <string name = "activity_page_send_back">Назад</string>
+    <!-- _bool.xml -->
+    <string name = "activity_page_send_current_state">Текущее состояние</string>
+    <string name = "activity_page_send_new_state">Новое состояние</string>
+    <string name = "activity_page_send_true_value_button">Включить</string>
+    <string name = "activity_page_send_false_value_button">Выключить</string>
+    <!-- _password.xml -->
+    <string name = "activity_page_send_enter_value">Ввести</string>
+    <string name = "activity_page_send_enter_password">Введите пароль</string>
+
+    <!-- activity_settings_import_export_files.xml -->
+    <string name = "settings_import_export_header_import">Импорт файлов</string>
+    <string name = "settings_import_export_mainmenu_import">Импорт главного меню</string>
+    <string name = "settings_import_export_formscreens_import">Импорт окон вывода</string>
+    <string name = "settings_import_export_settings_import">Импорт настроек</string>
+
+    <string name = "settings_import_export_header_export">Экспорт файлов</string>
+    <string name = "settings_import_export_mainmenu_export">Экспорт главного меню</string>
+    <string name = "settings_import_export_formscreens_export">Экспорт окон вывода</string>
+    <string name = "settings_import_export_settings_export">Экспорт настроек</string>
+
+    <!-- fragment_settings_logs.xml -->
+    <string name = "settings_logs_write_to_file">Записать в файл</string>
+
+</resources>

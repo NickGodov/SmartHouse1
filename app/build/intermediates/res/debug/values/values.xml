@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/arrays.xml -->
+    <eat-comment/>
+    <string-array name="stretchModeArray">
+        <item>Не растягивать</item>
+        <item>Растягивать горизональный зазор между плитками</item>
+        <item>Растягивать ширину каждой плитки</item>
+        <item>Равномерно растягивать горизональный зазор между плитками</item>
+    </string-array>
+    <string-array name="stretchModeValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="sage">#cceebb</color>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/colors_testtheme.xml -->
+    <eat-comment/>
+    <color name="testtheme_color">#FCFCFD</color>
+    <declare-styleable name="com.isosystem.smarthouse.Utils.SeekBarPreference"><attr format="integer" name="minValue"/><attr format="integer" name="maxValue"/></declare-styleable>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="pic_size">96px</dimen>
+    <dimen name="px">1px</dimen>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/dimens_testtheme.xml -->
+    <eat-comment/>
+    <dimen name="tab_host_default_height">48dp</dimen>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="action_settings">Настройки</string>
+    <string name="activity_page_send_back">Назад</string>
+    <string name="activity_page_send_current_state">Текущее состояние</string>
+    <string name="activity_page_send_current_value">Текущее значение</string>
+    <string name="activity_page_send_dummy_description_text">Введите значение и нажмите кнопку "Установить"</string>
+    <string name="activity_page_send_dummy_header_text">Заголовок</string>
+    <string name="activity_page_send_enter_password">Введите пароль</string>
+    <string name="activity_page_send_enter_value">Ввести</string>
+    <string name="activity_page_send_false_value_button">Выключить</string>
+    <string name="activity_page_send_new_state">Новое состояние</string>
+    <string name="activity_page_send_new_value">Новое значение</string>
+    <string name="activity_page_send_set_up_value">Установить</string>
+    <string name="activity_page_send_true_value_button">Включить</string>
+    <string name="app_name">Умный дом</string>
+    <string name="change_password_new_password">Новый пароль</string>
+    <string name="change_password_old_password">Старый пароль</string>
+    <string name="company_phone">"     (048) 73–73–494 "</string>
+    <string name="company_url">  " www.l-control.com.ua"</string>
+    <string name="dialog_title">Яркость затеменного экрана (%)</string>
+    <string name="exception_reload_menu_tree">Исключение при перезаписи меню</string>
+    <string name="general_settings_close_app">Закрыть приложение</string>
+    <string name="general_settings_import_export">Импорт/экспорт файлов</string>
+    <string name="general_settings_prefs">Настройки</string>
+    <string name="global_accept">Подтвердить</string>
+    <string name="global_back">Назад</string>
+    <string name="global_cancel">Отмена</string>
+    <string name="header_text_tooltip">Текст, который будет показываться в качестве заголовка окна, формат - строка</string>
+    <string name="password">Пароль</string>
+    <string name="settings_add_menu_item_bool_incoming_false">Входящее значение 0</string>
+    <string name="settings_add_menu_item_bool_incoming_true">Входящее значение 1</string>
+    <string name="settings_add_menu_item_bool_labels_header">Надписи для булевых значений</string>
+    <string name="settings_add_menu_item_bool_outgoing_false">Исходящее значение 0</string>
+    <string name="settings_add_menu_item_bool_outgoing_true">Исходящее значение 1</string>
+    <string name="settings_add_menu_item_description">* Пояснительный текст</string>
+    <string name="settings_add_menu_item_error">* Сообщение об ошибке</string>
+    <string name="settings_add_menu_item_fraction_digits">Количество знаков после запятой</string>
+    <string name="settings_add_menu_item_image_header">* Изображение для окна конечной точки</string>
+    <string name="settings_add_menu_item_incoming_formula">Формула для входящего значения</string>
+    <string name="settings_add_menu_item_incoming_message_process_header">Обработка входящего значения</string>
+    <string name="settings_add_menu_item_labels_header">Настройка надписей</string>
+    <string name="settings_add_menu_item_outgoing_bool_validation">Булевая формула валидации значения</string>
+    <string name="settings_add_menu_item_outgoing_formula">Формула для исходящего значения</string>
+    <string name="settings_add_menu_item_outgoing_message_process_header">Обработка исходящего значения</string>
+    <string name="settings_add_menu_item_send_message">* Сообщение контроллеру</string>
+    <string name="settings_add_menu_item_send_message_get_value">* Запрос значения от контроллера</string>
+    <string name="settings_add_menu_item_send_message_header">Обмен сообщениями с контроллером</string>
+    <string name="settings_add_menu_item_send_message_prefix">* Префикс для отправки исходящего значения</string>
+    <string name="settings_add_menu_item_title">* Текст заголовка</string>
+    <string name="settings_formscreen_add_screen_prefs_header">Параметры окна форматированного вывода</string>
+    <string name="settings_formscreen_add_screen_title">Название окна</string>
+    <string name="settings_formscreen_end_transfer_message">Сообщение о конце передачи данных</string>
+    <string name="settings_formscreen_grid_image">Выбор изображения для плитки окна вывода</string>
+    <string name="settings_formscreen_start_transfer_message">Сообщение о начале передачи данных</string>
+    <string name="settings_import_export_formscreens_export">Экспорт окон вывода</string>
+    <string name="settings_import_export_formscreens_import">Импорт окон вывода</string>
+    <string name="settings_import_export_header_export">Экспорт файлов</string>
+    <string name="settings_import_export_header_import">Импорт файлов</string>
+    <string name="settings_import_export_mainmenu_export">Экспорт главного меню</string>
+    <string name="settings_import_export_mainmenu_import">Импорт главного меню</string>
+    <string name="settings_import_export_settings_export">Экспорт настроек</string>
+    <string name="settings_import_export_settings_import">Импорт настроек</string>
+    <string name="settings_logs_write_to_file">Записать в файл</string>
+    <string name="settings_mainmenu_add_grid_image">Выбор изображения для плитки меню</string>
+    <string name="settings_mainmenu_add_menu_item_point">Конечная точка</string>
+    <string name="settings_mainmenu_add_menu_item_submenu">Подменю</string>
+    <string name="settings_mainmenu_add_menu_item_type">Тип пункта меню</string>
+    <string name="settings_mainmenu_add_move_to">Переместить в</string>
+    <string name="settings_mainmenu_add_page_title">Название окна</string>
+    <string name="settings_mainmenu_add_point_type">Тип конечной точки</string>
+    <string name="settings_mainmenu_add_prefs_header">Параметры пункта меню</string>
+    <string name="summary">Процент от максимальной яркости, текущее значение: %1$d</string>
+    <string name="time_dialog_end_time">Конечное время</string>
+    <string name="time_dialog_screen_dim">Затухание экрана</string>
+    <string name="time_dialog_start_time">Начальное время</string>
+    <string name="title_activity_add_menu_item_send_bool">Добавление нового пункта меню (ввод булевого значения)</string>
+    <string name="title_activity_add_menu_item_send_password">Добавление нового пункта меню (ввод пароля)</string>
+    <string name="title_activity_add_menu_item_send_value">Добавление пункта главного меню</string>
+    <string name="title_activity_main_settings">MainSettingsActivity</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="title_add_menu_item_activity">Добавить пункт меню</string>
+    <string name="title_alarm_messages">Сообщения</string>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/styles_testtheme.xml -->
+    <eat-comment/>
+    <style name="AutoCompleteTextViewTestTheme" parent="android:Widget.Holo.Light.AutoCompleteTextView">
+      <item name="android:dropDownSelector">@drawable/testtheme_list_selector_holo_light</item>
+	    <item name="android:background">@drawable/testtheme_edit_text_holo_light</item>
+  </style>
+    <style name="ButtonTestTheme" parent="android:Widget.Holo.Light.Button">
+	  <item name="android:background">@drawable/testtheme_btn_default_holo_light</item>
+  </style>
+    <style name="ImageButtonTestTheme" parent="android:Widget.Holo.Light.ImageButton">
+	  <item name="android:background">@drawable/testtheme_btn_default_holo_light</item>
+  </style>
+    <style name="ProgressBarTestTheme" parent="android:Widget.Holo.Light.ProgressBar.Horizontal">
+      <item name="android:progressDrawable">@drawable/testtheme_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/testtheme_progress_indeterminate_horizontal_holo_light</item>
+  </style>
+    <style name="RatingBarBigTestTheme" parent="android:Widget.Holo.Light.RatingBar.Indicator">
+      <item name="android:progressDrawable">@drawable/testtheme_ratingbar_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/testtheme_ratingbar_holo_light</item>
+  </style>
+    <style name="RatingBarSmallTestTheme" parent="android:Widget.Holo.Light.RatingBar.Small">
+      <item name="android:progressDrawable">@drawable/testtheme_ratingbar_small_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/testtheme_ratingbar_small_holo_light</item>
+  </style>
+    <style name="RatingBarTestTheme" parent="android:Widget.Holo.Light.RatingBar">
+      <item name="android:progressDrawable">@drawable/testtheme_ratingbar_full_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/testtheme_ratingbar_full_holo_light</item>
+  </style>
+    <style name="SeekBarTestTheme" parent="android:Widget.Holo.Light.SeekBar">
+      <item name="android:progressDrawable">@drawable/testtheme_scrubber_progress_horizontal_holo_light</item>
+      <item name="android:indeterminateDrawable">@drawable/testtheme_scrubber_progress_horizontal_holo_light</item>
+      <item name="android:thumb">@drawable/testtheme_scrubber_control_selector_holo_light</item>
+  </style>
+    <style name="SpinnerTestTheme" parent="android:Widget.Holo.Light.Spinner">
+      <item name="android:background">@drawable/testtheme_spinner_background_holo_light</item>
+      <item name="android:dropDownSelector">@drawable/testtheme_list_selector_holo_light</item>
+  </style>
+    <style name="TabTestTheme">
+      <item name="android:gravity">center_horizontal</item>
+      <item name="android:paddingLeft">16dip</item>
+      <item name="android:paddingRight">16dip</item>
+      <item name="android:background">@drawable/testtheme_tab_indicator_holo</item>
+      <item name="android:layout_width">0dip</item>
+      <item name="android:layout_weight">1</item>
+      <item name="android:minWidth">80dip</item>
+  </style>
+    <style name="TabTextTestTheme">
+	  <item name="android:textColor">#000000</item>
+      <item name="android:textSize">12sp</item>
+      <item name="android:textStyle">bold</item>
+      <!-- v14 <item name="android:textAllCaps">true</item> -->
+      <item name="android:ellipsize">marquee</item>
+      <item name="android:maxLines">2</item>
+      <item name="android:maxWidth">180dip</item>
+  </style>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/themes_testtheme.xml -->
+    <eat-comment/>
+    <style name="TestTheme" parent="@style/_TestTheme"/>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="Theme.Transparent" parent="android:Theme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/styles_testtheme.xml -->
+    <eat-comment/>
+    <style name="ToggleTestTheme" parent="android:Widget.Holo.Light.Button.Toggle">
+      <item name="android:background">@drawable/testtheme_btn_toggle_holo_light</item>
+  </style>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/themes_testtheme.xml -->
+    <eat-comment/>
+    <style name="_TestTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+
+    <item name="android:editTextBackground">@drawable/testtheme_edit_text_holo_light</item>
+
+    <item name="android:textColorHighlight">#9933b5e5</item>
+    <item name="android:textSelectHandleLeft">@drawable/testtheme_text_select_handle_left</item>
+    <item name="android:textSelectHandleRight">@drawable/testtheme_text_select_handle_right</item>
+    <item name="android:textSelectHandle">@drawable/testtheme_text_select_handle_middle</item>
+
+    <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewTestTheme</item>
+
+    <item name="android:listChoiceIndicatorMultiple">@drawable/testtheme_btn_check_holo_light</item>
+
+    <item name="android:listChoiceIndicatorSingle">@drawable/testtheme_btn_radio_holo_light</item>
+
+    <item name="android:buttonStyle">@style/ButtonTestTheme</item>
+
+    <item name="android:imageButtonStyle">@style/ImageButtonTestTheme</item>
+
+    <item name="android:dropDownSpinnerStyle">@style/SpinnerTestTheme</item>
+
+    <item name="android:progressBarStyleHorizontal">@style/ProgressBarTestTheme</item>
+
+    <item name="android:seekBarStyle">@style/SeekBarTestTheme</item>
+
+    <item name="android:ratingBarStyle">@style/RatingBarTestTheme</item>
+
+    <item name="android:ratingBarStyleIndicator">@style/RatingBarBigTestTheme</item>
+
+    <item name="android:ratingBarStyleSmall">@style/RatingBarSmallTestTheme</item>
+
+    <item name="android:buttonStyleToggle">@style/ToggleTestTheme</item>
+
+    <item name="android:listChoiceBackgroundIndicator">@drawable/testtheme_list_selector_holo_light</item>
+
+    <item name="android:activatedBackgroundIndicator">@drawable/testtheme_activated_background_holo_light</item>
+
+    <item name="android:fastScrollThumbDrawable">@drawable/testtheme_fastscroll_thumb_holo</item>
+
+  </style>
+    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="button_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">40px</item>
+        <item name="android:paddingRight">40px</item>
+        <item name="android:paddingTop">20px</item>
+        <item name="android:paddingBottom">20px</item>
+    </style>
+</resources>

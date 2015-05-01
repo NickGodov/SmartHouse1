@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\!Android\Projects\SmartHouse1\app\libs\jeval.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="584be0ac1655138c7bb513aeb5043b5c39039af4">
+        <dex dex="D:\!Android\Projects\SmartHouse1\app\build\intermediates\pre-dexed\debug\jeval-82a13d65b4de7865f42dd988ff7c7093cd14ea5f.jar" />
+    </item>
+    <item
+        jar="D:\!Android\Projects\SmartHouse1\app\libs\android-support-v13.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f5fa2183e286730a81f3076f19022539902a24f3">
+        <dex dex="D:\!Android\Projects\SmartHouse1\app\build\intermediates\pre-dexed\debug\android-support-v13-89b124c9c172c0dc85d20474476e1e3e438d32f9.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/messages_activity_frame"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="10dp"
+    android:background="@android:color/transparent" >
+
+    <GridLayout
+        android:id="@+id/messages_activity_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/messages_activity_list_item_0"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:rowCount="2" >
+
+        <ImageView
+            android:id="@+id/messages_activity_list_item_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_rowSpan="2"
+            android:scaleType="centerInside"
+            android:src="@drawable/cont_message" />
+
+        <TextView
+            android:id="@+id/messages_activity_list_item_header_text"
+            android:layout_gravity="fill"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/messages_activity_list_item_message_text"
+            android:layout_gravity="fill"
+            android:text="" />
+    </GridLayout>
+
+</FrameLayout>

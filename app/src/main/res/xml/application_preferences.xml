@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:example="http://schemas.android.com/apk/res/com.isosystem.smarthouse" >
+
+    <!-- Настройка паролей -->
+    <PreferenceScreen
+        android:key="password_screen"
+        android:summary="Изменение пароля"
+        android:title="Настройка паролей" >
+        <Preference
+            android:key="password_change"
+            android:summary="Нажмите, чтобы изменить пароль"
+            android:title="Изменение пароля" />
+    </PreferenceScreen>
+    <!-- Настройка входящих сообщений -->
+    <PreferenceScreen
+        android:key="input_messages"
+        android:summary="Настройка обмена сообщениями с контроллером"
+        android:title="Взаимодействие с контроллером" >
+        <EditTextPreference
+            android:defaultValue="2000"
+            android:digits="0123456789"
+            android:inputType="numberSigned"
+            android:key="buffer_clean_timeout_value"
+            android:summary="Очистка буфера после N мсек. после прихода последнего сообщения"
+            android:title="Период очистки буфера (мсек.)" >
+        </EditTextPreference>
+    </PreferenceScreen>
+    <!-- Настройка звуковых сигналов -->
+    <PreferenceScreen
+        android:key="sound_alerts"
+        android:summary="Настройка звуковых сигналов планшета"
+        android:title="Звуковые сигналы" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable_alarm_messages_sound_alert"
+            android:summary="Проигрывать звуковой сигнал, если приходит алармовое сообщение"
+            android:title="Приход алармового сообщения" />
+    </PreferenceScreen>
+    <!-- Настройка хранителя экрана -->
+    <PreferenceScreen
+        android:key="screen_saver"
+        android:summary="Настройка хранителя экрана планшета"
+        android:title="Хранитель экрана" >
+
+        <!-- Использование хранителя экрана -->
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="enable_screen_saver"
+            android:summary="Использовать хранитель экрана в главных окнах и в окнах форматированного вывода"
+            android:title="Использовать хранитель экрана" />
+        <!-- Время бездействия (сек) -->
+        <EditTextPreference
+            android:defaultValue="25"
+            android:dependency="enable_screen_saver"
+            android:digits="0123456789"
+            android:inputType="numberSigned"
+            android:key="screen_saver_idle_time"
+            android:summary="Укажите время бездействия до появления хранителя экрана, в секундах"
+            android:title="Время бездействия (сек)" >
+        </EditTextPreference>
+
+        <PreferenceCategory
+            android:key="screen_saver_slideshow"
+            android:summary="Настройка слайд-шоу"
+            android:title="Слайд-шоу" >
+
+            <!-- Интервал смены изображения (сек) -->
+            <EditTextPreference
+                android:defaultValue="5"
+                android:dependency="enable_screen_saver"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="slide_show_image_change_time"
+                android:summary="Укажите интервал смены изображения в слайд-шоу, в секундах"
+                android:title="Интервал смены изображения (сек.)" >
+            </EditTextPreference>
+        </PreferenceCategory>
+        <!-- Затемнения экрана -->
+        <PreferenceCategory
+            android:key="screen_saver_screendim"
+            android:summary="Настройка затемнения экрана"
+            android:title="Затемнение экрана" >
+
+            <!-- Использование затемнения экрана -->
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:dependency="enable_screen_saver"
+                android:key="enable_screen_dim"
+                android:summary="Использовать затемнение экрана в качестве одного из режима хранителя экрана"
+                android:title="Использовать затемнение экрана" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:dependency="enable_screen_dim"
+                android:key="enable_clock"
+                android:summary="Показывать часы в режиме затемнения"
+                android:title="Показывать часы" />
+
+            <EditTextPreference
+                android:defaultValue="210"
+                android:dependency="enable_clock"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="clock_font_size"
+                android:summary="Укажите размер шрифта в пикселях (0 и выше)"
+                android:title="Размер шрифта часов" >
+            </EditTextPreference>
+            <!-- Яркость затемненного экрана (%) -->
+            <com.isosystem.smarthouse.utils.SeekBarPreference
+                android:defaultValue="95"
+                android:dependency="enable_screen_dim"
+                android:dialogTitle="Уровень затеменения экрана"
+                android:key="screen_dim_brightness"
+                android:persistent="true"
+                android:summary="Уровень затемнения от 0 до 100, текущее значение: %1$d"
+                android:title="Уровень затеменения экрана"
+                example:maxValue="100"
+                example:minValue="0" />
+            <!-- Время работы режима затемненного экрана -->
+            <com.isosystem.smarthouse.utils.TimeSeekBarPreference
+                android:defaultValue="19:00-8:00"
+                android:dependency="enable_screen_dim"
+                android:dialogTitle="Временной промежуток для затемнения экрана"
+                android:key="screen_dim_enable_time"
+                android:persistent="true"
+                android:summary="Укажите время работы режима затемнения экрана. Для круглосуточной работы режима затемнения, укажите одинаковое начальное и конечное время "
+                android:title="Время работы режима затеменения экрана" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="formatted_screen"
+        android:summary="Настройки шрифта и количества строк в окне форматированного вывода"
+        android:title="Форматированный вывод" >
+        <EditTextPreference
+            android:defaultValue="30"
+            android:digits="0123456789"
+            android:inputType="numberSigned"
+            android:key="formatted_screen_font_size"
+            android:summary="Укажите размер шрифта в пикселях (0 и выше)"
+            android:title="Размер шрифта" >
+        </EditTextPreference>
+        <EditTextPreference
+            android:defaultValue="9"
+            android:digits="0123456789"
+            android:inputType="numberSigned"
+            android:key="formatted_screen_lines_count"
+            android:summary="Укажите количество строк в окне вывода"
+            android:title="Количество строк" >
+        </EditTextPreference>
+        <EditTextPreference
+            android:defaultValue="43"
+            android:digits="0123456789"
+            android:inputType="numberSigned"
+            android:key="formatted_screen_line_size"
+            android:summary="Укажите количество символов в строке"
+            android:title="Количество символов в строке" >
+        </EditTextPreference>
+
+        <Preference
+            android:key="formatted_screen_test"
+            android:summary="Нажмите для тестирования окна форматированного вывода"
+            android:title="Тест окна вывода" />
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="gui"
+        android:summary="Настройки графического представления"
+        android:title="Графический интерфейс" >
+        <PreferenceCategory
+            android:key="main_menu_background"
+            android:summary="Установить фоновый рисунок для окна меню"
+            android:title="Фон для окна меню" >
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:disableDependentsState="true"
+                android:key="use_default_main_menu_background"
+                android:title="Использовать стандартный фон" />
+
+            <com.isosystem.smarthouse.utils.ChooseBackgroundPreference
+                android:defaultValue="no-image"
+                android:dependency="use_default_main_menu_background"
+                android:dialogTitle="Выберите изображение для фона"
+                android:key="choose_main_menu_background"
+                android:persistent="true"
+                android:title="Выбор фонового изображения" />
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:dependency="use_default_main_menu_background"
+                android:key="main_menu_background_tile"
+                android:summary="Повторять фоновое изображение"
+                android:title="Фон плиткой" />
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:key="main_messages_background"
+            android:summary="Установить фоновый рисунок для окна сообщений"
+            android:title="Фон для окна сообщений" >
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:disableDependentsState="true"
+                android:key="use_default_main_messages_background"
+                android:title="Использовать стандартный фон" />
+
+            <com.isosystem.smarthouse.utils.ChooseBackgroundPreference
+                android:defaultValue="no-image"
+                android:dependency="use_default_main_messages_background"
+                android:dialogTitle="Выберите изображение для фона"
+                android:key="choose_main_messages_background"
+                android:persistent="true"
+                android:title="Выбор фонового изображения" />
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:dependency="use_default_main_messages_background"
+                android:key="main_messages_background_tile"
+                android:summary="Повторять фоновое изображение"
+                android:title="Фон плиткой" />
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:key="main_fscreens_background"
+            android:summary="Установить фоновый рисунок для окна списка окон форматированного вывода"
+            android:title="Фон для списка окон форматированного вывода" >
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:disableDependentsState="true"
+                android:key="use_default_main_fscreens_background"
+                android:title="Использовать стандартный фон" />
+
+            <com.isosystem.smarthouse.utils.ChooseBackgroundPreference
+                android:defaultValue="no-image"
+                android:dependency="use_default_main_fscreens_background"
+                android:dialogTitle="Выберите изображение для фона"
+                android:key="choose_main_fscreens_background"
+                android:persistent="true"
+                android:title="Выбор фонового изображения" />
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:dependency="use_default_main_fscreens_background"
+                android:key="main_fscreens_background_tile"
+                android:summary="Повторять фоновое изображение"
+                android:title="Фон плиткой" />
+        </PreferenceCategory>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="main_menu"
+        android:summary="Настройки главного меню"
+        android:title="Главное меню" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="use_main_menu_tile"
+            android:summary="Использовать плитки вместо списка"
+            android:title="Использовать плитки" />
+
+        <PreferenceCategory android:title="Настройка плиток меню  (если используются плитки)" >
+            <EditTextPreference
+                android:defaultValue="5"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_tiles_in_row"
+                android:title="Количество плиток в ряду" >
+            </EditTextPreference>
+            <EditTextPreference
+                android:defaultValue="96"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_tile_image_size"
+                android:title="Размер изображения в плитке (в dp)" >
+            </EditTextPreference>
+            <EditTextPreference
+                android:defaultValue="21"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_tile_label_size"
+                android:title="Размер надписи в плитке (в sp)" >
+            </EditTextPreference>
+
+            <ListPreference
+                android:defaultValue="2"
+                android:entries="@array/stretchModeArray"
+                android:entryValues="@array/stretchModeValues"
+                android:key="main_menu_tile_stretch_mode"
+                android:summary="Установить, как растягивать ряд плиток"
+                android:title="Режим растягивания" />
+
+            <EditTextPreference
+                android:defaultValue="250"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_tile_width"
+                android:title="Ширина плитики (в dp)" >
+            </EditTextPreference>
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:disableDependentsState="true"
+                android:key="main_menu_tile_align_height"
+                android:summary="Высота плитки принудительно приравнивается к ширине"
+                android:title="Квадратная плитка" />
+
+            <EditTextPreference
+                android:defaultValue="250"
+                android:dependency="main_menu_tile_align_height"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_tile_height"
+                android:title="Высота плитики (в dp)" >
+            </EditTextPreference>
+            <EditTextPreference
+                android:defaultValue="1"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_tile_horizontal_spacing"
+                android:title="Горизональный зазор между плитками (в dp)" >
+            </EditTextPreference>
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:disableDependentsState="true"
+                android:key="main_menu_tile_align_vertical_spacing"
+                android:summary="Величина вертикального зазора приравнивается к горизональному"
+                android:title="&quot;Квадратный&quot; зазор" />
+
+            <EditTextPreference
+                android:defaultValue="1"
+                android:dependency="main_menu_tile_align_vertical_spacing"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_tile_vertical_spacing"
+                android:title="Вертикальный зазор между плитками (в dp)" >
+            </EditTextPreference>
+        </PreferenceCategory>
+        <PreferenceCategory android:title="Настройка списка меню (если используется список)" >
+            <EditTextPreference
+                android:defaultValue="60"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_list_image_size"
+                android:title="Размер изображения пункта списка (в dp)" >
+            </EditTextPreference>
+            <EditTextPreference
+                android:defaultValue="30"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_list_label_size"
+                android:title="Размер надписи пункта списка (в sp)" >
+            </EditTextPreference>
+            <EditTextPreference
+                android:defaultValue="150"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_list_height"
+                android:title="Высота пункта списка (в dp)" >
+            </EditTextPreference>
+            <EditTextPreference
+                android:defaultValue="5"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_list_divider_height"
+                android:title="Высота разделителя между пунктами списка (в dp)" >
+            </EditTextPreference>
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="main_menu_list_divider_transparent"
+                android:summary="Использовать прозрачный или серый разделитель"
+                android:title="Прозрачный разделитель" />
+
+            <EditTextPreference
+                android:defaultValue="10"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="main_menu_list_margins"
+                android:title="Отступы пункта списка слева и справа до краев экрана (в dp)" >
+            </EditTextPreference>
+        </PreferenceCategory>
+    </PreferenceScreen>
+    <PreferenceScreen
+        android:key="formatted_screens"
+        android:summary="Настройки окон форматированного вывода"
+        android:title="Окна форматированного вывода" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="use_formatted_screens_tile"
+            android:summary="Использовать плитки вместо списка"
+            android:title="Использовать плитки" />
+
+        <PreferenceCategory android:title="Настройка плиток форматированного вывода  (если используются плитки)" >
+            <EditTextPreference
+                android:defaultValue="5"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="formatted_screens_tiles_in_row"
+                android:title="Количество плиток в ряду" >
+            </EditTextPreference>
+            <EditTextPreference
+                android:defaultValue="96"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="formatted_screens_tile_image_size"
+                android:title="Размер изображения в плитке (в dp)" >
+            </EditTextPreference>
+            <EditTextPreference
+                android:defaultValue="21"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="formatted_screens_tile_label_size"
+                android:title="Размер надписи в плитке (в sp)" >
+            </EditTextPreference>
+
+            <ListPreference
+                android:defaultValue="3"
+                android:entries="@array/stretchModeArray"
+                android:entryValues="@array/stretchModeValues"
+                android:key="formatted_screens_tile_stretch_mode"
+                android:summary="Установить, как растягивать ряд плиток"
+                android:title="Режим растягивания" />
+
+            <EditTextPreference
+                android:defaultValue="250"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="formatted_screens_tile_width"
+                android:title="Ширина плитики (в dp)" >
+            </EditTextPreference>
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:disableDependentsState="true"
+                android:key="formatted_screens_tile_align_height"
+                android:summary="Высота плитки принудительно приравнивается к ширине"
+                android:title="Квадратная плитка" />
+
+            <EditTextPreference
+                android:defaultValue="250"
+                android:dependency="formatted_screens_tile_align_height"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="formatted_screens_tile_height"
+                android:title="Высота плитики (в dp)" >
+            </EditTextPreference>
+            <EditTextPreference
+                android:defaultValue="1"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="formatted_screens_tile_horizontal_spacing"
+                android:title="Горизональный зазор между плитками (в dp)" >
+            </EditTextPreference>
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:disableDependentsState="true"
+                android:key="formatted_screens_tile_align_vertical_spacing"
+                android:summary="Величина вертикального зазора приравнивается к горизональному"
+                android:title="&quot;Квадратный&quot; зазор" />
+
+            <EditTextPreference
+                android:defaultValue="1"
+                android:dependency="formatted_screens_tile_align_vertical_spacing"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="formatted_screens_tile_vertical_spacing"
+                android:title="Вертикальный зазор между плитками (в dp)" >
+            </EditTextPreference>
+        </PreferenceCategory>
+        <PreferenceCategory android:title="Настройка списка меню (если используется список)" >
+            <EditTextPreference
+                android:defaultValue="30"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="formatted_screens_list_label_size"
+                android:title="Размер надписи пункта списка (в sp)" >
+            </EditTextPreference>
+            <EditTextPreference
+                android:defaultValue="150"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="formatted_screens_list_height"
+                android:title="Высота пункта списка (в dp)" >
+            </EditTextPreference>
+            <EditTextPreference
+                android:defaultValue="5"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="formatted_screens_list_divider_height"
+                android:title="Высота разделителя между пунктами списка (в dp)" >
+            </EditTextPreference>
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="formatted_screens_list_divider_transparent"
+                android:summary="Использовать прозрачный или серый разделитель"
+                android:title="Прозрачный разделитель" />
+
+            <EditTextPreference
+                android:defaultValue="10"
+                android:digits="0123456789"
+                android:inputType="numberSigned"
+                android:key="formatted_screens_list_margins"
+                android:title="Отступы пункта списка слева и справа до краев экрана (в dp)" >
+            </EditTextPreference>
+        </PreferenceCategory>
+    </PreferenceScreen>
+</PreferenceScreen>

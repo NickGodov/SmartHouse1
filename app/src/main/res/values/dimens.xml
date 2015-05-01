@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="px">1px</dimen>
+    <dimen name="pic_size">96px</dimen>
+
+</resources>

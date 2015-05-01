@@ -1,0 +1,290 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* doc\
+* doc\allclasses-frame.html
+* doc\allclasses-noframe.html
+* doc\com\
+* doc\com\isosystem\
+* doc\com\isosystem\smarthouse\
+* doc\com\isosystem\smarthouse\BuildConfig.html
+* doc\com\isosystem\smarthouse\Connection\
+* doc\com\isosystem\smarthouse\Connection\DetachedReceiver.html
+* doc\com\isosystem\smarthouse\Connection\MessageDispatcher.html
+* doc\com\isosystem\smarthouse\Connection\USBIntentService.html
+* doc\com\isosystem\smarthouse\Connection\USBSendService.html
+* doc\com\isosystem\smarthouse\Connection\UsbAttachEventReceiver.html
+* doc\com\isosystem\smarthouse\Connection\class-use\
+* doc\com\isosystem\smarthouse\Connection\class-use\DetachedReceiver.html
+* doc\com\isosystem\smarthouse\Connection\class-use\MessageDispatcher.html
+* doc\com\isosystem\smarthouse\Connection\class-use\USBIntentService.html
+* doc\com\isosystem\smarthouse\Connection\class-use\USBSendService.html
+* doc\com\isosystem\smarthouse\Connection\class-use\UsbAttachEventReceiver.html
+* doc\com\isosystem\smarthouse\Connection\package-frame.html
+* doc\com\isosystem\smarthouse\Connection\package-summary.html
+* doc\com\isosystem\smarthouse\Connection\package-tree.html
+* doc\com\isosystem\smarthouse\Connection\package-use.html
+* doc\com\isosystem\smarthouse\Dialogs\
+* doc\com\isosystem\smarthouse\Dialogs\FormulaCheckDialog.html
+* doc\com\isosystem\smarthouse\Dialogs\OutgoingMessageBoolCheckDialog.html
+* doc\com\isosystem\smarthouse\Dialogs\OutgoingMessageCheckDialog.html
+* doc\com\isosystem\smarthouse\Dialogs\OutgoingMessagePasswordCheckDialog.html
+* doc\com\isosystem\smarthouse\Dialogs\ValidationFormulaCheckDialog.html
+* doc\com\isosystem\smarthouse\Dialogs\class-use\
+* doc\com\isosystem\smarthouse\Dialogs\class-use\FormulaCheckDialog.html
+* doc\com\isosystem\smarthouse\Dialogs\class-use\OutgoingMessageBoolCheckDialog.html
+* doc\com\isosystem\smarthouse\Dialogs\class-use\OutgoingMessageCheckDialog.html
+* doc\com\isosystem\smarthouse\Dialogs\class-use\OutgoingMessagePasswordCheckDialog.html
+* doc\com\isosystem\smarthouse\Dialogs\class-use\ValidationFormulaCheckDialog.html
+* doc\com\isosystem\smarthouse\Dialogs\package-frame.html
+* doc\com\isosystem\smarthouse\Dialogs\package-summary.html
+* doc\com\isosystem\smarthouse\Dialogs\package-tree.html
+* doc\com\isosystem\smarthouse\Dialogs\package-use.html
+* doc\com\isosystem\smarthouse\FormScreensAdapter.html
+* doc\com\isosystem\smarthouse\FormattedScreenActivity.FormScreenMessageReceiver.html
+* doc\com\isosystem\smarthouse\FormattedScreenActivity.html
+* doc\com\isosystem\smarthouse\Globals.html
+* doc\com\isosystem\smarthouse\Logging\
+* doc\com\isosystem\smarthouse\Logging\Logging.html
+* doc\com\isosystem\smarthouse\Logging\class-use\
+* doc\com\isosystem\smarthouse\Logging\class-use\Logging.html
+* doc\com\isosystem\smarthouse\Logging\package-frame.html
+* doc\com\isosystem\smarthouse\Logging\package-summary.html
+* doc\com\isosystem\smarthouse\Logging\package-tree.html
+* doc\com\isosystem\smarthouse\Logging\package-use.html
+* doc\com\isosystem\smarthouse\MainActivity.SectionsPagerAdapter.html
+* doc\com\isosystem\smarthouse\MainActivity.html
+* doc\com\isosystem\smarthouse\MainFormsFragment.html
+* doc\com\isosystem\smarthouse\MainMenuAdapter.html
+* doc\com\isosystem\smarthouse\MainMenuFragment.html
+* doc\com\isosystem\smarthouse\MainMessagesFragment.AlarmMessageReceive.html
+* doc\com\isosystem\smarthouse\MainMessagesFragment.html
+* doc\com\isosystem\smarthouse\MessagesListAdapter.html
+* doc\com\isosystem\smarthouse\MyApp.html
+* doc\com\isosystem\smarthouse\MyApplication.html
+* doc\com\isosystem\smarthouse\Notifications\
+* doc\com\isosystem\smarthouse\Notifications\Notifications.DialogType.html
+* doc\com\isosystem\smarthouse\Notifications\Notifications.MessageType.html
+* doc\com\isosystem\smarthouse\Notifications\Notifications.html
+* doc\com\isosystem\smarthouse\Notifications\class-use\
+* doc\com\isosystem\smarthouse\Notifications\class-use\Notifications.DialogType.html
+* doc\com\isosystem\smarthouse\Notifications\class-use\Notifications.MessageType.html
+* doc\com\isosystem\smarthouse\Notifications\class-use\Notifications.html
+* doc\com\isosystem\smarthouse\Notifications\package-frame.html
+* doc\com\isosystem\smarthouse\Notifications\package-summary.html
+* doc\com\isosystem\smarthouse\Notifications\package-tree.html
+* doc\com\isosystem\smarthouse\Notifications\package-use.html
+* doc\com\isosystem\smarthouse\Pages\
+* doc\com\isosystem\smarthouse\Pages\PageSendBoolValueActivity.ValueMessageReceiver.html
+* doc\com\isosystem\smarthouse\Pages\PageSendBoolValueActivity.html
+* doc\com\isosystem\smarthouse\Pages\PageSendIntValueActivity.ValueMessageReceiver.html
+* doc\com\isosystem\smarthouse\Pages\PageSendIntValueActivity.html
+* doc\com\isosystem\smarthouse\Pages\PageSendPasswordActivity.html
+* doc\com\isosystem\smarthouse\Pages\TestListener.html
+* doc\com\isosystem\smarthouse\Pages\class-use\
+* doc\com\isosystem\smarthouse\Pages\class-use\PageSendBoolValueActivity.ValueMessageReceiver.html
+* doc\com\isosystem\smarthouse\Pages\class-use\PageSendBoolValueActivity.html
+* doc\com\isosystem\smarthouse\Pages\class-use\PageSendIntValueActivity.ValueMessageReceiver.html
+* doc\com\isosystem\smarthouse\Pages\class-use\PageSendIntValueActivity.html
+* doc\com\isosystem\smarthouse\Pages\class-use\PageSendPasswordActivity.html
+* doc\com\isosystem\smarthouse\Pages\class-use\TestListener.html
+* doc\com\isosystem\smarthouse\Pages\package-frame.html
+* doc\com\isosystem\smarthouse\Pages\package-summary.html
+* doc\com\isosystem\smarthouse\Pages\package-tree.html
+* doc\com\isosystem\smarthouse\Pages\package-use.html
+* doc\com\isosystem\smarthouse\R.attr.html
+* doc\com\isosystem\smarthouse\R.color.html
+* doc\com\isosystem\smarthouse\R.dimen.html
+* doc\com\isosystem\smarthouse\R.drawable.html
+* doc\com\isosystem\smarthouse\R.html
+* doc\com\isosystem\smarthouse\R.id.html
+* doc\com\isosystem\smarthouse\R.layout.html
+* doc\com\isosystem\smarthouse\R.menu.html
+* doc\com\isosystem\smarthouse\R.string.html
+* doc\com\isosystem\smarthouse\R.style.html
+* doc\com\isosystem\smarthouse\R.xml.html
+* doc\com\isosystem\smarthouse\Settings\
+* doc\com\isosystem\smarthouse\Settings\AddFormattedScreenActivity.html
+* doc\com\isosystem\smarthouse\Settings\AddMenuItemActivity.html
+* doc\com\isosystem\smarthouse\Settings\AddMenuItemSendBool.html
+* doc\com\isosystem\smarthouse\Settings\AddMenuItemSendPassword.html
+* doc\com\isosystem\smarthouse\Settings\AddMenuItemSendValue.html
+* doc\com\isosystem\smarthouse\Settings\FormattedStringsSettingsFragment.html
+* doc\com\isosystem\smarthouse\Settings\GeneralSettings.PasswordChangeDialog.html
+* doc\com\isosystem\smarthouse\Settings\GeneralSettings.html
+* doc\com\isosystem\smarthouse\Settings\ImageGalleryAdapter.html
+* doc\com\isosystem\smarthouse\Settings\LogsFragment.html
+* doc\com\isosystem\smarthouse\Settings\MainMenuSettingsFragment.html
+* doc\com\isosystem\smarthouse\Settings\SettingsActivity.SectionsPagerAdapter.html
+* doc\com\isosystem\smarthouse\Settings\SettingsActivity.html
+* doc\com\isosystem\smarthouse\Settings\SettingsFourFragment.html
+* doc\com\isosystem\smarthouse\Settings\class-use\
+* doc\com\isosystem\smarthouse\Settings\class-use\AddFormattedScreenActivity.html
+* doc\com\isosystem\smarthouse\Settings\class-use\AddMenuItemActivity.html
+* doc\com\isosystem\smarthouse\Settings\class-use\AddMenuItemSendBool.html
+* doc\com\isosystem\smarthouse\Settings\class-use\AddMenuItemSendPassword.html
+* doc\com\isosystem\smarthouse\Settings\class-use\AddMenuItemSendValue.html
+* doc\com\isosystem\smarthouse\Settings\class-use\FormattedStringsSettingsFragment.html
+* doc\com\isosystem\smarthouse\Settings\class-use\GeneralSettings.PasswordChangeDialog.html
+* doc\com\isosystem\smarthouse\Settings\class-use\GeneralSettings.html
+* doc\com\isosystem\smarthouse\Settings\class-use\ImageGalleryAdapter.html
+* doc\com\isosystem\smarthouse\Settings\class-use\LogsFragment.html
+* doc\com\isosystem\smarthouse\Settings\class-use\MainMenuSettingsFragment.html
+* doc\com\isosystem\smarthouse\Settings\class-use\SettingsActivity.SectionsPagerAdapter.html
+* doc\com\isosystem\smarthouse\Settings\class-use\SettingsActivity.html
+* doc\com\isosystem\smarthouse\Settings\class-use\SettingsFourFragment.html
+* doc\com\isosystem\smarthouse\Settings\package-frame.html
+* doc\com\isosystem\smarthouse\Settings\package-summary.html
+* doc\com\isosystem\smarthouse\Settings\package-tree.html
+* doc\com\isosystem\smarthouse\Settings\package-use.html
+* doc\com\isosystem\smarthouse\TreeStructure\
+* doc\com\isosystem\smarthouse\TreeStructure\AlarmMessage.html
+* doc\com\isosystem\smarthouse\TreeStructure\FormattedScreen.html
+* doc\com\isosystem\smarthouse\TreeStructure\MenuTree.MenuScreenType.html
+* doc\com\isosystem\smarthouse\TreeStructure\MenuTree.NodeType.html
+* doc\com\isosystem\smarthouse\TreeStructure\MenuTree.html
+* doc\com\isosystem\smarthouse\TreeStructure\MenuTreeNode.html
+* doc\com\isosystem\smarthouse\TreeStructure\class-use\
+* doc\com\isosystem\smarthouse\TreeStructure\class-use\AlarmMessage.html
+* doc\com\isosystem\smarthouse\TreeStructure\class-use\FormattedScreen.html
+* doc\com\isosystem\smarthouse\TreeStructure\class-use\MenuTree.MenuScreenType.html
+* doc\com\isosystem\smarthouse\TreeStructure\class-use\MenuTree.NodeType.html
+* doc\com\isosystem\smarthouse\TreeStructure\class-use\MenuTree.html
+* doc\com\isosystem\smarthouse\TreeStructure\class-use\MenuTreeNode.html
+* doc\com\isosystem\smarthouse\TreeStructure\package-frame.html
+* doc\com\isosystem\smarthouse\TreeStructure\package-summary.html
+* doc\com\isosystem\smarthouse\TreeStructure\package-tree.html
+* doc\com\isosystem\smarthouse\TreeStructure\package-use.html
+* doc\com\isosystem\smarthouse\Utils\
+* doc\com\isosystem\smarthouse\Utils\BooleanFormulaEvaluator.html
+* doc\com\isosystem\smarthouse\Utils\EvaluatorResult.html
+* doc\com\isosystem\smarthouse\Utils\MathematicalFormulaEvaluator.html
+* doc\com\isosystem\smarthouse\Utils\class-use\
+* doc\com\isosystem\smarthouse\Utils\class-use\BooleanFormulaEvaluator.html
+* doc\com\isosystem\smarthouse\Utils\class-use\EvaluatorResult.html
+* doc\com\isosystem\smarthouse\Utils\class-use\MathematicalFormulaEvaluator.html
+* doc\com\isosystem\smarthouse\Utils\package-frame.html
+* doc\com\isosystem\smarthouse\Utils\package-summary.html
+* doc\com\isosystem\smarthouse\Utils\package-tree.html
+* doc\com\isosystem\smarthouse\Utils\package-use.html
+* doc\com\isosystem\smarthouse\XMLProcessor\
+* doc\com\isosystem\smarthouse\XMLProcessor\XMLProcessor.html
+* doc\com\isosystem\smarthouse\XMLProcessor\class-use\
+* doc\com\isosystem\smarthouse\XMLProcessor\class-use\XMLProcessor.html
+* doc\com\isosystem\smarthouse\XMLProcessor\package-frame.html
+* doc\com\isosystem\smarthouse\XMLProcessor\package-summary.html
+* doc\com\isosystem\smarthouse\XMLProcessor\package-tree.html
+* doc\com\isosystem\smarthouse\XMLProcessor\package-use.html
+* doc\com\isosystem\smarthouse\class-use\
+* doc\com\isosystem\smarthouse\class-use\BuildConfig.html
+* doc\com\isosystem\smarthouse\class-use\FormScreensAdapter.html
+* doc\com\isosystem\smarthouse\class-use\FormattedScreenActivity.FormScreenMessageReceiver.html
+* doc\com\isosystem\smarthouse\class-use\FormattedScreenActivity.html
+* doc\com\isosystem\smarthouse\class-use\Globals.html
+* doc\com\isosystem\smarthouse\class-use\MainActivity.SectionsPagerAdapter.html
+* doc\com\isosystem\smarthouse\class-use\MainActivity.html
+* doc\com\isosystem\smarthouse\class-use\MainFormsFragment.html
+* doc\com\isosystem\smarthouse\class-use\MainMenuAdapter.html
+* doc\com\isosystem\smarthouse\class-use\MainMenuFragment.html
+* doc\com\isosystem\smarthouse\class-use\MainMessagesFragment.AlarmMessageReceive.html
+* doc\com\isosystem\smarthouse\class-use\MainMessagesFragment.html
+* doc\com\isosystem\smarthouse\class-use\MessagesListAdapter.html
+* doc\com\isosystem\smarthouse\class-use\MyApp.html
+* doc\com\isosystem\smarthouse\class-use\MyApplication.html
+* doc\com\isosystem\smarthouse\class-use\R.attr.html
+* doc\com\isosystem\smarthouse\class-use\R.color.html
+* doc\com\isosystem\smarthouse\class-use\R.dimen.html
+* doc\com\isosystem\smarthouse\class-use\R.drawable.html
+* doc\com\isosystem\smarthouse\class-use\R.html
+* doc\com\isosystem\smarthouse\class-use\R.id.html
+* doc\com\isosystem\smarthouse\class-use\R.layout.html
+* doc\com\isosystem\smarthouse\class-use\R.menu.html
+* doc\com\isosystem\smarthouse\class-use\R.string.html
+* doc\com\isosystem\smarthouse\class-use\R.style.html
+* doc\com\isosystem\smarthouse\class-use\R.xml.html
+* doc\com\isosystem\smarthouse\package-frame.html
+* doc\com\isosystem\smarthouse\package-summary.html
+* doc\com\isosystem\smarthouse\package-tree.html
+* doc\com\isosystem\smarthouse\package-use.html
+* doc\constant-values.html
+* doc\deprecated-list.html
+* doc\help-doc.html
+* doc\index-files\
+* doc\index-files\index-1.html
+* doc\index-files\index-10.html
+* doc\index-files\index-11.html
+* doc\index-files\index-12.html
+* doc\index-files\index-13.html
+* doc\index-files\index-14.html
+* doc\index-files\index-15.html
+* doc\index-files\index-16.html
+* doc\index-files\index-17.html
+* doc\index-files\index-18.html
+* doc\index-files\index-19.html
+* doc\index-files\index-2.html
+* doc\index-files\index-20.html
+* doc\index-files\index-21.html
+* doc\index-files\index-22.html
+* doc\index-files\index-3.html
+* doc\index-files\index-4.html
+* doc\index-files\index-5.html
+* doc\index-files\index-6.html
+* doc\index-files\index-7.html
+* doc\index-files\index-8.html
+* doc\index-files\index-9.html
+* doc\index.html
+* doc\overview-frame.html
+* doc\overview-summary.html
+* doc\overview-tree.html
+* doc\package-list
+* doc\script.js
+* doc\serialized-form.html
+* doc\stylesheet.css
+* ic_launcher-web.png
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:18.0.0
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app\src\main\AndroidManifest.xml
+* assets\ => app\src\main\assets\
+* libs\android-support-v13.jar => app\libs\android-support-v13.jar
+* libs\easyandroidanimationslibrary-v0.5.jar => app\libs\easyandroidanimationslibrary-v0.5.jar
+* libs\jeval.jar => app\libs\jeval.jar
+* res\ => app\src\main\res\
+* src\ => app\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
