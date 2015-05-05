@@ -181,7 +181,8 @@ public class MenuTree implements Serializable {
 		SetIntValue("Прямой ввод значения", 0),
 		SetPasswordValue("Ввод пароля", 1),
 		SetBooleanValue("Переключение вкл/выкл", 2),
-		SendMessage("Отсылка сообщения", 3);
+		SendMessage("Отсылка сообщения", 3),
+		SetIntRangeValue("Диапазон числовых значений",4);
 
 		private String stringValue;
 		private int intValue;

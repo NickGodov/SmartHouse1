@@ -140,11 +140,17 @@ public class MainMenuAdapterGrid extends BaseAdapter {
 					dialog.show();
 
 					break;
+				case SetIntRangeValue:
+					intent = new Intent(mContext,
+							MainMenuPageSendRangeIntValueActivity.class);
+					intent.putExtra("Node", node);
+					mContext.startActivity(intent);
+					mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
+					break;
 				default:
 					Notifications.showError(mContext,
 							"Ошибка при открытии пункта меню!");
 					break;
-
 				}
 			}
 		};

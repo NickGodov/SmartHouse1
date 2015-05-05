@@ -68,11 +68,24 @@
     <string name = "settings_add_menu_item_title">* Текст заголовка</string>
     <string name = "settings_add_menu_item_description">* Пояснительный текст</string>
     <string name = "settings_add_menu_item_error">* Сообщение об ошибке</string>
+
+    <string name = "settings_add_menu_item_first_error">* Сообщение об ошибке для первого значения</string>
+    <string name = "settings_add_menu_item_second_error">* Сообщение об ошибке для второго значения</string>
+
+
     <string name = "settings_add_menu_item_image_header">* Изображение для окна конечной точки</string>
     <string name = "settings_add_menu_item_incoming_message_process_header">Обработка входящего значения</string>
+
+    <string name = "settings_add_menu_item_first_incoming_value_process_header">Обработка первого входящего значения</string>
+    <string name = "settings_add_menu_item_second_incoming_value_process_header">Обработка второго входящего значения</string>
+
     <string name = "settings_add_menu_item_incoming_formula">Формула для входящего значения</string>
     <string name = "settings_add_menu_item_fraction_digits">Количество знаков после запятой</string>
     <string name = "settings_add_menu_item_outgoing_message_process_header">Обработка исходящего значения</string>
+
+    <string name = "settings_add_menu_item_first_outgoing_message_process_header">Обработка первого исходящего значения</string>
+    <string name = "settings_add_menu_item_second_outgoing_message_process_header">Обработка второго исходящего значения</string>
+
     <string name = "settings_add_menu_item_outgoing_formula">Формула для исходящего значения</string>
     <string name = "settings_add_menu_item_outgoing_bool_validation">Булевая формула валидации значения</string>
     <string name = "settings_add_menu_item_send_message_header">Обмен сообщениями с контроллером</string>

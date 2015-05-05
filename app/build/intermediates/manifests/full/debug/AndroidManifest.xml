@@ -117,6 +117,13 @@
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
+            android:name="com.isosystem.smarthouse.MainMenuPageSendRangeIntValueActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_main_settings"
+            android:noHistory="true"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
             android:name="com.isosystem.smarthouse.settings.ApplicationPreferencesActivity"
             android:label="Настройки приложения"
             android:noHistory="true" >
@@ -144,6 +151,10 @@
         <activity
             android:name="com.isosystem.smarthouse.settings.AddMenuItemSendMessage"
             android:label="Отсылка сообщения" >
+        </activity>
+        <activity
+            android:name="com.isosystem.smarthouse.settings.AddMenuItemSendRangeIntValue"
+            android:label="Отсылка диапазона числовых значений" >
         </activity>
         <activity
             android:name="com.isosystem.smarthouse.FormattedScreensActivity"

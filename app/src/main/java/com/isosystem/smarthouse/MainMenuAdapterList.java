@@ -137,6 +137,14 @@ public class MainMenuAdapterList extends BaseAdapter {
                                 msg, mFragment.getActivity());
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         dialog.show();
+
+                        break;
+                    case SetIntRangeValue:
+                        intent = new Intent(mContext,
+                                MainMenuPageSendRangeIntValueActivity.class);
+                        intent.putExtra("Node", node);
+                        mContext.startActivity(intent);
+                        mFragment.getActivity().overridePendingTransition(R.anim.flipin, R.anim.flipout);
                         break;
                     default:
                         Notifications.showError(mContext,

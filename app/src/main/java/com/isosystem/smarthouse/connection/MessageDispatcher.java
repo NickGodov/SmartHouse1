@@ -50,7 +50,36 @@ public class MessageDispatcher {
 		
 		return sendingMessage.toString();
 	}
-	
+
+	/**
+	 * Формирование диапазона числовых значений контроллеру для последующей отправки
+	 * В качестве входных аргументов получаем префикс сообщения (вводится настройщиком при создании окна
+	 * и отсылаемое значение в формате int), а также два значения
+	 * Сообщение формируется как [префикс],[значение_1]-[значение2]
+	 * Например, если префикс: Z, а на выходе 150, то сообщение будет Z,150
+	 *
+	 * @param prefix префикс сообщения
+	 * @param first_value первое отсылаемое значение
+	 * @param second_value второе отсылаемое значение
+	 * @param isSending реальная отсылка или тест
+	 */
+	public String SendRangeValueMessage(String prefix, String first_value, String second_value, Boolean isSending) {
+		StringBuilder sendingMessage = new StringBuilder();
+
+		sendingMessage.append(prefix);
+		sendingMessage.append(",");
+		sendingMessage.append(first_value);
+		sendingMessage.append("-");
+		sendingMessage.append(second_value);
+
+		if (isSending) {
+			Send(sendingMessage.toString());
+		}
+
+		return sendingMessage.toString();
+	}
+
+
 	/**
 	 * Формирование булевого значения контроллеру
 	 * Формат сообщения: [префикс],[0|1]

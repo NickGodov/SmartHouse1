@@ -485,9 +485,12 @@ public class AddMenuItemActivity extends Activity implements
 				} else if (position == 2) { // ¬вод булевого значени€
 					mApplication.mTree.tempNode.screenType = MenuScreenType.SetBooleanValue;	
 					intent.setClass(mContext, AddMenuItemSendBool.class);
-				} else if (position == 3) {
+				} else if (position == 3) { // ќкно отсылки сообщени€
 					mApplication.mTree.tempNode.screenType = MenuScreenType.SendMessage;	
 					intent.setClass(mContext, AddMenuItemSendMessage.class);
+				} else if (position == 4) { // ¬вод диапазона числовых значений
+					mApplication.mTree.tempNode.screenType = MenuScreenType.SetIntRangeValue;
+					intent.setClass(mContext,AddMenuItemSendRangeIntValue.class);
 				}
 				mContext.startActivity(intent);
 			}
