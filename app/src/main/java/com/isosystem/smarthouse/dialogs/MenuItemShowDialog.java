@@ -61,7 +61,8 @@ public class MenuItemShowDialog extends DialogFragment {
 		map.put("name", "Количество дочерних узлов");
 		map.put("value", String.valueOf(node.childNodes.size()));
 		mylist.add(map);
-		
+
+
 		if (node.nodeType == NodeType.NODE_LEAF) {
 			// Тип конечного узла
 			map = new HashMap<String, String>();

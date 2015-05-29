@@ -38,14 +38,15 @@
             android:layout_height="320px"
             android:layout_gravity="left|center_vertical"
             android:adjustViewBounds="false"
-            android:scaleType="centerInside"
+            android:scaleType="fitCenter"
             android:src="@drawable/no_image"
             android:layout_rowSpan="5"/>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
 
             <TableRow
                 android:layout_width="match_parent"

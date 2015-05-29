@@ -153,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="25dp"
-                android:text="@string/settings_add_menu_item_send_message"
+                android:text="* Префикс"
                 android:textSize="18sp" />
 
             <EditText
@@ -175,17 +175,52 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/tooltip" />
         </LinearLayout>
-        
-            <LinearLayout
-                android:id="@+id/buttons_layout_1"
-                android:layout_width="fill_parent"
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/outgoing_value_label"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/imagepick_layout_1"
+                android:layout_gravity="bottom"
                 android:layout_marginLeft="25dp"
+                android:text="* Значение"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/outgoing_value_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/button_help_outgoing_value"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginRight="25dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttons_layout_1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imagepick_layout_1"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
 
         <Button
             android:id="@+id/btn_ok"

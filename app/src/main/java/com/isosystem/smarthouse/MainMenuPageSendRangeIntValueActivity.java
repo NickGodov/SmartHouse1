@@ -1,6 +1,7 @@
 package com.isosystem.smarthouse;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -206,7 +207,7 @@ public class MainMenuPageSendRangeIntValueActivity extends Activity {
 
         // Создаем объект диспетчера
         mDispatcher = new MessageDispatcher(this);
-        mDispatcher.SendRawMessage(mGiveMeValueMessage);
+        mDispatcher.sendGiveMeValueMessage(mGiveMeValueMessage,true);
     }
 
     /**
@@ -363,10 +364,20 @@ public class MainMenuPageSendRangeIntValueActivity extends Activity {
             }
             msg = msg.substring(2);
 
+            String first_value="";
+            String second_value="";
+
             // Парсим сообщение, выделяя первое значение (до знака '-') и второе значение
-            String[] parts = msg.split("-");
-            String first_value = parts[0];
-            String second_value = parts[1];
+            try {
+                String[] parts = msg.split("-");
+                first_value = parts[0];
+                second_value = parts[1];
+            } catch (Exception e) {
+                e.printStackTrace();
+                Notifications.showError(mContext,"Ошибка при попытке обработать сообщение от контроллера");
+                Logging.v("Исключение при попытке парсинга сообщения от контроллера. Сообщение от контроллера: " + msg);
+                return;
+            }
 
             // 1. Обработка первого значения с помощью формулы обработки входящего значения с указанием количества знаков после запятой
             MathematicalFormulaEvaluator evaluator = new MathematicalFormulaEvaluator(

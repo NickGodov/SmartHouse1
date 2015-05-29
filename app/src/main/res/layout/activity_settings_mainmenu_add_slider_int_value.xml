@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp">
+
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header_1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="fill_horizontal"
+                android:text="@string/settings_add_menu_item_labels_header"
+                android:textColor="#2a2a2a"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider_1"
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
+        <!-- Название заголовка -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/header_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="@string/settings_add_menu_item_title"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/header_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/button_help_header"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+        <!-- Пояснительный текст -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/description_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="@string/settings_add_menu_item_description"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/description_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/button_help_description"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <!-- Сообщение об ошибке -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/error_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="@string/settings_add_menu_item_error"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/error_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/button_help_error"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header_2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:gravity="fill_horizontal"
+                android:text="@string/settings_add_menu_item_image_header"
+                android:textColor="#2a2a2a"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider_2"
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:id="@+id/imagepick_layout_1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Gallery
+                    android:id="@+id/tile_image_gallery"
+                    android:layout_width="fill_parent"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gallery_back"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:spacing="5dp" />
+
+                <ImageView
+                    android:id="@+id/tile_image"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/gallery_image_back"
+                    android:padding="7dp"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header_slider"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="fill_horizontal"
+                android:text="Настройка слайдера"
+                android:textColor="#2a2a2a"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider_slder"
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/slider_min_value_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="* Минимальное значение"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/slider_min_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:inputType="number|numberSigned|numberDecimal" />
+
+            <ImageButton
+                android:id="@+id/button_help_min_value"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/slider_max_value_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="* Максимальное значение"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/slider_max_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:editable="false"
+                android:inputType="numberSigned|numberDecimal" />
+
+            <ImageButton
+                android:id="@+id/button_help_max_value"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/slider_step_value_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="* Шаг слайдера"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/slider_step_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:text="1"
+                android:textSize="18sp"
+                android:inputType="number|numberSigned|numberDecimal" />
+
+            <ImageButton
+                android:id="@+id/button_help_slider_step_value"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header_3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="fill_horizontal"
+                android:text="@string/settings_add_menu_item_incoming_message_process_header"
+                android:textColor="#2a2a2a"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider_3"
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/incoming_formula_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="@string/settings_add_menu_item_incoming_formula"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/incoming_formula_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/button_check_incoming_formula"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/check"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/button_help_incoming_formula"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header_4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="fill_horizontal"
+                android:text="@string/settings_add_menu_item_outgoing_message_process_header"
+                android:textColor="#2a2a2a"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider_4"
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/outgoing_formula_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="@string/settings_add_menu_item_outgoing_formula"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/outgoing_formula_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/button_check_outgoing_formula"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/check"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/button_help_outgoing_formula"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header_5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="fill_horizontal"
+                android:text="@string/settings_add_menu_item_send_message_header"
+                android:textColor="#2a2a2a"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider_5"
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/get_value_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="@string/settings_add_menu_item_send_message_get_value"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/get_value_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/button_help_get_value"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:visibility="visible">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Динамический режим"
+                android:id="@+id/dynamic_mode"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="25dp"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/dynamic_send_timeout_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Тайм-аут для отсылки сообщения, мсек"
+                android:textSize="18sp"
+                android:layout_marginLeft="25dp" />
+
+            <EditText
+                android:id="@+id/dynamic_send_timeout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:layout_gravity="center_vertical"
+                android:text="200"
+                android:digits="0123456789"
+                android:editable="false"
+                android:inputType="number" />
+
+            <ImageButton
+                android:id="@+id/button_help_dynamic_send"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/outgoing_prefix_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="@string/settings_add_menu_item_send_message_prefix"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/outgoing_prefix_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/button_check_outgoing_prefix"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/check"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/button_help_outgoing_prefix"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/buttons_layout_1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imagepick_layout_1"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/global_accept"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/global_cancel"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

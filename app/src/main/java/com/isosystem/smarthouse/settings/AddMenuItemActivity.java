@@ -491,6 +491,12 @@ public class AddMenuItemActivity extends Activity implements
 				} else if (position == 4) { // ¬вод диапазона числовых значений
 					mApplication.mTree.tempNode.screenType = MenuScreenType.SetIntRangeValue;
 					intent.setClass(mContext,AddMenuItemSendRangeIntValue.class);
+				} else if (position == 5) { // ¬вод диапазона дат и времени
+					mApplication.mTree.tempNode.screenType = MenuScreenType.SetDateTimeRangeValue;
+					intent.setClass(mContext,AddMenuItemSendRangeDateTimeValue.class);
+				} else if (position == 6) { // ¬вод значени€ с помощью слайдера
+					mApplication.mTree.tempNode.screenType = MenuScreenType.SetSliderIntValue;
+					intent.setClass(mContext,AddMenuItemSliderIntValue.class);
 				}
 				mContext.startActivity(intent);
 			}

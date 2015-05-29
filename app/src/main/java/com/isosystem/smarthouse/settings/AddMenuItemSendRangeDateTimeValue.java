@@ -4,26 +4,31 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import com.isosystem.smarthouse.Globals;
 import com.isosystem.smarthouse.MyApplication;
 import com.isosystem.smarthouse.R;
+import com.isosystem.smarthouse.data.MenuTree;
 import com.isosystem.smarthouse.dialogs.FormulaCheckDialog;
-import com.isosystem.smarthouse.dialogs.OutgoingMessageCheckDialog;
 import com.isosystem.smarthouse.dialogs.OutgoingRangeMessageCheckDialog;
 import com.isosystem.smarthouse.dialogs.ValidationFormulaCheckDialog;
 import com.isosystem.smarthouse.logging.Logging;
@@ -41,9 +46,11 @@ import java.util.HashMap;
  */
 
 @SuppressWarnings("deprecation")
-public class AddMenuItemSendRangeIntValue extends Activity {
+public class AddMenuItemSendRangeDateTimeValue extends Activity {
     Context mContext;
     MyApplication mApplication;
+
+    Spinner mTypeRangeSpinner;
 
     Gallery mGallery; // Виджет галереи
     ArrayList<String> mImages = null; // Массив с путями для изображений
@@ -52,13 +59,10 @@ public class AddMenuItemSendRangeIntValue extends Activity {
     //Режим окна (редактирование или создание)
     boolean mEditMode;
 
-    Button mAddButton;
-    Button mBackButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings_mainmenu_add_send_range_int_value);
+        setContentView(R.layout.activity_settings_mainmenu_add_send_range_date_time_value);
 
         // Отмена затемнения экрана
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -67,11 +71,12 @@ public class AddMenuItemSendRangeIntValue extends Activity {
         mContext = this;
 
         // Кнопка добавить
-        mAddButton = (Button) findViewById(R.id.btn_ok);
-        mAddButton.setOnClickListener(mAddListener);
+        Button addBtn = (Button) findViewById(R.id.btn_ok);
+        addBtn.setOnClickListener(mAddListener);
+
         // Кнопка отменить
-        mBackButton = (Button) findViewById(R.id.btn_cancel);
-        mBackButton.setOnClickListener(mBackListener);
+        Button backBtn = (Button) findViewById(R.id.btn_cancel);
+        backBtn.setOnClickListener(mBackListener);
 
         // Изображение выбранной картинки из галереи
         mGalleryPicker = (ImageView) findViewById(R.id.tile_image);
@@ -87,6 +92,9 @@ public class AddMenuItemSendRangeIntValue extends Activity {
         ImageButton mTooltipButton = (ImageButton) findViewById(R.id.button_help_header);
         mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
+        mTooltipButton = (ImageButton) findViewById(R.id.button_help_range_type);
+        mTooltipButton.setOnClickListener(tooltipsButtonListener);
+
         mTooltipButton = (ImageButton) findViewById(R.id.button_help_description);
         mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
@@ -96,77 +104,23 @@ public class AddMenuItemSendRangeIntValue extends Activity {
         mTooltipButton = (ImageButton) findViewById(R.id.button_help_second_error);
         mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
-        mTooltipButton = (ImageButton) findViewById(R.id.button_help_first_incoming_formula);
-        mTooltipButton.setOnClickListener(tooltipsButtonListener);
-
-        mTooltipButton = (ImageButton) findViewById(R.id.button_help_second_incoming_formula);
-        mTooltipButton.setOnClickListener(tooltipsButtonListener);
-
-        mTooltipButton = (ImageButton) findViewById(R.id.button_help_first_decimal_places);
-        mTooltipButton.setOnClickListener(tooltipsButtonListener);
-
-        mTooltipButton = (ImageButton) findViewById(R.id.button_help_second_decimal_places);
-        mTooltipButton.setOnClickListener(tooltipsButtonListener);
-
-        mTooltipButton = (ImageButton) findViewById(R.id.button_help_first_outgoing_formula);
-        mTooltipButton.setOnClickListener(tooltipsButtonListener);
-
-        mTooltipButton = (ImageButton) findViewById(R.id.button_help_second_outgoing_formula);
-        mTooltipButton.setOnClickListener(tooltipsButtonListener);
-
-        mTooltipButton = (ImageButton) findViewById(R.id.button_help_first_validation_formula);
-        mTooltipButton.setOnClickListener(tooltipsButtonListener);
-
-        mTooltipButton = (ImageButton) findViewById(R.id.button_help_second_validation_formula);
-        mTooltipButton.setOnClickListener(tooltipsButtonListener);
-
         mTooltipButton = (ImageButton) findViewById(R.id.button_help_get_value);
         mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
         mTooltipButton = (ImageButton) findViewById(R.id.button_help_outgoing_prefix);
         mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
-        // Проверка формулы первого входящего значения
-        ImageButton mIncomingFirstValueFormulaDialogButton = (ImageButton) this
-                .findViewById(R.id.button_check_first_incoming_formula);
-        mIncomingFirstValueFormulaDialogButton
-                .setOnClickListener(incomingFirstValueFormulaListener);
-
-        // Проверка формулы второго входящего значения
-        ImageButton mIncomingSecondValueFormulaDialogButton = (ImageButton) this
-                .findViewById(R.id.button_check_second_incoming_formula);
-        mIncomingSecondValueFormulaDialogButton
-                .setOnClickListener(incomingSecondValueFormulaListener);
-
-        // Проверка формулы первого исходящего значения
-        ImageButton mOutgoingFirstValueFormulaDialogButton = (ImageButton) this
-                .findViewById(R.id.button_check_first_outgoing_formula);
-        mOutgoingFirstValueFormulaDialogButton
-                .setOnClickListener(outgoingFirstValueFormulaListener);
-
-        // Проверка валидности первого исходящего значения
-        ImageButton mOutgoingFirstValidationDialogButton = (ImageButton) this
-                .findViewById(R.id.button_check_first_validation_formula);
-        mOutgoingFirstValidationDialogButton
-                .setOnClickListener(outgoingFirstValueValidationListener);
-
-        // Проверка формулы второго исходящего значения
-        ImageButton mOutgoingSecondValueFormulaDialogButton = (ImageButton) this
-                .findViewById(R.id.button_check_second_outgoing_formula);
-        mOutgoingSecondValueFormulaDialogButton
-                .setOnClickListener(outgoingSecondValueFormulaListener);
-
-        // Проверка валидности второго исходящего значения
-        ImageButton mOutgoingSecondValidationDialogButton = (ImageButton) this
-                .findViewById(R.id.button_check_second_validation_formula);
-        mOutgoingSecondValidationDialogButton
-                .setOnClickListener(outgoingSecondValueValidationListener);
-
         // Проверка исходящего сообщения
         ImageButton mOutgoingMessageDialogButton = (ImageButton) this
                 .findViewById(R.id.button_check_outgoing_prefix);
         mOutgoingMessageDialogButton
                 .setOnClickListener(outgoingMessageListener);
+
+        // Спиннер с выбором типа диапазона
+        // Изначально выбирается первый пункт
+        mTypeRangeSpinner = (Spinner) findViewById(R.id.type_range_spinner);
+        generateTypeRangeSpinner();
+        mTypeRangeSpinner.setSelection(0);
 
         // Определение режима работы окна
         try {
@@ -183,12 +137,49 @@ public class AddMenuItemSendRangeIntValue extends Activity {
     }
 
     /**
+     * Генерирует спиннер для выбора типа конечного окна
+     */
+    private void generateTypeRangeSpinner() {
+
+        mTypeRangeSpinner.setAdapter(null);
+
+        // Получаем список типов окон
+        ArrayList<String> screenTypes = new ArrayList<String>();
+        for (MenuTree.DateTimeRangeType type : MenuTree.DateTimeRangeType.values()) {
+            screenTypes.add(type.toString());
+        }
+
+        ArrayAdapter<String> ad = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, screenTypes);
+        mTypeRangeSpinner.setAdapter(ad);
+        ad.notifyDataSetChanged();
+    }
+
+    /**
      * Установка значений полей в режиме редактирования
      */
     private void setFieldValues() {
         HashMap<String, String> pMap = mApplication.mTree.tempNode.paramsMap;
 
         if (pMap == null) return;
+
+        // Установка типа диапазона
+        if (pMap.get("DateTimeRangeType") != null) {
+
+            Integer type_position = 0;
+            try {
+                type_position = Integer.parseInt(pMap.get("DateTimeRangeType"));
+            } catch (NumberFormatException e) {
+                Logging.v("Ошибка при извлечении типа диапазона из узла меню");
+                e.printStackTrace();
+            }
+
+            if ( mTypeRangeSpinner.getItemAtPosition(type_position) != null) {
+                mTypeRangeSpinner.setSelection(type_position);
+            } else {
+                Logging.v("Извлеченный тип данных не найден в спиннере");
+            }
+        }
 
         // Установка названия
         EditText mHeaderText = (EditText) findViewById(R.id.header_text);
@@ -200,12 +191,12 @@ public class AddMenuItemSendRangeIntValue extends Activity {
         if (pMap.get("DescriptionText") != null)
             mDescText.setText(pMap.get("DescriptionText"));
 
-        // Сообщение при вводе первого невалидного значения
+        // Сообщение при вводе невалидного значения
         EditText mInvalidFirstValueText = (EditText) findViewById(R.id.first_error_text);
         if (pMap.get("InvalidFirstValueText") != null)
             mInvalidFirstValueText.setText(pMap.get("InvalidFirstValueText"));
 
-        // Сообщение при вводе второго невалидного значения
+        // Сообщение при вводе невалидного значения
         EditText mInvalidSecondValueText = (EditText) findViewById(R.id.second_error_text);
         if (pMap.get("InvalidSecondValueText") != null)
             mInvalidSecondValueText.setText(pMap.get("InvalidSecondValueText"));
@@ -225,37 +216,6 @@ public class AddMenuItemSendRangeIntValue extends Activity {
             }
         }
 
-        EditText mFirstIncomingValueFormula = (EditText) findViewById(R.id.incoming_formula_text);
-        if (pMap.get("IncomingFirstValueFormula") != null)
-            mFirstIncomingValueFormula.setText(pMap.get("IncomingFirstValueFormula"));
-        EditText mFirstFractionDigits = (EditText) findViewById(R.id.decimal_places_text);
-        if (pMap.get("FirstFractionDigits") != null)
-            mFirstFractionDigits.setText(pMap.get("FirstFractionDigits"));
-
-        EditText mSecondIncomingValueFormula = (EditText) findViewById(R.id.second_incoming_formula_text);
-        if (pMap.get("IncomingSecondValueFormula") != null)
-            mSecondIncomingValueFormula.setText(pMap.get("IncomingSecondValueFormula"));
-
-        EditText mSecondFractionDigits = (EditText) findViewById(R.id.second_decimal_places_text);
-        if (pMap.get("SecondFractionDigits") != null)
-            mSecondFractionDigits.setText(pMap.get("SecondFractionDigits"));
-
-        EditText mOutgoingFirstValueFormula = (EditText) findViewById(R.id.outgoing_formula_text);
-        if (pMap.get("FirstOutgoingValueFormula") != null)
-            mOutgoingFirstValueFormula.setText(pMap.get("FirstOutgoingValueFormula"));
-
-        EditText mOutgoingFirstValueValidation = (EditText) findViewById(R.id.validation_formula_text);
-        if (pMap.get("FirstOutgoingValueValidation") != null)
-            mOutgoingFirstValueValidation.setText(pMap.get("FirstOutgoingValueValidation"));
-
-        EditText mOutgoingSecondValueFormula = (EditText) findViewById(R.id.second_outgoing_formula_text);
-        if (pMap.get("SecondOutgoingValueFormula") != null)
-            mOutgoingSecondValueFormula.setText(pMap.get("SecondOutgoingValueFormula"));
-
-        EditText mOutgoingSecondValueValidation = (EditText) findViewById(R.id.validation_second_formula_text);
-        if (pMap.get("SecondOutgoingValueValidation") != null)
-            mOutgoingSecondValueValidation.setText(pMap.get("SecondOutgoingValueValidation"));
-        
         // Запрос текущего значения от контроллера
         EditText mGiveMeValueMessage = (EditText) findViewById(R.id.get_value_text);
         if (pMap.get("GiveMeValueMessage") != null)
@@ -299,133 +259,9 @@ public class AddMenuItemSendRangeIntValue extends Activity {
                     mOutgoingSecondValueFormula.getText().toString(),
                     mOutgoingSecondValueValidation.getText().toString(),
                     mOutgoingPrefix.getText().toString(),
-                    AddMenuItemSendRangeIntValue.this);
+                    AddMenuItemSendRangeDateTimeValue.this);
 
             dialog.show(getFragmentManager(), "Outgoing message check");
-        }
-    };
-
-    /**
-     * Слушатель для проверки первой формулы для валидации значения. Передаем в диалог
-     * формулу проверки исходящего значения и формулу валидации
-     */
-    private OnClickListener outgoingFirstValueValidationListener = new OnClickListener() {
-        // Проверка формулы для обработки входящего значения
-        @Override
-        public void onClick(final View v) {
-            EditText mOutgoingValueFormula = (EditText) findViewById(R.id.outgoing_formula_text);
-            EditText mOutgoingValueValidation = (EditText) findViewById(R.id.validation_formula_text);
-
-            ValidationFormulaCheckDialog dialog = new ValidationFormulaCheckDialog(
-                    mOutgoingValueFormula.getText().toString(),
-                    mOutgoingValueValidation.getText().toString());
-
-            dialog.show(getFragmentManager(), "Outgoing value validation check");
-        }
-    };
-
-    /**
-     * Слушатель для проверки второй формулы для валидации значения. Передаем в диалог
-     * формулу проверки исходящего значения и формулу валидации
-     */
-    private OnClickListener outgoingSecondValueValidationListener = new OnClickListener() {
-        // Проверка формулы для обработки входящего значения
-        @Override
-        public void onClick(final View v) {
-            EditText mOutgoingValueFormula = (EditText) findViewById(R.id.second_outgoing_formula_text);
-            EditText mOutgoingValueValidation = (EditText) findViewById(R.id.validation_second_formula_text);
-
-            ValidationFormulaCheckDialog dialog = new ValidationFormulaCheckDialog(
-                    mOutgoingValueFormula.getText().toString(),
-                    mOutgoingValueValidation.getText().toString());
-
-            dialog.show(getFragmentManager(), "Outgoing value validation check");
-        }
-    };
-
-    /**
-     * Слушатель для проверки формулы для обработки первого входящего значения. Сначала
-     * необходимо получить количество знаков после запятой После чего создать
-     * новый диалог с введенной формулой и количеством знаков после запятой.
-     */
-    private OnClickListener incomingFirstValueFormulaListener = new OnClickListener() {
-        // Проверка формулы для обработки входящего значения
-        @Override
-        public void onClick(final View v) {
-            // Поле с введенным количеством знаков после запятой
-            EditText mFractionDigits = (EditText) findViewById(R.id.decimal_places_text);
-            // Значение поля формулы обработки входящего значения
-            EditText mIncomingValueFormula = (EditText) findViewById(R.id.incoming_formula_text);
-
-            // Открываем диалог проверки формулы. Передаем значение поля формулы
-            // и количество знаков
-            FormulaCheckDialog dialog = new FormulaCheckDialog(
-                    mIncomingValueFormula.getText().toString(), mFractionDigits
-                    .getText().toString());
-            dialog.show(getFragmentManager(), "Incoming value formula check");
-        }
-    };
-
-    /**
-     * Слушатель для проверки формулы для обработки второго входящего значения. Сначала
-     * необходимо получить количество знаков после запятой После чего создать
-     * новый диалог с введенной формулой и количеством знаков после запятой.
-     */
-    private OnClickListener incomingSecondValueFormulaListener = new OnClickListener() {
-        // Проверка формулы для обработки входящего значения
-        @Override
-        public void onClick(final View v) {
-            // Поле с введенным количеством знаков после запятой
-            EditText mFractionDigits = (EditText) findViewById(R.id.second_decimal_places_text);
-            // Значение поля формулы обработки входящего значения
-            EditText mIncomingValueFormula = (EditText) findViewById(R.id.second_incoming_formula_text);
-
-            // Открываем диалог проверки формулы. Передаем значение поля формулы
-            // и количество знаков
-            FormulaCheckDialog dialog = new FormulaCheckDialog(
-                    mIncomingValueFormula.getText().toString(), mFractionDigits
-                    .getText().toString());
-            dialog.show(getFragmentManager(), "Incoming value formula check");
-        }
-    };
-
-    /**
-     * Слушатель для проверки первой формулы для обработки исходящего значения. Создаем
-     * диалог с введенной формулой. Т.к. нам нужно целое значение, то выставляем
-     * второй параметра диалога в 0
-     */
-    private OnClickListener outgoingFirstValueFormulaListener = new OnClickListener() {
-        // Проверка формулы для обработки входящего значения
-        @Override
-        public void onClick(final View v) {
-            // Значение поля формулы обработки входящего значения
-            EditText mOutgoingValueFormula = (EditText) findViewById(R.id.outgoing_formula_text);
-
-            // Открываем диалог проверки формулы. Передаем значение поля формулы
-            // и 0, т.к. нам нужно целое значение
-            FormulaCheckDialog dialog = new FormulaCheckDialog(
-                    mOutgoingValueFormula.getText().toString(), "0");
-            dialog.show(getFragmentManager(), "Outgoing value formula check");
-        }
-    };
-
-    /**
-     * Слушатель для проверки второй формулы для обработки исходящего значения. Создаем
-     * диалог с введенной формулой. Т.к. нам нужно целое значение, то выставляем
-     * второй параметра диалога в 0
-     */
-    private OnClickListener outgoingSecondValueFormulaListener = new OnClickListener() {
-        // Проверка формулы для обработки входящего значения
-        @Override
-        public void onClick(final View v) {
-            // Значение поля формулы обработки входящего значения
-            EditText mOutgoingValueFormula = (EditText) findViewById(R.id.second_outgoing_formula_text);
-
-            // Открываем диалог проверки формулы. Передаем значение поля формулы
-            // и 0, т.к. нам нужно целое значение
-            FormulaCheckDialog dialog = new FormulaCheckDialog(
-                    mOutgoingValueFormula.getText().toString(), "0");
-            dialog.show(getFragmentManager(), "Outgoing value formula check");
         }
     };
 
@@ -439,6 +275,10 @@ public class AddMenuItemSendRangeIntValue extends Activity {
         public void onClick(final View v) {
             String tooltip;
             switch (v.getId()) {
+                // Тип диапазона
+                case R.id.button_help_range_type:
+                    tooltip = "Выберите один из типов диапазона. От этого будет зависеть внешний вид конечной точки и ожидаемое сообщение от контроллера";
+                    break;
                 // Заголовок
                 case R.id.button_help_header:
                     tooltip = getResources().getString(R.string.header_text_tooltip);
@@ -449,39 +289,11 @@ public class AddMenuItemSendRangeIntValue extends Activity {
                     break;
                 // Сообщение не прошло валидацию
                 case R.id.button_help_first_error:
-                    tooltip = "Сообщение, которое увидит пользователь, если первое введенное значение не пройдет валидацию, формат - строка";
+                    tooltip = "Сообщение, которое увидит пользователь, если первое введенное значение будет некорректным, формат - строка";
                     break;
                 // Сообщение не прошло валидацию
                 case R.id.button_help_second_error:
-                    tooltip = "Сообщение, которое увидит пользователь, если второе введенное значение не пройдет валидацию, формат - строка";
-                    break;
-                // Формула для обработки первого входящего значения
-                case R.id.button_help_first_incoming_formula:
-                    tooltip = "Пересчет первого входящего значения. Переменная для значения: x. Пустое поле, если обработка не нужна. Не использовать булевые операторы! Подробнее см. инструкцию";
-                    break;
-                // Формула для обработки второго входящего значения
-                case R.id.button_help_second_incoming_formula:
-                    tooltip = "Пересчет второго входящего значения. Переменная для значения: x. Пустое поле, если обработка не нужна. Не использовать булевые операторы! Подробнее см. инструкцию";
-                    break;
-                // Количество знаков после запятой для первого входящего значения
-                case R.id.button_help_first_decimal_places:
-                    tooltip = "Количество знаков после запятой в первом ОБРАБОТАННОМ ФОРМУЛОЙ значении. Оставьте поле пустым для целого значения";
-                    break;
-                // Количество знаков после запятой для второго входящего значения
-                case R.id.button_help_second_decimal_places:
-                    tooltip = "Количество знаков после запятой во втором ОБРАБОТАННОМ ФОРМУЛОЙ значении. Оставьте поле пустым для целого значения";
-                    break;
-                case R.id.button_help_first_outgoing_formula:
-                    tooltip = "Пересчет первого исходящего значения. Переменная для значения: x. Полученное значение округляется до целого. Пустое поле, если обработка не нужна. Не использовать булевые операторы! Подробнее см. инструкцию";
-                    break;
-                case R.id.button_help_second_outgoing_formula:
-                    tooltip = "Пересчет второго исходящего значения. Переменная для значения: x. Полученное значение округляется до целого. Пустое поле, если обработка не нужна. Не использовать булевые операторы! Подробнее см. инструкцию";
-                    break;
-                case R.id.button_help_first_validation_formula:
-                    tooltip = "Валидация первого ОБРАБОТАННОГО ФОРМУЛОЙ исходящего значения. Переменная для обработанного значения: x. Пустое поле, если валидация не нужна. Подробнее см. инструкцию";
-                    break;
-                case R.id.button_help_second_validation_formula:
-                    tooltip = "Валидация второго ОБРАБОТАННОГО ФОРМУЛОЙ исходящего значения. Переменная для обработанного значения: x. Пустое поле, если валидация не нужна. Подробнее см. инструкцию";
+                    tooltip = "Сообщение, которое увидит пользователь, если второе введенное значение будет некорректным, формат - строка";
                     break;
                 case R.id.button_help_get_value:
                     tooltip = "Сообщение, которое будет передано контроллеру при старте окна с требованием выслать текущее значение управляемого элемента. Сообщение передается без изменений";
@@ -536,18 +348,6 @@ public class AddMenuItemSendRangeIntValue extends Activity {
         EditText mInvalidFirstValueText = (EditText) findViewById(R.id.first_error_text);
         EditText mInvalidSecondValueText = (EditText) findViewById(R.id.second_error_text);
 
-        EditText mFirstIncomingValueFormula = (EditText) findViewById(R.id.incoming_formula_text);
-        EditText mFirstFractionDigits = (EditText) findViewById(R.id.decimal_places_text);
-
-        EditText mSecondIncomingValueFormula = (EditText) findViewById(R.id.second_incoming_formula_text);
-        EditText mSecondFractionDigits = (EditText) findViewById(R.id.second_decimal_places_text);
-
-        EditText mOutgoingFirstValueFormula = (EditText) findViewById(R.id.outgoing_formula_text);
-        EditText mOutgoingFirstValueValidation = (EditText) findViewById(R.id.validation_formula_text);
-
-        EditText mOutgoingSecondValueFormula = (EditText) findViewById(R.id.second_outgoing_formula_text);
-        EditText mOutgoingSecondValueValidation = (EditText) findViewById(R.id.validation_second_formula_text);
-
         EditText mGiveMeValueMessage = (EditText) findViewById(R.id.get_value_text);
         EditText mOutgoingValueMessage = (EditText) findViewById(R.id.outgoing_prefix_text);
 
@@ -560,6 +360,7 @@ public class AddMenuItemSendRangeIntValue extends Activity {
                 || (mInvalidFirstValueText.getText().toString() == null) || (mInvalidFirstValueText.getText().toString().trim().isEmpty())
                 || (mInvalidSecondValueText.getText().toString() == null) || (mInvalidSecondValueText.getText().toString().trim().isEmpty())
                 || (mGiveMeValueMessage.getText().toString() == null) || (mGiveMeValueMessage.getText().toString().trim().isEmpty())
+                || mTypeRangeSpinner.isSelected()
                 || (mOutgoingValueMessage.getText().toString() == null) || (mOutgoingValueMessage.getText().toString().trim().isEmpty())) {
             Notifications.showError(mContext,
                     "Не заполнены обазятельне поля (они отмечены *)");
@@ -577,6 +378,9 @@ public class AddMenuItemSendRangeIntValue extends Activity {
         } // if !null
 
         // ID элемента
+
+        mParamsMap.put("DateTimeRangeType", String.valueOf(mTypeRangeSpinner.getSelectedItemPosition()));
+
         mParamsMap.put("HeaderText", mHeaderText.getText().toString());
 
         // Сообщение контроллеру при входе
@@ -589,28 +393,6 @@ public class AddMenuItemSendRangeIntValue extends Activity {
         // Префикс входящего сообщения для установки значения
         mParamsMap.put("InvalidSecondValueText", mInvalidSecondValueText.getText()
                 .toString());
-
-        mParamsMap.put("IncomingFirstValueFormula", mFirstIncomingValueFormula.getText()
-                .toString());
-
-        mParamsMap.put("IncomingSecondValueFormula", mSecondIncomingValueFormula.getText()
-                .toString());
-
-        mParamsMap.put("FirstFractionDigits", mFirstFractionDigits.getText().toString());
-
-        mParamsMap.put("SecondFractionDigits", mSecondFractionDigits.getText().toString());
-
-        mParamsMap.put("FirstOutgoingValueFormula", mOutgoingFirstValueFormula.getText()
-                .toString());
-
-        mParamsMap.put("FirstOutgoingValueValidation", mOutgoingFirstValueValidation
-                .getText().toString());
-
-        mParamsMap.put("SecondOutgoingValueFormula", mOutgoingSecondValueFormula.getText()
-                .toString());
-
-        mParamsMap.put("SecondOutgoingValueValidation", mOutgoingSecondValueValidation
-                .getText().toString());
 
         mParamsMap.put("GiveMeValueMessage", mGiveMeValueMessage.getText()
                 .toString());

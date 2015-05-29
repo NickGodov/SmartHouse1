@@ -182,7 +182,9 @@ public class MenuTree implements Serializable {
 		SetPasswordValue("Ввод пароля", 1),
 		SetBooleanValue("Переключение вкл/выкл", 2),
 		SendMessage("Отсылка сообщения", 3),
-		SetIntRangeValue("Диапазон числовых значений",4);
+		SetIntRangeValue("Диапазон числовых значений", 4),
+		SetDateTimeRangeValue("Диапазон дат и времени", 5),
+		SetSliderIntValue("Ввод значения с помощью слайдера", 6);
 
 		private String stringValue;
 		private int intValue;
@@ -201,4 +203,28 @@ public class MenuTree implements Serializable {
 			return intValue;
 		}
 	}
+
+	public enum DateTimeRangeType {
+		TimeRange("Диапазон времени", 0),
+		DateRange("Диапазон дат", 1),
+		DateTimeRange("Диапазон дат и времени", 2);
+
+		private String stringValue;
+		private int intValue;
+
+		private DateTimeRangeType(String toString, int value) {
+			stringValue = toString;
+			intValue = value;
+		}
+
+		@Override
+		public String toString() {
+			return stringValue;
+		}
+
+		public int toInt() {
+			return intValue;
+		}
+	}
+
 }

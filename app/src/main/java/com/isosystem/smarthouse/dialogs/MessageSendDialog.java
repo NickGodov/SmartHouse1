@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.isosystem.smarthouse.R;
 import com.isosystem.smarthouse.connection.MessageDispatcher;
@@ -16,15 +17,17 @@ public class MessageSendDialog extends Dialog implements
 		android.view.View.OnClickListener {
 
 	String header;
-	String message;
+	String prefix;
 	String description;
-	
+	String value;
+
 	Activity mActivity;
 
-	public MessageSendDialog(String hdr, String desc, String msg, Activity a) {
+	public MessageSendDialog(String hdr, String desc, String pref, String val, Activity a) {
 		super(a);
 
-		message = msg;
+		prefix = pref;
+		value = val;
 		description = desc;
 		header = hdr;
 		mActivity = a;
@@ -74,8 +77,8 @@ public class MessageSendDialog extends Dialog implements
 		case R.id.imageButton1:
 			
 			MessageDispatcher mDispatcher = new MessageDispatcher(mActivity);
-			mDispatcher.SendRawMessage(message);
-			
+			mDispatcher.SendValueMessage(prefix,value,true);
+
 			break;
 		case R.id.imageButton3:
 			dismiss();

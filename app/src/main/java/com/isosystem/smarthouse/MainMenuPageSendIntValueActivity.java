@@ -128,7 +128,7 @@ public class MainMenuPageSendIntValueActivity extends Activity {
 
         // Создаем объект диспетчера
         mDispatcher = new MessageDispatcher(this);
-        mDispatcher.SendRawMessage(mGiveMeValueMessage);
+        mDispatcher.sendGiveMeValueMessage(mGiveMeValueMessage, true);
     }
 
     /**
@@ -252,6 +252,9 @@ public class MainMenuPageSendIntValueActivity extends Activity {
 
             msg = msg.substring(2);
 
+            Logging.v("Значение: " + msg);
+            Logging.v("Формула: " + mIncomingValueFormula);
+
             // 1. Обработка значения с помощью формулы обработки входящего значения с указанием количества знаков после запятой
             MathematicalFormulaEvaluator evaluator = new MathematicalFormulaEvaluator(
                     mIncomingValueFormula, msg, mFractionDigits, true);
@@ -261,6 +264,7 @@ public class MainMenuPageSendIntValueActivity extends Activity {
             if (!evalResult.isCorrect) {
                 Notifications.showError(mContext, "Ошибка при пересчете входящего значения. Значение введено некорректно или формула пересчета задана некорректно");
             } else {
+                Logging.v("Значение после формулы");
                 mIncomingValue.setText(evalResult.numericRoundedResult);
                 mIncomingValue.invalidate();
             }

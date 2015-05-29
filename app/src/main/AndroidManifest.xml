@@ -121,6 +121,20 @@
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
+            android:name="com.isosystem.smarthouse.MainMenuPageSendRangeDateTimeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_main_settings"
+            android:noHistory="true"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.isosystem.smarthouse.MainMenuPageSliderIntValueActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_main_settings"
+            android:noHistory="true"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
             android:name=".settings.ApplicationPreferencesActivity"
             android:label="Настройки приложения"
             android:noHistory="true" >
@@ -152,6 +166,14 @@
         <activity
             android:name=".settings.AddMenuItemSendRangeIntValue"
             android:label="Отсылка диапазона числовых значений" >
+        </activity>
+        <activity
+            android:name=".settings.AddMenuItemSendRangeDateTimeValue"
+            android:label="Отсылка диапазона дат и времени" >
+        </activity>
+        <activity
+            android:name=".settings.AddMenuItemSliderIntValue"
+            android:label="Отсылка значения с помощью слайдера" >
         </activity>
         <activity
             android:name=".FormattedScreensActivity"

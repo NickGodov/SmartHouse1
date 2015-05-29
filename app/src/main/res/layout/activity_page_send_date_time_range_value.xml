@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backrepeat"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:text="@string/activity_page_send_dummy_header_text"
+        android:layout_columnSpan="3" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:text="@string/activity_page_send_dummy_description_text"
+        android:layout_columnSpan="3"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="300px"
+            android:layout_height="300px"
+            android:adjustViewBounds="false"
+            android:scaleType="fitCenter"
+            android:src="@drawable/no_image"
+            android:layout_rowSpan="5" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/first_value_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Первое значение"
+                    android:textSize="35sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TimePicker
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/first_time_picker"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:focusable="false" />
+
+                <DatePicker
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/first_date_picker"
+                    android:spinnersShown="true"
+                    android:calendarViewShown="false"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:maxDate="12/31/2999"
+                    android:measureAllChildren="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/second_value_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Второе значение"
+                    android:textSize="35sp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+
+                <TimePicker
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/second_time_picker"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical">
+
+                </TimePicker>
+
+                <DatePicker
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/second_date_picker"
+                    android:layout_weight="1"
+                    android:spinnersShown="true"
+                    android:calendarViewShown="false"
+                    android:layout_gravity="center_vertical"
+                    android:maxDate="12/31/2999"
+                    android:measureAllChildren="false" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <Button
+            android:id="@+id/send_button"
+            style="android:buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default_small"
+            android:gravity="center"
+            android:text="@string/activity_page_send_set_up_value"
+            android:textSize="45sp" />
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default_small"
+            android:gravity="center"
+            android:text="@string/activity_page_send_back"
+            android:textSize="45sp" />
+    </LinearLayout>
+
+</LinearLayout>

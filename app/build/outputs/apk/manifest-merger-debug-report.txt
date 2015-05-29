@@ -219,106 +219,142 @@ ADDED from AndroidManifest.xml:116:9
 		ADDED from AndroidManifest.xml:118:13
 	android:name
 		ADDED from AndroidManifest.xml:117:13
-activity#com.isosystem.smarthouse.settings.ApplicationPreferencesActivity
+activity#com.isosystem.smarthouse.MainMenuPageSendRangeDateTimeActivity
 ADDED from AndroidManifest.xml:123:9
 	android:label
-		ADDED from AndroidManifest.xml:125:13
-	android:noHistory
 		ADDED from AndroidManifest.xml:126:13
+	android:noHistory
+		ADDED from AndroidManifest.xml:127:13
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:128:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:125:13
 	android:name
 		ADDED from AndroidManifest.xml:124:13
-activity#com.isosystem.smarthouse.MainMenuPageSendBoolValueActivity
-ADDED from AndroidManifest.xml:128:9
+activity#com.isosystem.smarthouse.MainMenuPageSliderIntValueActivity
+ADDED from AndroidManifest.xml:130:9
 	android:label
-		ADDED from AndroidManifest.xml:131:13
-	android:noHistory
-		ADDED from AndroidManifest.xml:132:13
-	android:windowSoftInputMode
 		ADDED from AndroidManifest.xml:133:13
+	android:noHistory
+		ADDED from AndroidManifest.xml:134:13
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:135:13
 	android:configChanges
-		ADDED from AndroidManifest.xml:130:13
+		ADDED from AndroidManifest.xml:132:13
 	android:name
-		ADDED from AndroidManifest.xml:129:13
-activity#com.isosystem.smarthouse.settings.AddMenuItemSendValue
-ADDED from AndroidManifest.xml:135:9
+		ADDED from AndroidManifest.xml:131:13
+activity#com.isosystem.smarthouse.settings.ApplicationPreferencesActivity
+ADDED from AndroidManifest.xml:137:9
 	android:label
-		ADDED from AndroidManifest.xml:137:13
+		ADDED from AndroidManifest.xml:139:13
 	android:noHistory
+		ADDED from AndroidManifest.xml:140:13
+	android:name
 		ADDED from AndroidManifest.xml:138:13
-	android:name
-		ADDED from AndroidManifest.xml:136:13
-activity#com.isosystem.smarthouse.settings.AddMenuItemSendPassword
-ADDED from AndroidManifest.xml:140:9
+activity#com.isosystem.smarthouse.MainMenuPageSendBoolValueActivity
+ADDED from AndroidManifest.xml:142:9
 	android:label
-		ADDED from AndroidManifest.xml:142:13
-	android:name
-		ADDED from AndroidManifest.xml:141:13
-activity#com.isosystem.smarthouse.settings.AddMenuItemSendBool
-ADDED from AndroidManifest.xml:144:9
-	android:label
-		ADDED from AndroidManifest.xml:146:13
-	android:name
 		ADDED from AndroidManifest.xml:145:13
-activity#com.isosystem.smarthouse.settings.AddMenuItemSendMessage
-ADDED from AndroidManifest.xml:148:9
+	android:noHistory
+		ADDED from AndroidManifest.xml:146:13
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:147:13
+	android:configChanges
+		ADDED from AndroidManifest.xml:144:13
+	android:name
+		ADDED from AndroidManifest.xml:143:13
+activity#com.isosystem.smarthouse.settings.AddMenuItemSendValue
+ADDED from AndroidManifest.xml:149:9
 	android:label
+		ADDED from AndroidManifest.xml:151:13
+	android:noHistory
+		ADDED from AndroidManifest.xml:152:13
+	android:name
 		ADDED from AndroidManifest.xml:150:13
-	android:name
-		ADDED from AndroidManifest.xml:149:13
-activity#com.isosystem.smarthouse.settings.AddMenuItemSendRangeIntValue
-ADDED from AndroidManifest.xml:152:9
+activity#com.isosystem.smarthouse.settings.AddMenuItemSendPassword
+ADDED from AndroidManifest.xml:154:9
 	android:label
-		ADDED from AndroidManifest.xml:154:13
+		ADDED from AndroidManifest.xml:156:13
 	android:name
-		ADDED from AndroidManifest.xml:153:13
-activity#com.isosystem.smarthouse.FormattedScreensActivity
-ADDED from AndroidManifest.xml:156:9
+		ADDED from AndroidManifest.xml:155:13
+activity#com.isosystem.smarthouse.settings.AddMenuItemSendBool
+ADDED from AndroidManifest.xml:158:9
 	android:label
-		ADDED from AndroidManifest.xml:158:13
-	android:noHistory
+		ADDED from AndroidManifest.xml:160:13
+	android:name
 		ADDED from AndroidManifest.xml:159:13
-	android:name
-		ADDED from AndroidManifest.xml:157:13
-activity#com.isosystem.smarthouse.settings.ImportExportFilesActivity
-ADDED from AndroidManifest.xml:161:9
+activity#com.isosystem.smarthouse.settings.AddMenuItemSendMessage
+ADDED from AndroidManifest.xml:162:9
 	android:label
-		ADDED from AndroidManifest.xml:163:13
-	android:noHistory
 		ADDED from AndroidManifest.xml:164:13
 	android:name
-		ADDED from AndroidManifest.xml:162:13
-activity#com.isosystem.smarthouse.settings.TestFormattedScreenActivity
+		ADDED from AndroidManifest.xml:163:13
+activity#com.isosystem.smarthouse.settings.AddMenuItemSendRangeIntValue
 ADDED from AndroidManifest.xml:166:9
 	android:label
 		ADDED from AndroidManifest.xml:168:13
-	android:noHistory
-		ADDED from AndroidManifest.xml:169:13
 	android:name
 		ADDED from AndroidManifest.xml:167:13
-activity#com.isosystem.smarthouse.settings.AddFormattedScreenActivity
-ADDED from AndroidManifest.xml:171:9
+activity#com.isosystem.smarthouse.settings.AddMenuItemSendRangeDateTimeValue
+ADDED from AndroidManifest.xml:170:9
 	android:label
-		ADDED from AndroidManifest.xml:173:13
-	android:noHistory
-		ADDED from AndroidManifest.xml:174:13
-	android:name
 		ADDED from AndroidManifest.xml:172:13
-activity#com.isosystem.smarthouse.utils.ScreenSaverActivity
-ADDED from AndroidManifest.xml:176:9
+	android:name
+		ADDED from AndroidManifest.xml:171:13
+activity#com.isosystem.smarthouse.settings.AddMenuItemSliderIntValue
+ADDED from AndroidManifest.xml:174:9
 	android:label
-		ADDED from AndroidManifest.xml:178:13
+		ADDED from AndroidManifest.xml:176:13
+	android:name
+		ADDED from AndroidManifest.xml:175:13
+activity#com.isosystem.smarthouse.FormattedScreensActivity
+ADDED from AndroidManifest.xml:178:9
+	android:label
+		ADDED from AndroidManifest.xml:180:13
 	android:noHistory
+		ADDED from AndroidManifest.xml:181:13
+	android:name
 		ADDED from AndroidManifest.xml:179:13
-	android:name
-		ADDED from AndroidManifest.xml:177:13
-activity#com.isosystem.smarthouse.utils.ScreenDimActivity
-ADDED from AndroidManifest.xml:181:9
+activity#com.isosystem.smarthouse.settings.ImportExportFilesActivity
+ADDED from AndroidManifest.xml:183:9
+	android:label
+		ADDED from AndroidManifest.xml:185:13
 	android:noHistory
-		ADDED from AndroidManifest.xml:183:13
-	android:theme
-		ADDED from AndroidManifest.xml:184:13
+		ADDED from AndroidManifest.xml:186:13
 	android:name
-		ADDED from AndroidManifest.xml:182:13
+		ADDED from AndroidManifest.xml:184:13
+activity#com.isosystem.smarthouse.settings.TestFormattedScreenActivity
+ADDED from AndroidManifest.xml:188:9
+	android:label
+		ADDED from AndroidManifest.xml:190:13
+	android:noHistory
+		ADDED from AndroidManifest.xml:191:13
+	android:name
+		ADDED from AndroidManifest.xml:189:13
+activity#com.isosystem.smarthouse.settings.AddFormattedScreenActivity
+ADDED from AndroidManifest.xml:193:9
+	android:label
+		ADDED from AndroidManifest.xml:195:13
+	android:noHistory
+		ADDED from AndroidManifest.xml:196:13
+	android:name
+		ADDED from AndroidManifest.xml:194:13
+activity#com.isosystem.smarthouse.utils.ScreenSaverActivity
+ADDED from AndroidManifest.xml:198:9
+	android:label
+		ADDED from AndroidManifest.xml:200:13
+	android:noHistory
+		ADDED from AndroidManifest.xml:201:13
+	android:name
+		ADDED from AndroidManifest.xml:199:13
+activity#com.isosystem.smarthouse.utils.ScreenDimActivity
+ADDED from AndroidManifest.xml:203:9
+	android:noHistory
+		ADDED from AndroidManifest.xml:205:13
+	android:theme
+		ADDED from AndroidManifest.xml:206:13
+	android:name
+		ADDED from AndroidManifest.xml:204:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 	android:targetSdkVersion

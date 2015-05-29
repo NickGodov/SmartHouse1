@@ -131,10 +131,11 @@ public class MainMenuAdapterList extends BaseAdapter {
 
                         String hdr = pMap.get("HeaderText");
                         String desc = pMap.get("DescriptionText");
-                        String msg = pMap.get("OutgoingValueMessage");
+                        String prefix = pMap.get("OutgoingPrefix");
+                        String value = pMap.get("OutgoingValue");
 
                         MessageSendDialog dialog = new MessageSendDialog(hdr, desc,
-                                msg, mFragment.getActivity());
+                                prefix,value,mFragment.getActivity());
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         dialog.show();
 
@@ -145,6 +146,20 @@ public class MainMenuAdapterList extends BaseAdapter {
                         intent.putExtra("Node", node);
                         mContext.startActivity(intent);
                         mFragment.getActivity().overridePendingTransition(R.anim.flipin, R.anim.flipout);
+                        break;
+                    case SetDateTimeRangeValue:
+                        intent = new Intent(mContext,
+                                MainMenuPageSendRangeDateTimeActivity.class);
+                        intent.putExtra("Node", node);
+                        mContext.startActivity(intent);
+                        mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
+                        break;
+                    case SetSliderIntValue:
+                        intent = new Intent(mContext,
+                                MainMenuPageSliderIntValueActivity.class);
+                        intent.putExtra("Node", node);
+                        mContext.startActivity(intent);
+                        mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
                         break;
                     default:
                         Notifications.showError(mContext,

@@ -104,49 +104,64 @@ public class MainMenuAdapterGrid extends BaseAdapter {
                 // —читывание типа конечной точки
 				MenuScreenType type = node.screenType;
 				switch (type) {
-				case SetIntValue:
-					intent = new Intent(mContext,
-							MainMenuPageSendIntValueActivity.class);
-					intent.putExtra("Node", node);
-					mContext.startActivity(intent);
-					mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
-					break;
-				case SetBooleanValue:
-					intent = new Intent(mContext,
-							MainMenuPageSendBoolValueActivity.class);
-					intent.putExtra("Node", node);
-					mContext.startActivity(intent);
-					mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
-					break;
-				case SetPasswordValue:
-					intent = new Intent(mContext,
-							MainMenuPageSendPasswordActivity.class);
-					intent.putExtra("Node", node);
-					mContext.startActivity(intent);
-					mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
-					break;
-				case SendMessage:
-					// —читываетс€ описание и сообщение узла
-					// и передаетс€ в создаваемый диалог
-					HashMap<String, String> pMap = node.paramsMap;
+					case SetIntValue:
+						intent = new Intent(mContext,
+								MainMenuPageSendIntValueActivity.class);
+						intent.putExtra("Node", node);
+						mContext.startActivity(intent);
+						mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
+						break;
+					case SetBooleanValue:
+						intent = new Intent(mContext,
+								MainMenuPageSendBoolValueActivity.class);
+						intent.putExtra("Node", node);
+						mContext.startActivity(intent);
+						mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
+						break;
+					case SetPasswordValue:
+						intent = new Intent(mContext,
+								MainMenuPageSendPasswordActivity.class);
+						intent.putExtra("Node", node);
+						mContext.startActivity(intent);
+						mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
+						break;
+					case SendMessage:
+						// —читываетс€ описание и сообщение узла
+						// и передаетс€ в создаваемый диалог
+						HashMap<String, String> pMap = node.paramsMap;
 
-					String hdr = pMap.get("HeaderText");
-					String desc = pMap.get("DescriptionText");
-					String msg = pMap.get("OutgoingValueMessage");
+						String hdr = pMap.get("HeaderText");
+						String desc = pMap.get("DescriptionText");
+						String prefix = pMap.get("OutgoingPrefix");
+						String value = pMap.get("OutgoingValue");
 
-					MessageSendDialog dialog = new MessageSendDialog(hdr, desc,
-							msg,mFragment.getActivity());
-					dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-					dialog.show();
+						MessageSendDialog dialog = new MessageSendDialog(hdr, desc,
+								prefix,value,mFragment.getActivity());
+						dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+						dialog.show();
 
-					break;
-				case SetIntRangeValue:
-					intent = new Intent(mContext,
-							MainMenuPageSendRangeIntValueActivity.class);
-					intent.putExtra("Node", node);
-					mContext.startActivity(intent);
-					mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
-					break;
+						break;
+					case SetIntRangeValue:
+						intent = new Intent(mContext,
+								MainMenuPageSendRangeIntValueActivity.class);
+						intent.putExtra("Node", node);
+						mContext.startActivity(intent);
+						mFragment.getActivity().overridePendingTransition(R.anim.flipin, R.anim.flipout);
+						break;
+					case SetDateTimeRangeValue:
+						intent = new Intent(mContext,
+								MainMenuPageSendRangeDateTimeActivity.class);
+						intent.putExtra("Node", node);
+						mContext.startActivity(intent);
+						mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
+						break;
+					case SetSliderIntValue:
+						intent = new Intent(mContext,
+								MainMenuPageSliderIntValueActivity.class);
+						intent.putExtra("Node", node);
+						mContext.startActivity(intent);
+						mFragment.getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
+						break;
 				default:
 					Notifications.showError(mContext,
 							"ќшибка при открытии пункта меню!");

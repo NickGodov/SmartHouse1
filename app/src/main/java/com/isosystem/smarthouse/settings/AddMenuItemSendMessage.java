@@ -90,9 +90,13 @@ public class AddMenuItemSendMessage extends Activity {
 			mDescText.setText(pMap.get("DescriptionText"));
 		
 		// Отправка сообщения
-		EditText mOutgoingValueMessage = (EditText) findViewById(R.id.outgoing_prefix_text);
-		if (pMap.get("OutgoingValueMessage")!=null)
-			mOutgoingValueMessage.setText(pMap.get("OutgoingValueMessage"));
+		EditText mOutgoingPrefix = (EditText) findViewById(R.id.outgoing_prefix_text);
+		if (pMap.get("OutgoingPrefix")!=null)
+			mOutgoingPrefix.setText(pMap.get("OutgoingPrefix"));
+
+		EditText mOutgoingValue = (EditText) findViewById(R.id.outgoing_value_text);
+		if (pMap.get("OutgoingValue")!=null)
+			mOutgoingValue.setText(pMap.get("OutgoingValue"));
 	}
 	
 	/**
@@ -105,17 +109,20 @@ public class AddMenuItemSendMessage extends Activity {
 		public void onClick(final View v) {
 			String tooltip;
 			switch (v.getId()) {
-			// Заголовок
-			case R.id.button_help_header:
-				tooltip = "Текст, который будет показываться в качестве заголовка диалога, формат - строка";
-				break;
-			// Описание
-			case R.id.button_help_description:
-				tooltip = "Текст, который будет показываться под заголовком, формат - строка";
-				break;
-			case R.id.button_help_outgoing_prefix:
-				tooltip = "Сообщение, которое будет выслано контроллеру.";
-				break;
+				// Заголовок
+				case R.id.button_help_header:
+					tooltip = "Текст, который будет показываться в качестве заголовка диалога, формат - строка";
+					break;
+				// Описание
+				case R.id.button_help_description:
+					tooltip = "Текст, который будет показываться под заголовком, формат - строка";
+					break;
+				case R.id.button_help_outgoing_prefix:
+					tooltip = "Префикс сообщения, которое будет выслано контроллеру. Формат сообщения: [префикс],[значение]";
+					break;
+				case R.id.button_help_outgoing_value:
+					tooltip = "Значение, которое будет выслано контроллеру. Формат сообщения: [префикс],[значение]";
+					break;
 			default:
 				tooltip = "Если вы видите это сообщение, сообщите разработчику об ошибке, указав ситуацию, при которой вы увидели это сообщение";
 				break;
@@ -143,13 +150,16 @@ public class AddMenuItemSendMessage extends Activity {
 
 		EditText mHeaderText = (EditText) findViewById(R.id.header_text);
 		EditText mDescText = (EditText) findViewById(R.id.description_text);
-		EditText mOutgoingValueMessage = (EditText) findViewById(R.id.outgoing_prefix_text);
+		EditText mOutgoingPrefix = (EditText) findViewById(R.id.outgoing_prefix_text);
+		EditText mOutgoingValue = (EditText) findViewById(R.id.outgoing_value_text);
 
 		// Проверка заполненности обязательных полей
 		// Обязательные поля: 3 надписи и 2 сообщения + картинка
 		if ((mHeaderText.getText().toString() == null)  || (mHeaderText.getText().toString().trim().isEmpty())
 				|| (mDescText.getText().toString() == null) || (mDescText.getText().toString().trim().isEmpty())
-				|| (mOutgoingValueMessage.getText().toString() == null) || (mOutgoingValueMessage.getText().toString().trim().isEmpty())) {
+				|| (mOutgoingPrefix.getText().toString() == null) || (mOutgoingPrefix.getText().toString().trim().isEmpty())
+				|| (mOutgoingValue.getText().toString() == null) || (mOutgoingValue.getText().toString().trim().isEmpty())
+				) {
 			Notifications.showError(mContext,
 					"Не заполнены обазятельне поля (они отмечены *)");
 			return;
@@ -172,7 +182,10 @@ public class AddMenuItemSendMessage extends Activity {
 		// Сообщение контроллеру при входе
 		mParamsMap.put("DescriptionText", mDescText.getText().toString());
 
-		mParamsMap.put("OutgoingValueMessage", mOutgoingValueMessage.getText()
+		mParamsMap.put("OutgoingPrefix", mOutgoingPrefix.getText()
+				.toString());
+
+		mParamsMap.put("OutgoingValue", mOutgoingValue.getText()
 				.toString());
 
 		mApplication.mTree.tempNode.paramsMap = mParamsMap;

@@ -168,7 +168,7 @@ public class MainMenuPageSendBoolValueActivity extends Activity {
         // Создаем объект диспетчера
         mDispatcher = new MessageDispatcher(this);
         // Отсылаем сообщение типа "Дай мне значение"
-        mDispatcher.SendRawMessage(mGiveMeValueMessage);
+        mDispatcher.sendGiveMeValueMessage(mGiveMeValueMessage,true);
     }
 
     /**

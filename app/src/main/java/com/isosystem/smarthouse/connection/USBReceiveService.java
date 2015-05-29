@@ -382,6 +382,7 @@ public class USBReceiveService extends IntentService {
 		} else if (message.charAt(0) == '&') {
 			// Пришло интовое значение
 			i.setAction(Globals.BROADCAST_INTENT_VALUE_MESSAGE);
+			Logging.v("Получено значение сообщение: " + message);
 			i.putExtra("message", message);
 			// Кидаем броадкаст
 			getApplicationContext().sendBroadcast(i);
