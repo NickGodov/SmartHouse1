@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -74,6 +75,12 @@ public class MainMenuPageSendRangeIntValueActivity extends Activity {
 
     /** Поле для второго исходящего значения */
     EditText mSecondOutgoingValue;
+
+    /** Надпись вместо 'первое значение' */
+    TextView mFirstValueLabel;
+
+    /** Надпись вместо 'второе значение' */
+    TextView mSecondValueLabel;
 
     // Набор строк, полученных из хеш-таблицы текущего узла
 
@@ -157,6 +164,22 @@ public class MainMenuPageSendRangeIntValueActivity extends Activity {
         // Текст описания
         TextView mDescriptionText = (TextView) findViewById(R.id.description);
         mDescriptionText.setText(pMap.get("DescriptionText"));
+
+        // Надписи 'первое значение' и 'второе значение'
+        mFirstValueLabel = (TextView) findViewById(R.id.first_value_label);
+        mSecondValueLabel = (TextView) findViewById(R.id.second_value_label);
+
+        // Надпись вместо 'Первое значение'
+        String first_value_label = pMap.get("FirstValueLabel");
+        if (!TextUtils.isEmpty(first_value_label.trim())) {
+            mFirstValueLabel.setText(first_value_label);
+        }
+
+        // Надпись вместо 'Второе значение'
+        String second_value_label = pMap.get("SecondValueLabel");
+        if (!TextUtils.isEmpty(second_value_label.trim())) {
+            mSecondValueLabel.setText(second_value_label);
+        }
 
         // Картинка для окна
         ImageView mImage = (ImageView) findViewById(R.id.image);

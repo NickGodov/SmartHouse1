@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
@@ -52,16 +52,17 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:gravity="fill">
 
                 <TextView
                     android:id="@+id/first_value_label"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Первое значение"
                     android:textSize="35sp"
-                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
+                    android:maxLines="4"
                     android:gravity="center" />
 
                 <TimePicker
@@ -94,12 +95,13 @@
                 <TextView
                     android:id="@+id/second_value_label"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Второе значение"
                     android:textSize="35sp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:maxLines="4" />
 
                 <TimePicker
                     android:layout_width="match_parent"

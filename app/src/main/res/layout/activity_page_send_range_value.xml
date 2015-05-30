@@ -30,7 +30,9 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/image"
@@ -46,7 +48,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical">
+            android:gravity="fill"
+            android:layout_gravity="center_vertical">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -54,37 +57,38 @@
 
                 <TextView
                     android:id="@+id/first_value_label"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Первое значение"
                     android:textSize="30sp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:maxLines="4" />
 
                 <TextView
                     android:id="@+id/second_value_label"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="Второе значение"
                     android:textSize="30sp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:maxLines="4" />
             </TableRow>
 
             <TextView
                 android:id="@+id/current_value_label"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Текущее"
                 android:textSize="30sp"
                 android:layout_columnSpan="2"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1" />
 
             <TableRow
                 android:layout_width="match_parent"
@@ -92,38 +96,36 @@
 
                 <TextView
                     android:id="@+id/first_incoming_value"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:maxLines="1"
-                    android:text=""
                     android:textSize="40sp" />
 
                 <TextView
                     android:id="@+id/second_incoming_value"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:maxLines="1"
-                    android:text=""
                     android:textSize="40sp" />
             </TableRow>
 
             <TextView
                 android:id="@+id/new_label_value"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Новое"
                 android:textSize="30sp"
                 android:layout_columnSpan="2"
-                android:layout_marginTop="10dp"
-                android:textIsSelectable="false" />
+                android:layout_marginTop="5dp"
+                android:textIsSelectable="false"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1" />
 
             <TableRow
                 android:layout_width="match_parent"
@@ -131,22 +133,21 @@
 
                 <EditText
                     android:id="@+id/first_outgoing_value"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:ems="6"
-                    android:gravity="center"
                     android:inputType="numberDecimal"
                     android:imeOptions="actionDone"
-                    android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="40sp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    android:gravity="center" />
 
                 <EditText
                     android:id="@+id/second_outgoing_value"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
@@ -154,7 +155,6 @@
                     android:gravity="center"
                     android:inputType="numberDecimal"
                     android:imeOptions="actionDone"
-                    android:maxLines="1"
                     android:singleLine="true"
                     android:textSize="40sp"
                     android:layout_marginLeft="10dp" />

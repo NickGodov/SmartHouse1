@@ -1,6 +1,7 @@
 package com.isosystem.smarthouse;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,7 +32,11 @@ import com.isosystem.smarthouse.utils.EvaluatorResult;
 import com.isosystem.smarthouse.utils.MathematicalFormulaEvaluator;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.SimpleTimeZone;
 
 public class MainMenuPageSendRangeDateTimeActivity extends Activity {
 
@@ -43,11 +49,14 @@ public class MainMenuPageSendRangeDateTimeActivity extends Activity {
     /** Текущая конечная точка */
     MenuTreeNode node;
 
-    /** Текст ошибки для первого значения */
-    String mInvalidFirstValueText;
+    /** Текст ошибки при вводе некорректного диапазона дат/времени-дат */
+    String mDateTimeRangeErrorText = "Ошибка диапазона дат/дат-времени. Первое значение должно быть раньше";
 
-    /** Текст ошибки для второго значения */
-    String mInvalidSecondValueText;
+    /** Надпись вместо 'первое значение' */
+    TextView mFirstValueLabel;
+
+    /** Надпись вместо 'второе значение' */
+    TextView mSecondValueLabel;
 
     /** Сообщения для получения данных от контроллера */
     String mGiveMeValueMessage;
@@ -121,6 +130,28 @@ public class MainMenuPageSendRangeDateTimeActivity extends Activity {
         // Текст описания
         TextView mDescriptionText = (TextView) findViewById(R.id.description);
         mDescriptionText.setText(pMap.get("DescriptionText"));
+
+        // Надписи 'первое значение' и 'второе значение'
+        mFirstValueLabel = (TextView) findViewById(R.id.first_value_label);
+        mSecondValueLabel = (TextView) findViewById(R.id.second_value_label);
+
+        // Надпись вместо 'Первое значение'
+        String first_value_label = pMap.get("FirstValueLabel");
+        if (!TextUtils.isEmpty(first_value_label.trim())) {
+            mFirstValueLabel.setText(first_value_label);
+        }
+
+        // Надпись вместо 'Второе значение'
+        String second_value_label = pMap.get("SecondValueLabel");
+        if (!TextUtils.isEmpty(second_value_label.trim())) {
+            mSecondValueLabel.setText(second_value_label);
+        }
+
+        // Сообщение о некорректном диапазоне дат/дат-времени
+        String datetime_range_error_text = pMap.get("DateTimeErrorText");
+        if (!TextUtils.isEmpty(datetime_range_error_text.trim())) {
+            mDateTimeRangeErrorText = datetime_range_error_text;
+        }
 
         // Картинка для окна
         ImageView mImage = (ImageView) findViewById(R.id.image);
@@ -203,6 +234,11 @@ public class MainMenuPageSendRangeDateTimeActivity extends Activity {
     private OnClickListener sendButtonListener = new OnClickListener() {
         @Override
         public void onClick(final View v) {
+
+            if (!checkDateTimeRange()) {
+                Notifications.showError(mContext,mDateTimeRangeErrorText);
+                return;
+            }
 
             if (mRangeType == MenuTree.DateTimeRangeType.TimeRange || mRangeType == MenuTree.DateTimeRangeType.DateTimeRange) {
                 int first_minute = -1;
@@ -343,6 +379,70 @@ public class MainMenuPageSendRangeDateTimeActivity extends Activity {
             }
         }
         super.onStop();
+    }
+
+    /**
+     * Метод осуществляет проверку диапазона дат/времени-дат
+     * Первое значение должно быть раньше по времени, чем второе
+     *
+     * @return результат проверки. True если проверка прошла успешно
+     */
+    private Boolean checkDateTimeRange(){
+        if (mRangeType == MenuTree.DateTimeRangeType.TimeRange) {
+            // Если диапазон времени, то не сравниваем
+            return true;
+        } else if (mRangeType == MenuTree.DateTimeRangeType.DateRange) {
+            // Если диапазон дат, то сравниваеи только дата
+            return checkDateRange(false);
+        } else if (mRangeType == MenuTree.DateTimeRangeType.DateTimeRange) {
+            return checkDateRange(true);
+        }
+        return false;
+    }
+
+    private Boolean checkDateRange(Boolean checkTime){
+        SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date1 = sdf.parse(mFirstDatePicker.getYear() + "-" +
+                    mFirstDatePicker.getMonth() + "-" +
+                    mFirstDatePicker.getDayOfMonth());
+            Date date2 = sdf.parse(mSecondDatePicker.getYear() + "-" +
+                    mSecondDatePicker.getMonth() + "-" +
+                    mSecondDatePicker.getDayOfMonth());
+
+            // Если даты одинаковы и checkTime = true, сравниваем даты
+            if (date1.equals(date2)) {
+                return checkTime ? checkTimeRange() : true;
+            }
+            else if (date1.before(date2)) {
+                return true;
+            } else return false;
+        } catch (ParseException e) {
+            Logging.v("Исключение при попытке парсинга и сравнения двух дат из datepicker`ов");
+            e.printStackTrace();
+            Notifications.showError(mContext,"Внутренняя ошибка при попытке сравнить даты");
+        }
+        return false;
+    }
+
+    private Boolean checkTimeRange(){
+        SimpleDateFormat sdf= new SimpleDateFormat("HH:mm");
+        try {
+            Date time1 = sdf.parse(mFirstTimePicker.getCurrentHour() + ":" +
+                    mFirstTimePicker.getCurrentMinute());
+            Date time2 = sdf.parse(mSecondTimePicker.getCurrentHour() + ":" +
+                    mSecondTimePicker.getCurrentMinute());
+
+            // Если даты одинаковы и checkTime = true, сравниваем даты
+            if (time1.equals(time2) || time1.before(time2)) {
+                return true;
+            } else return false;
+        } catch (ParseException e) {
+            Logging.v("Исключение при попытке парсинга и сравнения двух показаний времени из datepicker`ов");
+            e.printStackTrace();
+            Notifications.showError(mContext,"Внутренняя ошибка при попытке сравнить даты");
+        }
+        return false;
     }
 
     class ValueMessageReceiver extends BroadcastReceiver {

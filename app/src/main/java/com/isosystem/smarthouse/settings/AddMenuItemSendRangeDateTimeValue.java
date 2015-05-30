@@ -56,6 +56,10 @@ public class AddMenuItemSendRangeDateTimeValue extends Activity {
     ArrayList<String> mImages = null; // Массив с путями для изображений
     ImageView mGalleryPicker; //Пикер изображения галереи
 
+    EditText mDateTimeRangeErrorText;
+    EditText mFirstValueLabel;
+    EditText mSecondValueLabel;
+
     //Режим окна (редактирование или создание)
     boolean mEditMode;
 
@@ -69,6 +73,10 @@ public class AddMenuItemSendRangeDateTimeValue extends Activity {
 
         mApplication = (MyApplication) getApplicationContext();
         mContext = this;
+
+        mDateTimeRangeErrorText = (EditText) findViewById(R.id.datetime_range_error_text);
+        mFirstValueLabel = (EditText) findViewById(R.id.first_value_textview_text);
+        mSecondValueLabel = (EditText) findViewById(R.id.second_value_textview_text);
 
         // Кнопка добавить
         Button addBtn = (Button) findViewById(R.id.btn_ok);
@@ -98,10 +106,13 @@ public class AddMenuItemSendRangeDateTimeValue extends Activity {
         mTooltipButton = (ImageButton) findViewById(R.id.button_help_description);
         mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
-        mTooltipButton = (ImageButton) findViewById(R.id.button_help_first_error);
+        mTooltipButton = (ImageButton) findViewById(R.id.button_help_first_value_textview);
         mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
-        mTooltipButton = (ImageButton) findViewById(R.id.button_help_second_error);
+        mTooltipButton = (ImageButton) findViewById(R.id.button_help_second_value_textview);
+        mTooltipButton.setOnClickListener(tooltipsButtonListener);
+
+        mTooltipButton = (ImageButton) findViewById(R.id.button_help_datetime_range_error);
         mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
         mTooltipButton = (ImageButton) findViewById(R.id.button_help_get_value);
@@ -191,15 +202,17 @@ public class AddMenuItemSendRangeDateTimeValue extends Activity {
         if (pMap.get("DescriptionText") != null)
             mDescText.setText(pMap.get("DescriptionText"));
 
-        // Сообщение при вводе невалидного значения
-        EditText mInvalidFirstValueText = (EditText) findViewById(R.id.first_error_text);
-        if (pMap.get("InvalidFirstValueText") != null)
-            mInvalidFirstValueText.setText(pMap.get("InvalidFirstValueText"));
+        // Надпись для первого значения
+        if (pMap.get("FirstValueLabel") != null)
+            mFirstValueLabel.setText(pMap.get("FirstValueLabel"));
 
-        // Сообщение при вводе невалидного значения
-        EditText mInvalidSecondValueText = (EditText) findViewById(R.id.second_error_text);
-        if (pMap.get("InvalidSecondValueText") != null)
-            mInvalidSecondValueText.setText(pMap.get("InvalidSecondValueText"));
+        // Надпись для второго значения
+        if (pMap.get("SecondValueLabel") != null)
+            mSecondValueLabel.setText(pMap.get("SecondValueLabel"));
+
+        // Сообщение при вводе некорректного диапазона даты/даты-времени
+        if (pMap.get("DateTimeErrorText") != null)
+            mDateTimeRangeErrorText.setText(pMap.get("DateTimeErrorText"));
 
         if (pMap.get("SelectedImage") != null) {
             // Выбор изображения для пункта меню
@@ -287,13 +300,17 @@ public class AddMenuItemSendRangeDateTimeValue extends Activity {
                 case R.id.button_help_description:
                     tooltip = "Текст, который будет показываться под заголовком, формат - строка";
                     break;
-                // Сообщение не прошло валидацию
-                case R.id.button_help_first_error:
-                    tooltip = "Сообщение, которое увидит пользователь, если первое введенное значение будет некорректным, формат - строка";
+                // Надпись для первого значения
+                case R.id.button_help_first_value_textview:
+                    tooltip = "Надпись вместо 'Первое значение'";
+                    break;
+                // Надпись для второго значения
+                case R.id.button_help_second_value_textview:
+                    tooltip = "Надпись вместо 'Второе значение'";
                     break;
                 // Сообщение не прошло валидацию
-                case R.id.button_help_second_error:
-                    tooltip = "Сообщение, которое увидит пользователь, если второе введенное значение будет некорректным, формат - строка";
+                case R.id.button_help_datetime_range_error:
+                    tooltip = "Сообщение, если пользователь ввел некорректный диапазон дат/дат-времени";
                     break;
                 case R.id.button_help_get_value:
                     tooltip = "Сообщение, которое будет передано контроллеру при старте окна с требованием выслать текущее значение управляемого элемента. Сообщение передается без изменений";
@@ -345,9 +362,6 @@ public class AddMenuItemSendRangeDateTimeValue extends Activity {
         EditText mHeaderText = (EditText) findViewById(R.id.header_text);
         EditText mDescText = (EditText) findViewById(R.id.description_text);
 
-        EditText mInvalidFirstValueText = (EditText) findViewById(R.id.first_error_text);
-        EditText mInvalidSecondValueText = (EditText) findViewById(R.id.second_error_text);
-
         EditText mGiveMeValueMessage = (EditText) findViewById(R.id.get_value_text);
         EditText mOutgoingValueMessage = (EditText) findViewById(R.id.outgoing_prefix_text);
 
@@ -357,8 +371,7 @@ public class AddMenuItemSendRangeDateTimeValue extends Activity {
         // Обязательные поля: 3 надписи и 3 сообщения + картинка
         if ((mHeaderText.getText().toString() == null) || (mHeaderText.getText().toString().trim().isEmpty())
                 || (mDescText.getText().toString() == null) || (mDescText.getText().toString().trim().isEmpty())
-                || (mInvalidFirstValueText.getText().toString() == null) || (mInvalidFirstValueText.getText().toString().trim().isEmpty())
-                || (mInvalidSecondValueText.getText().toString() == null) || (mInvalidSecondValueText.getText().toString().trim().isEmpty())
+                || (mDateTimeRangeErrorText.getText().toString() == null) || (mDateTimeRangeErrorText.getText().toString().trim().isEmpty())
                 || (mGiveMeValueMessage.getText().toString() == null) || (mGiveMeValueMessage.getText().toString().trim().isEmpty())
                 || mTypeRangeSpinner.isSelected()
                 || (mOutgoingValueMessage.getText().toString() == null) || (mOutgoingValueMessage.getText().toString().trim().isEmpty())) {
@@ -386,12 +399,14 @@ public class AddMenuItemSendRangeDateTimeValue extends Activity {
         // Сообщение контроллеру при входе
         mParamsMap.put("DescriptionText", mDescText.getText().toString());
 
-        // Префикс входящего сообщения для установки значения
-        mParamsMap.put("InvalidFirstValueText", mInvalidFirstValueText.getText()
-                .toString());
+        // Надпись для 'Первое значение'
+        mParamsMap.put("FirstValueLabel", mFirstValueLabel.getText().toString());
+
+        // Надпись для 'Второе значение'
+        mParamsMap.put("SecondValueLabel", mSecondValueLabel.getText().toString());
 
         // Префикс входящего сообщения для установки значения
-        mParamsMap.put("InvalidSecondValueText", mInvalidSecondValueText.getText()
+        mParamsMap.put("DateTimeErrorText", mDateTimeRangeErrorText.getText()
                 .toString());
 
         mParamsMap.put("GiveMeValueMessage", mGiveMeValueMessage.getText()

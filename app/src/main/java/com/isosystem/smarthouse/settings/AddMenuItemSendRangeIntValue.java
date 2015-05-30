@@ -55,6 +55,9 @@ public class AddMenuItemSendRangeIntValue extends Activity {
     Button mAddButton;
     Button mBackButton;
 
+    EditText mFirstValueLabel;
+    EditText mSecondValueLabel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,9 @@ public class AddMenuItemSendRangeIntValue extends Activity {
 
         mApplication = (MyApplication) getApplicationContext();
         mContext = this;
+
+        mFirstValueLabel = (EditText) findViewById(R.id.first_value_textview_text);
+        mSecondValueLabel = (EditText) findViewById(R.id.second_value_textview_text);
 
         // Кнопка добавить
         mAddButton = (Button) findViewById(R.id.btn_ok);
@@ -91,6 +97,12 @@ public class AddMenuItemSendRangeIntValue extends Activity {
         mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
         mTooltipButton = (ImageButton) findViewById(R.id.button_help_first_error);
+        mTooltipButton.setOnClickListener(tooltipsButtonListener);
+
+        mTooltipButton = (ImageButton) findViewById(R.id.button_help_first_value_textview);
+        mTooltipButton.setOnClickListener(tooltipsButtonListener);
+
+        mTooltipButton = (ImageButton) findViewById(R.id.button_help_second_value_textview);
         mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
         mTooltipButton = (ImageButton) findViewById(R.id.button_help_second_error);
@@ -199,6 +211,14 @@ public class AddMenuItemSendRangeIntValue extends Activity {
         EditText mDescText = (EditText) findViewById(R.id.description_text);
         if (pMap.get("DescriptionText") != null)
             mDescText.setText(pMap.get("DescriptionText"));
+
+        // Надпись для первого значения
+        if (pMap.get("FirstValueLabel") != null)
+            mFirstValueLabel.setText(pMap.get("FirstValueLabel"));
+
+        // Надпись для второго значения
+        if (pMap.get("SecondValueLabel") != null)
+            mSecondValueLabel.setText(pMap.get("SecondValueLabel"));
 
         // Сообщение при вводе первого невалидного значения
         EditText mInvalidFirstValueText = (EditText) findViewById(R.id.first_error_text);
@@ -447,6 +467,14 @@ public class AddMenuItemSendRangeIntValue extends Activity {
                 case R.id.button_help_description:
                     tooltip = "Текст, который будет показываться под заголовком, формат - строка";
                     break;
+                // Надпись для первого значения
+                case R.id.button_help_first_value_textview:
+                    tooltip = "Надпись вместо 'Первое значение'";
+                    break;
+                // Надпись для второго значения
+                case R.id.button_help_second_value_textview:
+                    tooltip = "Надпись вместо 'Второе значение'";
+                    break;
                 // Сообщение не прошло валидацию
                 case R.id.button_help_first_error:
                     tooltip = "Сообщение, которое увидит пользователь, если первое введенное значение не пройдет валидацию, формат - строка";
@@ -581,6 +609,12 @@ public class AddMenuItemSendRangeIntValue extends Activity {
 
         // Сообщение контроллеру при входе
         mParamsMap.put("DescriptionText", mDescText.getText().toString());
+
+        // Надпись для 'Первое значение'
+        mParamsMap.put("FirstValueLabel", mFirstValueLabel.getText().toString());
+
+        // Надпись для 'Второе значение'
+        mParamsMap.put("SecondValueLabel", mSecondValueLabel.getText().toString());
 
         // Префикс входящего сообщения для установки значения
         mParamsMap.put("InvalidFirstValueText", mInvalidFirstValueText.getText()
