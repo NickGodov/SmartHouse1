@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/forms_backrepeat">
+
+<LinearLayout
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/forms_backrepeat"
     android:orientation="vertical"
-    android:overScrollMode="never"
-    android:scrollbarAlwaysDrawVerticalTrack="false"
-    android:scrollbars="none"
     android:showDividers="none"
-    android:visibility="visible" >
+    android:visibility="visible">
 
     <ImageButton
         android:id="@+id/frm_backbutton"
@@ -22,3 +24,4 @@
         android:scaleType="centerInside"
         android:src="@drawable/button_erase" />
 </LinearLayout>
+</ScrollView>

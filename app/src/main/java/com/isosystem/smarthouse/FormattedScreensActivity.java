@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -17,12 +18,18 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.isosystem.smarthouse.connection.MessageDispatcher;
 import com.isosystem.smarthouse.data.FormattedScreen;
+import com.isosystem.smarthouse.data.MenuTreeNode;
 import com.isosystem.smarthouse.logging.Logging;
 import com.isosystem.smarthouse.notifications.Notifications;
+
+import java.text.ParseException;
+import java.util.HashMap;
+import java.util.Random;
 
 /**
  * <p>Активити форматированного вывода. Данное активити вызывается, когда пользователь нажал
@@ -45,7 +52,7 @@ import com.isosystem.smarthouse.notifications.Notifications;
  * При старте активити, из настроек считывается:
  *     <ul><li>{@link #mFontSize} - размер шрифта</li>
  *     <li>{@link #mLinesCount} - количество строк в окне</li>
- *     <li>{@link #mLineSize} - количество символов, которое помещается на экране</li></ul>
+ *     </ul>
  * <br>Если в команде форматированного вывода номер строки превышает заданное в настройках количество
  * строк, информация выводится в последней строке.
  * Если в команде форматированного вывода позиция вывода в строке превышает количество символов,
@@ -64,6 +71,8 @@ public class FormattedScreensActivity extends Activity {
 
     /** Контейнер для строк окна */
     LinearLayout mLinearLayout;
+
+	ScrollView mScrollView;
     /** Кнпопка закрытие окна */
 	Button mBackButton;
 
@@ -79,8 +88,8 @@ public class FormattedScreensActivity extends Activity {
 	float mFontSize = 30;
     /** Дефолтное количество строк для сообщений */
 	int mLinesCount = 9;
-    /** Дефолтное количество символов для строки сообщений */
-	int mLineSize = 43;
+
+	Boolean mScrollableWindow = false;
 
     /**
      * При старте активити:
@@ -101,8 +110,6 @@ public class FormattedScreensActivity extends Activity {
 
         mContext = this;
         mApplication = (MyApplication) getApplicationContext();
-        setContentView(R.layout.activity_formscreen);
-        mLinearLayout = (LinearLayout) findViewById(R.id.LinearLayout1);
 
         // Запретить отключение экрана
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -119,17 +126,17 @@ public class FormattedScreensActivity extends Activity {
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(mApplication);
 
-        // Считываем размер шрифта
+		// Считываем размер шрифта
 		try {
 			mFontSize = Float.parseFloat(prefs.getString(
 					"formatted_screen_font_size", "30"));
 		} catch (Exception e) {
-		    Logging.v("Исключение при попытке считать значение периода обновления буфера из preferences");
+			Logging.v("Исключение при попытке считать значение периода обновления буфера из preferences");
 			e.printStackTrace();
 		}
 		Logging.v("Размер шрифта:[" + mFontSize +"]");
 
-        // Количество строк в окне
+		// Количество строк в окне
 		try {
 			mLinesCount = Integer.parseInt(prefs.getString(
 					"formatted_screen_lines_count", "9"));
@@ -137,19 +144,73 @@ public class FormattedScreensActivity extends Activity {
 			Logging.v("Исключение при попытке считать значение периода обновления буфера из preferences");
 			e.printStackTrace();
 		}
-		Logging.v("Количество строк:[" + mLinesCount +"]");
-        // Установка строк для окна
-        setLines(mLinesCount);
+		Logging.v("Количество строк:[" + mLinesCount + "]");
 
-        // Количество символов в строке
+		// Считывание номера окна форматированного вывода из extras
+		// Это необходимо, чтобы взять команду для старта и для окончания форматированного вывода
+		int position = -1;
 		try {
-			mLineSize = Integer.parseInt(prefs.getString(
-					"formatted_screen_line_size", "43"));
+			position = getIntent().getIntExtra("formScreenIndex", -1);
 		} catch (Exception e) {
-			Logging.v("Исключение при попытке считать значение периода обновления буфера из preferences");
+			Logging.v("Исключение при попытке взять номер окна из extras");
 			e.printStackTrace();
+			finish();
+			overridePendingTransition(R.anim.flipin,R.anim.flipout);
 		}
-		Logging.v("Длина строки:[" + mLineSize +"]");
+		Logging.v("Номер окна форматированного вывода:[" + position +"]");
+
+		// Получение объекта окна из списка окон
+		try {
+			mScreen = ((MyApplication) getApplicationContext()).mFormattedScreens.mFormattedScreens
+					.get(position);
+		} catch (Exception e) {
+			Logging.v("Исключение при попытке взять окно номер "
+					+ String.valueOf(position)
+					+ " . Возможно, такой позиции нет.");
+			e.printStackTrace();
+			finish();
+			overridePendingTransition(R.anim.flipin,R.anim.flipout);
+		}
+
+		// Берем хеш-таблицу параметров окна вывода
+		HashMap<String, String> pMap = mScreen.paramsMap;
+
+		if (pMap.get("FontSize") != null) {
+			try {
+				mFontSize = Float.parseFloat(pMap.get("FontSize").toString());
+			} catch (NumberFormatException e) {
+				Logging.v("Исключение при попытке парсинга размера шрифта");
+				e.printStackTrace();
+			}
+		}
+
+		if (pMap.get("LinesNumber") != null) {
+			try {
+				mLinesCount = Integer.parseInt(pMap.get("LinesNumber").toString());
+			} catch (NumberFormatException e) {
+				Logging.v("Исключение при попытке парсинга количества строк");
+				e.printStackTrace();
+			}
+		}
+
+		// Прокрутка окна
+		if (pMap.get("ScrollableWindow")!=null){
+			if (pMap.get("ScrollableWindow").equals("0")){
+				mScrollableWindow = false;
+				setContentView(R.layout.activity_formscreen);
+			} else if (pMap.get("ScrollableWindow").equals("1")) {
+				mScrollableWindow = true;
+				setContentView(R.layout.activity_formscreen_scrollable);
+				mScrollView = (ScrollView) findViewById(R.id.scrollview);
+				mScrollView.setOverScrollMode(View.OVER_SCROLL_IF_CONTENT_SCROLLS);
+			} else {
+				Notifications.showError(mContext, "Внутренняя ошибка при попытке считать данные");
+				Logging.v("Исключение при попытке парсинга данных конечной точки. Параметр: ScrollableWindow");
+			}
+		}
+
+        // Установка строк для окна
+        //setLines(mLinesCount);
 
         // Подключение ресивера
 		try {
@@ -165,32 +226,6 @@ public class FormattedScreensActivity extends Activity {
 			overridePendingTransition(R.anim.flipin,R.anim.flipout);
 		}
 
-        // Считывание номера окна форматированного вывода из extras
-        // Это необходимо, чтобы взять команду для старта и для окончания форматированного вывода
-		int position = -1;
-		try {
-			position = getIntent().getIntExtra("formScreenIndex", -1);
-		} catch (Exception e) {
-			Logging.v("Исключение при попытке взять номер окна из extras");
-			e.printStackTrace();
-			finish();
-			overridePendingTransition(R.anim.flipin,R.anim.flipout);
-		}
-		Logging.v("Номер окна форматированного вывода:[" + position +"]");
-
-        // Получение объекта окна из списка окон
-		try {
-			mScreen = ((MyApplication) getApplicationContext()).mFormattedScreens.mFormattedScreens
-					.get(position);
-		} catch (Exception e) {
-			Logging.v("Исключение при попытке взять окно номер "
-					+ String.valueOf(position)
-					+ " . Возможно, такой позиции нет.");
-			e.printStackTrace();
-			finish();
-			overridePendingTransition(R.anim.flipin,R.anim.flipout);
-		}
-
         // Закрытие окна
 		ImageButton mBackButton = (ImageButton) findViewById(R.id.frm_backbutton);
 		mBackButton.setOnClickListener(mBackListener);
@@ -199,6 +234,8 @@ public class FormattedScreensActivity extends Activity {
 		mDispatcher = new MessageDispatcher(this);
         // Отправка команды на старт форматированного вывода
 		mDispatcher.SendRawMessage(mScreen.mInputStart);
+
+		setExampleText();
 	}
 
 	/**
@@ -212,6 +249,7 @@ public class FormattedScreensActivity extends Activity {
 		Typeface font = Typeface.createFromAsset(getAssets(), "PTM75F.ttf");
 		LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1.0f);
         // Кнопка "назад", она изымается из разметки и вставляется в конец, после добавления строк
+		mLinearLayout = (LinearLayout) findViewById(R.id.LinearLayout1);
 		View backButtonView = mLinearLayout.getChildAt(0);
 		mLinearLayout.removeViewAt(0);
 
@@ -230,6 +268,23 @@ public class FormattedScreensActivity extends Activity {
 		}
 		//Добавление кнопки
 		mLinearLayout.addView(backButtonView);
+	}
+
+	/**
+	 * Вывод тестовых сообщений на экран
+	 */
+	private void setExampleText() {
+		TextView textView = (TextView) mLinearLayout.getChildAt(0);
+		for (int i = 1; i <= mLinesCount; i++)
+			textView.setText(textView.getText() + String.valueOf(i % 10));
+
+		for (int i = 1; i < mLinesCount; i++) {
+			String example_string = String.valueOf(i) + " Показатель "
+					+ String.valueOf(i) + ": "
+					+ String.valueOf(new Random().nextInt(100000));
+			textView = (TextView) mLinearLayout.getChildAt(i);
+			textView.setText(example_string);
+		}
 	}
 
     /**

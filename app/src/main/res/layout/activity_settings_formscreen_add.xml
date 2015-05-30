@@ -1,189 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp">
 
-    <RelativeLayout
-        android:id="@+id/RelativeLayout1"
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:scrollbars="vertical" >
 
-        <TextView
-            android:id="@+id/header_1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:gravity="fill_horizontal"
-            android:text="@string/settings_formscreen_add_screen_prefs_header"
-            android:textColor="#2a2a2a"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/divider_1"
-            android:layout_width="fill_parent"
-            android:layout_height="3dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/header_1"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:background="@android:color/darker_gray" />
-
-        <TextView
-            android:id="@+id/fs_name_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/divider_1"
-            android:layout_marginLeft="40dp"
-            android:text="@string/settings_formscreen_add_screen_title"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/fs_name_value"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/fs_name_label"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/divider_1"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="40dp"
-            android:layout_toRightOf="@+id/fs_name_label"
-            android:textSize="18sp" />
-
-        <!-- Разделитель -->
-
-        <View
-            android:id="@+id/divider_2"
-            android:layout_width="fill_parent"
-            android:layout_height="3dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/fs_name_label"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/transparent" />
-
-        <TextView
-            android:id="@+id/fs_start_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/divider_2"
-            android:layout_marginLeft="40dp"
-            android:text="@string/settings_formscreen_start_transfer_message"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/fs_start_value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/fs_start_label"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/divider_2"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="40dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/fs_start_label"
-            android:textSize="18sp" />
+            android:orientation="vertical" >
 
-        <!-- Разделитель -->
+            <TextView
+                android:id="@+id/header_1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="fill_horizontal"
+                android:text="Параметры окна"
+                android:textColor="#2a2a2a"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <View
-            android:id="@+id/divider_3"
-            android:layout_width="fill_parent"
-            android:layout_height="3dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/fs_start_label"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/transparent" />
-
-        <TextView
-            android:id="@+id/fs_end_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/divider_3"
-            android:layout_marginLeft="40dp"
-            android:text="@string/settings_formscreen_end_transfer_message"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/fs_end_value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/fs_end_label"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/divider_3"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/fs_end_label"
-            android:textSize="18sp" />
-
-        <!-- Разделитель -->
-
-        <TextView
-            android:id="@+id/header_2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/fs_end_label"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:gravity="fill_horizontal"
-            android:text="@string/settings_formscreen_grid_image"
-            android:textColor="#2a2a2a"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/divider_4"
-            android:layout_width="fill_parent"
-            android:layout_height="3dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/header_2"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:background="@android:color/darker_gray" />
+            <View
+                android:id="@+id/divider_1"
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
+        <!-- Название заголовка -->
 
         <LinearLayout
-            android:id="@+id/imagepick_layout_1"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/divider_4"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:orientation="horizontal" >
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" >
 
-            <Gallery
-                android:id="@+id/tile_image_gallery"
-                android:layout_width="fill_parent"
-                android:layout_height="96dp"
+            <TextView
+                android:id="@+id/header_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="* Название окна"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/formscreen_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/gallery_back"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"
-                android:spacing="5dp" />
+                android:textSize="18sp" />
 
-            <ImageView
-                android:id="@+id/tile_image"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/gallery_image_back"
-                android:padding="7dp"
-                android:scaleType="centerInside" />
+            <ImageButton
+                android:id="@+id/button_help_formscreen_name"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+        <!-- Пояснительный текст -->
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/description_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="Размер шрифта (в пикселях)"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/text_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:text="30"
+                android:inputType="number"
+                android:digits="0123456789" />
+
+            <ImageButton
+                android:id="@+id/button_help_text_size"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <!-- Сообщение об ошибке -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/error_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="Количество строк"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/lines_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:text="9"
+                android:inputType="number"
+                android:digits="0123456789" />
+
+            <ImageButton
+                android:id="@+id/button_help_lines_number"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:visibility="visible">
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Прокрутка окна"
+                android:id="@+id/scrollable_window"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/button_help_scrollable_window"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/header_2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:gravity="fill_horizontal"
+                android:text="* Изображение для плитки окна вывода"
+                android:textColor="#2a2a2a"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider_2"
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:id="@+id/imagepick_layout_1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" >
+
+                <Gallery
+                    android:id="@+id/tile_image_gallery"
+                    android:layout_width="fill_parent"
+                    android:layout_height="96dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/gallery_back"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:spacing="5dp" />
+
+                <ImageView
+                    android:id="@+id/tile_image"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/gallery_image_back"
+                    android:padding="7dp"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/header_5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="fill_horizontal"
+                android:text="@string/settings_add_menu_item_send_message_header"
+                android:textColor="#2a2a2a"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divider_5"
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/darker_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/get_value_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:text="* Сообщение о начале передачи данных"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/transfer_start_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/button_help_start_transfer"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/outgoing_prefix_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="25dp"
+                android:textSize="18sp"
+                android:text="* Сообщение об окончании передачи данных" />
+
+            <EditText
+                android:id="@+id/transfer_end_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/button_help_end_transfer"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginRight="25dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/tooltip" />
         </LinearLayout>
 
         <LinearLayout
@@ -193,7 +343,7 @@
             android:layout_below="@+id/imagepick_layout_1"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -214,15 +364,6 @@
                 android:textSize="25sp" />
         </LinearLayout>
 
-        <View
-            android:id="@+id/divider_5"
-            android:layout_width="fill_parent"
-            android:layout_height="3dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/buttons_layout_1"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/transparent" />
-    </RelativeLayout>
+    </LinearLayout>
 
 </ScrollView>
