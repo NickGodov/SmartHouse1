@@ -47,13 +47,13 @@ public class ApplicationPreferencesActivity extends PreferenceActivity
 		/** Кнопка изменения пароля */
 		Preference passwordChangePreference = findPreference("password_change");
 
-		Preference testFSPreference = findPreference("formatted_screen_test");
+		//Preference testFSPreference = findPreference("formatted_screen_test");
 
 		passwordChangePreference
 				.setOnPreferenceClickListener(mPasswordChangeListener);
 
-		testFSPreference
-				.setOnPreferenceClickListener(mTestFormattedScreenListner);
+//		testFSPreference
+//				.setOnPreferenceClickListener(mTestFormattedScreenListner);
 
 		// Кнопка "Вернуться"
 		Button backButton = new Button(this);

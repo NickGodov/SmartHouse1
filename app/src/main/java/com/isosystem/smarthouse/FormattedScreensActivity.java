@@ -210,7 +210,7 @@ public class FormattedScreensActivity extends Activity {
 		}
 
         // Установка строк для окна
-        //setLines(mLinesCount);
+        setLines(mLinesCount);
 
         // Подключение ресивера
 		try {
@@ -235,7 +235,7 @@ public class FormattedScreensActivity extends Activity {
         // Отправка команды на старт форматированного вывода
 		mDispatcher.SendRawMessage(mScreen.mInputStart);
 
-		setExampleText();
+		//setExampleText();
 	}
 
 	/**

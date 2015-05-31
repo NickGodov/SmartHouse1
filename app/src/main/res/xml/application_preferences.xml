@@ -155,11 +155,12 @@
             android:summary="Укажите количество символов в строке"
             android:title="Количество символов в строке" >
         </EditTextPreference>
-
+<!-- Убрано 31.05 в связи с изменением окна форматированного вывода
         <Preference
             android:key="formatted_screen_test"
             android:summary="Нажмите для тестирования окна форматированного вывода"
             android:title="Тест окна вывода" />
+-->
     </PreferenceScreen>
     <PreferenceScreen
         android:key="gui"
