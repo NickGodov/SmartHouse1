@@ -35,7 +35,6 @@ public class ApplicationPreferencesActivity extends PreferenceActivity
 		implements OnSharedPreferenceChangeListener {
 	Context mContext;
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -94,9 +93,9 @@ public class ApplicationPreferencesActivity extends PreferenceActivity
 
 		@Override
 		public boolean onPreferenceClick(Preference preference) {
-			Intent intent = new Intent(mContext,
-					TestFormattedScreenActivity.class);
-			mContext.startActivity(intent);
+	//		Intent intent = new Intent(mContext,
+	//				TestFormattedScreenActivity.class);
+	//		mContext.startActivity(intent);
 			return true;
 		}
 	};

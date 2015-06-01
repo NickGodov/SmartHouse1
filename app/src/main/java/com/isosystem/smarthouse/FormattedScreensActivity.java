@@ -233,7 +233,7 @@ public class FormattedScreensActivity extends Activity {
         // Диспетчер для отправки сообщения контроллеру
 		mDispatcher = new MessageDispatcher(this);
         // Отправка команды на старт форматированного вывода
-		mDispatcher.SendRawMessage(mScreen.mInputStart);
+		mDispatcher.sendGiveMeValueMessage(mScreen.mInputStart,true);
 
 		//setExampleText();
 	}
@@ -605,7 +605,7 @@ public class FormattedScreensActivity extends Activity {
 	@Override
 	public void onStop() {
 		super.onStop();
-		mDispatcher.SendRawMessage(mScreen.mInputEnd);
+		mDispatcher.sendGiveMeValueMessage(mScreen.mInputEnd,true);
 		try {
 			unregisterReceiver(mReceiver);
 		} catch (Exception e) {
