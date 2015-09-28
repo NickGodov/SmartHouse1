@@ -47,6 +47,15 @@
             </intent-filter>
         </receiver>
 
+        <!-- Ресивер для приема отладочных сообщений -->
+        <receiver
+            android:name="com.isosystem.smarthouse.utils.DebugMessageReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="SMARTHOUSE.DEBUG_MESSAGE" />
+            </intent-filter>
+        </receiver>
+
         <!-- Сервис для приема сообщений от контроллера -->
         <service
             android:name="com.isosystem.smarthouse.connection.USBReceiveService"
@@ -186,11 +195,6 @@
         <activity
             android:name="com.isosystem.smarthouse.settings.ImportExportFilesActivity"
             android:label="Импорт\экспорт файлов"
-            android:noHistory="true" >
-        </activity>
-        <activity
-            android:name="com.isosystem.smarthouse.settings.TestFormattedScreenActivity"
-            android:label="Окно форматированного вывода"
             android:noHistory="true" >
         </activity>
         <activity

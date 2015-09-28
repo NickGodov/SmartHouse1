@@ -18,6 +18,7 @@ import android.preference.PreferenceManager;
 import com.isosystem.smarthouse.Globals;
 import com.isosystem.smarthouse.MyApplication;
 import com.isosystem.smarthouse.logging.Logging;
+import com.isosystem.smarthouse.notifications.Notifications;
 import com.isosystem.smarthouse.notifications.Notifications.MessageType;
 
 import java.nio.charset.Charset;
@@ -92,7 +93,7 @@ public class USBReceiveService extends IntentService {
 
 				// Поиск подстроки, которая начинается с @ или & или $
 				// и заканчивается ¶
-				Pattern p = Pattern.compile("[@&$](.*?)¶");
+				Pattern p = Pattern.compile("[@&$#](.*?)¶");
 				Matcher m = p.matcher(mMessageBuffer);
 				while (m.find()) {
 					messageProcess(m.group());
@@ -392,7 +393,15 @@ public class USBReceiveService extends IntentService {
 			i.putExtra("message", message);
 			// Кидаем броадкаст
 			getApplicationContext().sendBroadcast(i);
-		} else {
+		} else if (message.charAt(0) == '#') {
+			// Принудительное открытие окна форматированного вывода
+			if (message.length() > 2) {
+				i.setAction(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE);
+				i.putExtra("message",message);
+				getApplicationContext().sendBroadcast(i);
+			}
+		}
+		else {
 			// Logging.v("Пришло сообщение неизвестного формата: " + message);
 		} // end char[0]
 	} // end method

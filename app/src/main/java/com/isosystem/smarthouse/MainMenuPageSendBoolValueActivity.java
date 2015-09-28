@@ -23,6 +23,8 @@ import com.isosystem.smarthouse.notifications.Notifications;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainMenuPageSendBoolValueActivity extends Activity {
     MyApplication mApp;
@@ -78,6 +80,7 @@ public class MainMenuPageSendBoolValueActivity extends Activity {
             mReceiver = new ValueMessageReceiver();
             IntentFilter filter = new IntentFilter();
             filter.addAction(Globals.BROADCAST_INTENT_VALUE_MESSAGE);
+            filter.addAction(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE);
             registerReceiver(mReceiver, filter);
             Logging.v("Регистрируем ресивер PageBool");
         } catch (Exception e) {
@@ -229,9 +232,70 @@ public class MainMenuPageSendBoolValueActivity extends Activity {
         super.onStop();
     }
 
+    /**
+     * Принудительное открытие окна форматированного вывода: <br />
+     * 1. С помощью регулярного выражения ищем число в сообщении от контроллера; <br />
+     * 2. Если число найдено, пытаемся перевести строку в INT; <br />
+     * 3. Отсылаем сообщение о невозможности открыть окно форматированного вывода. <br />
+     * @param message сообщение от контроллера
+     */
+    private void forcedFormattedScreenStart(String message){
+        String number = "";
+        // Считываем номер окна в сообщении
+        Pattern p = Pattern.compile("[0-9]+");
+        Matcher m = p.matcher(message);
+        while (m.find()) {
+            number = m.group();
+        }
+
+        // Парсим номер окна и отсылаем сообщение
+        int screen_number = -1;
+        try {
+            screen_number = Integer.parseInt(number);
+            if (screen_number >=0 && screen_number < mApp.mFormattedScreens.mFormattedScreens.size()) {
+                // Номер окна корректный, отсылаем сообщение
+                mDispatcher = new MessageDispatcher(this);
+                mDispatcher.sendGiveMeValueMessage(mApp.mFormattedScreens.mFormattedScreens.get(screen_number).mCannotOpenWindowMessage,true);
+            } else {
+                // Номер окна некорректный
+                Intent i = new Intent();
+                String alarmMessage = "Неверное обращение к форматированному выводу";
+                mApp.mAlarmMessages.addAlarmMessage(
+                        mApp, alarmMessage,
+                        Notifications.MessageType.ControllerMessage);
+                // Кидаем броадкаст
+                i.setAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
+                mApp.sendBroadcast(i);
+            }
+        } catch (NumberFormatException e) {
+            // Сообщение пришло в неверном формате (не смогли найти число)
+            Intent i = new Intent();
+            String alarmMessage = "Неверное обращение к форматированному выводу";
+            mApp.mAlarmMessages.addAlarmMessage(
+                    mApp, alarmMessage,
+                    Notifications.MessageType.ControllerMessage);
+            // Кидаем броадкаст
+            i.setAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
+            mApp.sendBroadcast(i);
+
+            Logging.v("Исключение при попытке парсинга номера окна форматированного вывода." +
+                    "Строка парсинга: " + number);
+            e.printStackTrace();
+        }
+    }
+
     class ValueMessageReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+
+            // Если принудительное открытие окна, вызываем метод и передаем ему
+            // extra в виде сообщение от контроллера
+            if (intent.getAction().equals(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE)) {
+                String msg = intent.getStringExtra("message");
+                forcedFormattedScreenStart(msg);
+                return;
+            }
+
             String msg = intent.getStringExtra("message");
 
             if (msg.length() < 3) {

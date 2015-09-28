@@ -28,6 +28,8 @@ import com.isosystem.smarthouse.utils.MathematicalFormulaEvaluator;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Ётот класс окна отсылки диапазона числовых значений.
@@ -350,6 +352,7 @@ public class MainMenuPageSendRangeIntValueActivity extends Activity {
             mReceiver = new ValueMessageReceiver();
             IntentFilter filter = new IntentFilter();
             filter.addAction(Globals.BROADCAST_INTENT_VALUE_MESSAGE);
+            filter.addAction(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE);
             registerReceiver(mReceiver, filter);
             Logging.v("–егистрируем ресивер Page");
         } catch (Exception e) {
@@ -374,9 +377,70 @@ public class MainMenuPageSendRangeIntValueActivity extends Activity {
         super.onStop();
     }
 
+    /**
+     * ѕринудительное открытие окна форматированного вывода: <br />
+     * 1. — помощью регул€рного выражени€ ищем число в сообщении от контроллера; <br />
+     * 2. ≈сли число найдено, пытаемс€ перевести строку в INT; <br />
+     * 3. ќтсылаем сообщение о невозможности открыть окно форматированного вывода. <br />
+     * @param message сообщение от контроллера
+     */
+    private void forcedFormattedScreenStart(String message){
+        String number = "";
+        // —читываем номер окна в сообщении
+        Pattern p = Pattern.compile("[0-9]+");
+        Matcher m = p.matcher(message);
+        while (m.find()) {
+            number = m.group();
+        }
+
+        // ѕарсим номер окна и отсылаем сообщение
+        int screen_number = -1;
+        try {
+            screen_number = Integer.parseInt(number);
+            if (screen_number >=0 && screen_number < mApp.mFormattedScreens.mFormattedScreens.size()) {
+                // Ќомер окна корректный, отсылаем сообщение
+                mDispatcher = new MessageDispatcher(this);
+                mDispatcher.sendGiveMeValueMessage(mApp.mFormattedScreens.mFormattedScreens.get(screen_number).mCannotOpenWindowMessage,true);
+            } else {
+                // Ќомер окна некорректный
+                Intent i = new Intent();
+                String alarmMessage = "Ќеверное обращение к форматированному выводу";
+                mApp.mAlarmMessages.addAlarmMessage(
+                        mApp, alarmMessage,
+                        Notifications.MessageType.ControllerMessage);
+                //  идаем броадкаст
+                i.setAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
+                mApp.sendBroadcast(i);
+            }
+        } catch (NumberFormatException e) {
+            // —ообщение пришло в неверном формате (не смогли найти число)
+            Intent i = new Intent();
+            String alarmMessage = "Ќеверное обращение к форматированному выводу";
+            mApp.mAlarmMessages.addAlarmMessage(
+                    mApp, alarmMessage,
+                    Notifications.MessageType.ControllerMessage);
+            //  идаем броадкаст
+            i.setAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
+            mApp.sendBroadcast(i);
+
+            Logging.v("»сключение при попытке парсинга номера окна форматированного вывода." +
+                    "—трока парсинга: " + number);
+            e.printStackTrace();
+        }
+    }
+
     class ValueMessageReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+
+            // ≈сли принудительное открытие окна, вызываем метод и передаем ему
+            // extra в виде сообщение от контроллера
+            if (intent.getAction().equals(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE)) {
+                String msg = intent.getStringExtra("message");
+                forcedFormattedScreenStart(msg);
+                return;
+            }
+
             // ѕолучено сообщение. ќно должно быть обработано формулой с нужным
             // количеством знаков после зап€той
             String msg = intent.getStringExtra("message");

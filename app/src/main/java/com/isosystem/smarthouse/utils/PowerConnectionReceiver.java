@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 
+import com.isosystem.smarthouse.Globals;
 import com.isosystem.smarthouse.MyApplication;
 import com.isosystem.smarthouse.notifications.Notifications.MessageType;
 
@@ -29,7 +30,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 				MessageType.PowerSupplyMessage);
 
 		Intent i = new Intent();
-		i.setAction("SMARTHOUSE.POWER_SUPPLY_CHANGED");
+		i.setAction(Globals.BROADCAST_INTENT_POWER_SUPPLY_CHANGED);
 		context.sendBroadcast(i);
 	}
 

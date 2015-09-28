@@ -1,7 +1,10 @@
 package com.isosystem.smarthouse;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -16,15 +19,21 @@ import android.widget.TextView;
 
 import com.isosystem.smarthouse.connection.MessageDispatcher;
 import com.isosystem.smarthouse.data.MenuTreeNode;
+import com.isosystem.smarthouse.logging.Logging;
 import com.isosystem.smarthouse.notifications.Notifications;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainMenuPageSendPasswordActivity extends Activity {
 
     MyApplication mApp;
     Context mContext;
+
+    // Ресивер для получения значения от контроллера
+    ValueMessageReceiver mReceiver;
 
     // Текущая конечная точка
     MenuTreeNode node;
@@ -99,6 +108,19 @@ public class MainMenuPageSendPasswordActivity extends Activity {
         SetFont(R.id.psv_tv_description_text);
         SetFont(R.id.psv_tv_headertext);
 
+        try {
+            // Создаем и подключаем броадкаст ресивер
+            mReceiver = new ValueMessageReceiver();
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE);
+            registerReceiver(mReceiver, filter);
+            Logging.v("Регистрируем ресивер PageBool");
+        } catch (Exception e) {
+            Logging.v("Исключение при попытке зарегистрировать ресивер");
+            e.printStackTrace();
+            finish();
+        }
+
         // Создаем объект диспетчера
         mDispatcher = new MessageDispatcher(this);
     }
@@ -143,4 +165,71 @@ public class MainMenuPageSendPasswordActivity extends Activity {
             finish();
         }
     };
+
+    /**
+     * Принудительное открытие окна форматированного вывода: <br />
+     * 1. С помощью регулярного выражения ищем число в сообщении от контроллера; <br />
+     * 2. Если число найдено, пытаемся перевести строку в INT; <br />
+     * 3. Отсылаем сообщение о невозможности открыть окно форматированного вывода. <br />
+     * @param message сообщение от контроллера
+     */
+    private void forcedFormattedScreenStart(String message){
+        String number = "";
+        // Считываем номер окна в сообщении
+        Pattern p = Pattern.compile("[0-9]+");
+        Matcher m = p.matcher(message);
+        while (m.find()) {
+            number = m.group();
+        }
+
+        // Парсим номер окна и отсылаем сообщение
+        int screen_number = -1;
+        try {
+            screen_number = Integer.parseInt(number);
+            if (screen_number >=0 && screen_number < mApp.mFormattedScreens.mFormattedScreens.size()) {
+                // Номер окна корректный, отсылаем сообщение
+                mDispatcher = new MessageDispatcher(this);
+                mDispatcher.sendGiveMeValueMessage(mApp.mFormattedScreens.mFormattedScreens.get(screen_number).mCannotOpenWindowMessage,true);
+            } else {
+                // Номер окна некорректный
+                Intent i = new Intent();
+                String alarmMessage = "Неверное обращение к форматированному выводу";
+                mApp.mAlarmMessages.addAlarmMessage(
+                        mApp, alarmMessage,
+                        Notifications.MessageType.ControllerMessage);
+                // Кидаем броадкаст
+                i.setAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
+                mApp.sendBroadcast(i);
+            }
+        } catch (NumberFormatException e) {
+            // Сообщение пришло в неверном формате (не смогли найти число)
+            Intent i = new Intent();
+            String alarmMessage = "Неверное обращение к форматированному выводу";
+            mApp.mAlarmMessages.addAlarmMessage(
+                    mApp, alarmMessage,
+                    Notifications.MessageType.ControllerMessage);
+            // Кидаем броадкаст
+            i.setAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
+            mApp.sendBroadcast(i);
+
+            Logging.v("Исключение при попытке парсинга номера окна форматированного вывода." +
+                    "Строка парсинга: " + number);
+            e.printStackTrace();
+        }
+    }
+
+    class ValueMessageReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            // Если принудительное открытие окна, вызываем метод и передаем ему
+            // extra в виде сообщение от контроллера
+            if (intent.getAction().equals(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE)) {
+                String msg = intent.getStringExtra("message");
+                forcedFormattedScreenStart(msg);
+                return;
+            }
+        }
+    }
+
 }

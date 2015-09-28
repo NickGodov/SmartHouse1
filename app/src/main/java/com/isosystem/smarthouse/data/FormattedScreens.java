@@ -25,8 +25,8 @@ public class FormattedScreens implements Serializable {
 	/**
 	 * ƒобавление нового окна форматированного вывода
 	 */
-	public void addFormattedScreen(Context c, String name, String start, String end, HashMap<String, String> pmap) {
-		mFormattedScreens.add(new FormattedScreen(name, start, end, pmap));
+	public void addFormattedScreen(Context c, String name, String start, String end, String cowm, HashMap<String, String> pmap) {
+		mFormattedScreens.add(new FormattedScreen(name, start, end, cowm, pmap));
 		this.saveScreensToFile(c);
 	}
 	
@@ -66,10 +66,11 @@ public class FormattedScreens implements Serializable {
 		this.saveScreensToFile(c);
 	}
 
-	public void changeFormattedScreen (Context c, int position, String name, String start, String end, HashMap<String, String> pmap) {
+	public void changeFormattedScreen (Context c, int position, String name, String start, String end, String cowm, HashMap<String, String> pmap) {
 		mFormattedScreens.get(position).mName = name;
 		mFormattedScreens.get(position).mInputStart = start;
 		mFormattedScreens.get(position).mInputEnd = end;
+		mFormattedScreens.get(position).mCannotOpenWindowMessage = cowm;
 		mFormattedScreens.get(position).paramsMap = pmap;
 		
 		this.saveScreensToFile(c);

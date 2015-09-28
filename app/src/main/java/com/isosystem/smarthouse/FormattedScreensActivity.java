@@ -30,6 +30,8 @@ import com.isosystem.smarthouse.notifications.Notifications;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <p>Активити форматированного вывода. Данное активити вызывается, когда пользователь нажал
@@ -126,25 +128,26 @@ public class FormattedScreensActivity extends Activity {
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(mApplication);
 
-		// Считываем размер шрифта
-		try {
-			mFontSize = Float.parseFloat(prefs.getString(
-					"formatted_screen_font_size", "30"));
-		} catch (Exception e) {
-			Logging.v("Исключение при попытке считать значение периода обновления буфера из preferences");
-			e.printStackTrace();
-		}
-		Logging.v("Размер шрифта:[" + mFontSize +"]");
 
-		// Количество строк в окне
-		try {
-			mLinesCount = Integer.parseInt(prefs.getString(
-					"formatted_screen_lines_count", "9"));
-		} catch (Exception e) {
-			Logging.v("Исключение при попытке считать значение периода обновления буфера из preferences");
-			e.printStackTrace();
-		}
-		Logging.v("Количество строк:[" + mLinesCount + "]");
+//		// Считываем размер шрифта
+//		try {
+//			mFontSize = Float.parseFloat(prefs.getString(
+//					"formatted_screen_font_size", "30"));
+//		} catch (Exception e) {
+//			Logging.v("Исключение при попытке считать значение периода обновления буфера из preferences");
+//			e.printStackTrace();
+//		}
+//		Logging.v("Размер шрифта:[" + mFontSize +"]");
+
+//		// Количество строк в окне
+//		try {
+//			mLinesCount = Integer.parseInt(prefs.getString(
+//					"formatted_screen_lines_count", "9"));
+//		} catch (Exception e) {
+//			Logging.v("Исключение при попытке считать значение периода обновления буфера из preferences");
+//			e.printStackTrace();
+//		}
+//		Logging.v("Количество строк:[" + mLinesCount + "]");
 
 		// Считывание номера окна форматированного вывода из extras
 		// Это необходимо, чтобы взять команду для старта и для окончания форматированного вывода
@@ -175,14 +178,8 @@ public class FormattedScreensActivity extends Activity {
 		// Берем хеш-таблицу параметров окна вывода
 		HashMap<String, String> pMap = mScreen.paramsMap;
 
-		if (pMap.get("FontSize") != null) {
-			try {
-				mFontSize = Float.parseFloat(pMap.get("FontSize").toString());
-			} catch (NumberFormatException e) {
-				Logging.v("Исключение при попытке парсинга размера шрифта");
-				e.printStackTrace();
-			}
-		}
+		// Установка размера шрифта в пикселях
+		mFontSize = (float)setFontSize(prefs,pMap);
 
 		if (pMap.get("LinesNumber") != null) {
 			try {
@@ -217,6 +214,7 @@ public class FormattedScreensActivity extends Activity {
 			mReceiver = new FormScreenMessageReceiver();
 			IntentFilter filter = new IntentFilter();
 			filter.addAction(Globals.BROADCAST_INTENT_FORMSCREEN_MESSAGE);
+			filter.addAction(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE);
 			registerReceiver(mReceiver, filter);
 			Logging.v("Регистрируем ресивер FormScreen");
 		} catch (Exception e) {
@@ -236,6 +234,42 @@ public class FormattedScreensActivity extends Activity {
 		mDispatcher.sendGiveMeValueMessage(mScreen.mInputStart,true);
 
 		//setExampleText();
+	}
+
+	/**
+	 * Установка шрифта
+	 * 1) Получение данных из хеша
+	 * 2) Если данные получить не удалось - вытягиваем из настроек дефолтные значения
+	 *
+	 * @param prefs настройки
+	 * @param map параметры
+	 * @return размер шрифта в пикселях
+	 */
+	private int setFontSize(SharedPreferences prefs, HashMap<String, String> map) {
+		int fontSize = -1;
+
+		// Считываем из хеша
+		if (map.get("FontSize") != null) {
+			try {
+				fontSize = Integer.parseInt(map.get("FontSize").toString());
+			} catch (NumberFormatException e) {
+				Logging.v("Исключение при попытке парсинга размера шрифта");
+				e.printStackTrace();
+			}
+		}
+
+		// Если считать не удалось, берем дефолтные значения из настроек
+		if (fontSize == -1) {
+			try {
+				fontSize = Integer.parseInt(prefs.getString(
+						"formatted_screen_font_size", "30"));
+			} catch (Exception e) {
+				Logging.v("Исключение при попытке считать значение периода обновления буфера из preferences");
+				e.printStackTrace();
+			}
+		}
+
+		return fontSize;
 	}
 
 	/**
@@ -268,23 +302,6 @@ public class FormattedScreensActivity extends Activity {
 		}
 		//Добавление кнопки
 		mLinearLayout.addView(backButtonView);
-	}
-
-	/**
-	 * Вывод тестовых сообщений на экран
-	 */
-	private void setExampleText() {
-		TextView textView = (TextView) mLinearLayout.getChildAt(0);
-		for (int i = 1; i <= mLinesCount; i++)
-			textView.setText(textView.getText() + String.valueOf(i % 10));
-
-		for (int i = 1; i < mLinesCount; i++) {
-			String example_string = String.valueOf(i) + " Показатель "
-					+ String.valueOf(i) + ": "
-					+ String.valueOf(new Random().nextInt(100000));
-			textView = (TextView) mLinearLayout.getChildAt(i);
-			textView.setText(example_string);
-		}
 	}
 
     /**
@@ -613,6 +630,50 @@ public class FormattedScreensActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Принудительное открытие окна форматированного вывода: <br />
+	 * 1. С помощью регулярного выражения ищем число в сообщении от контроллера; <br />
+	 * 2. Если число найдено, пытаемся перевести строку в INT; <br />
+	 * 3. Отсылаем сообщение о невозможности открыть окно форматированного вывода. <br />
+	 * @param message сообщение от контроллера
+	 */
+	private void forcedFormattedScreenStart(String message){
+		String formScreenNumber = "";
+		// Считываем номер окна в сообщении
+		Pattern p = Pattern.compile("[0-9]+");
+		Matcher m = p.matcher(message);
+		while (m.find()) {
+			formScreenNumber = m.group();
+		}
+
+		// Парсим номер окна и отсылаем сообщение
+		try {
+			int screen_number = Integer.parseInt(formScreenNumber);
+			if (screen_number >= 0 && screen_number < mApplication.mFormattedScreens.mFormattedScreens.size()) {
+				// Номер окна корректный, отсылаем сообщение
+				mDispatcher = new MessageDispatcher(this);
+				mDispatcher.sendGiveMeValueMessage(mApplication.mFormattedScreens.mFormattedScreens.get(screen_number).mCannotOpenWindowMessage,true);
+			} else {
+				throw new NumberFormatException("format screen number is out of bounds");
+			}
+		} catch (NumberFormatException e) {
+			// Сообщение пришло в неверном формате (не смогли найти число)
+			// или индекс выходит за границы количества окон вывода
+			Intent i = new Intent();
+			String alarmMessage = "Неверное обращение к форматированному выводу";
+			mApplication.mAlarmMessages.addAlarmMessage(
+					mApplication, alarmMessage,
+					Notifications.MessageType.ControllerMessage);
+			// Кидаем броадкаст
+			i.setAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
+			mApplication.sendBroadcast(i);
+
+			Logging.v("Исключение при попытке парсинга номера окна форматированного вывода." +
+					"Строка парсинга: " + formScreenNumber);
+			e.printStackTrace();
+		}
+	}
+
     /**
      * Класс ресивера для получения команд форматированного вывода.
      * <br>После прихода команды, вызывается метод {@link #processMessage(String)},
@@ -624,15 +685,21 @@ public class FormattedScreensActivity extends Activity {
 			// Получено сообщение. Оно должно быть обработано формулой с нужным
 			// количеством знаков после запятой
 			String msg = intent.getStringExtra("message");
-			
-			Logging.v("Пришло в активити:[" + msg + "]");
 
-			try {
-				processMessage(msg);
-			} catch (Exception e) {
-				Notifications.showError(mContext,
-						"Неправильный формат сообщения " + msg);
-				e.printStackTrace();
+			// Если принудительное открытие окна, вызываем метод и передаем ему
+			// extra в виде сообщение от контроллера
+			// Если обычное сообщение форматированного вывода - обрабатываем
+			if (intent.getAction().equals(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE)) {
+				forcedFormattedScreenStart(msg);
+				return;
+			} else  if (intent.getAction().equals(Globals.BROADCAST_INTENT_FORMSCREEN_MESSAGE)) {
+				try {
+					processMessage(msg);
+				} catch (Exception e) {
+					Notifications.showError(mContext,
+							"Неправильный формат сообщения " + msg);
+					e.printStackTrace();
+				}
 			}
 		}
 	} // end BroadcastReceiver

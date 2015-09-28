@@ -29,6 +29,9 @@ import android.widget.TextView;
 import com.isosystem.smarthouse.logging.Logging;
 import com.isosystem.smarthouse.notifications.Notifications;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainMessagesFragment extends Fragment {
     View rootView;
     MyApplication mApplication;
@@ -197,7 +200,8 @@ public class MainMessagesFragment extends Fragment {
             mReceiver = new AlarmMessageReceive();
             IntentFilter filter = new IntentFilter();
             filter.addAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
-            filter.addAction("SMARTHOUSE.POWER_SUPPLY_CHANGED");
+            filter.addAction(Globals.BROADCAST_INTENT_POWER_SUPPLY_CHANGED);
+            filter.addAction(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE);
             rootView.getContext().registerReceiver(mReceiver, filter);
             Logging.v("–егистрируем ресивер MainActivity");
         } catch (Exception e) {
@@ -298,18 +302,70 @@ public class MainMessagesFragment extends Fragment {
         mMessagesList.setAdapter(adapter);
     }
 
+    /**
+     * ѕринудительное открытие окна форматированного вывода: <br />
+     * 1. — помощью регул€рного выражени€ ищем число в сообщении от контроллера; <br />
+     * 2. ≈сли число найдено, пытаемс€ перевести строку в INT; <br />
+     * 3. ќткрываем нужное окно форматированного вывода. <br />
+     * @param message сообщение от контроллера
+     */
+    private void forcedFormattedScreenStart(String message){
+        String number = "";
+
+        Pattern p = Pattern.compile("[0-9]+");
+        Matcher m = p.matcher(message);
+        while (m.find()) {
+            number = m.group();
+        }
+
+        int screen_number = -1;
+        try {
+            screen_number = Integer.parseInt(number);
+            if (screen_number >=0 && screen_number < mApplication.mFormattedScreens.mFormattedScreens.size()) {
+                Intent intent = new Intent(getActivity(),
+                        FormattedScreensActivity.class);
+                // ѕередаем номер нажатого окна в FormatterScreenActivity
+                intent.putExtra("formScreenIndex", screen_number);
+                getActivity().startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.flipin,R.anim.flipout);
+            } else {
+                //throw new NumberFormatException("format screen number is out of bounds");
+            }
+        } catch (NumberFormatException e) {
+            Intent i = new Intent();
+            String alarmMessage = "Ќеверное обращение к форматированному выводу";
+            mApplication.mAlarmMessages.addAlarmMessage(
+                    mApplication, alarmMessage,
+                    Notifications.MessageType.ControllerMessage);
+            //  идаем броадкаст
+            i.setAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
+            mApplication.sendBroadcast(i);
+
+            Logging.v("»сключение при попытке парсинга номера окна форматированного вывода." +
+                    "—трока парсинга: " + number);
+            e.printStackTrace();
+        }
+    }
+
     // ≈сли пришло алармовое сообщение - обновление
     // списка с сообщени€ми
     class AlarmMessageReceive extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             // ≈сли статус питани€ изменилс€ - проверка питани€
-            if (intent.getAction().equals("SMARTHOUSE.POWER_SUPPLY_CHANGED"))
+            if (intent.getAction().equals(Globals.BROADCAST_INTENT_POWER_SUPPLY_CHANGED))
                 checkPowerSupplyIcon();
 
             checkUsbConnectionIcon();
             setMessageNumberIcon();
             refreshListView();
+
+            // ≈сли принудительное открытие окна, вызываем метод и передаем ему
+            // extra в виде сообщение от контроллера
+            if (intent.getAction().equals("SMARTHOUSE.FORCED_FORMSCREEN_MESSAGE_RECEIVED")) {
+                String msg = intent.getStringExtra("message");
+                //forcedFormattedScreenStart(msg);
+            }
         }
     } // end of class
 }

@@ -48,6 +48,7 @@ public class AddFormattedScreenActivity extends Activity {
 
 	EditText mStartTransfer;
 	EditText mEndTransfer;
+	EditText mCannotOpenWindowMessage;
 
 	// Кнопки "Добавить"/"Отменить"
 	Button mAddButton;
@@ -81,6 +82,7 @@ public class AddFormattedScreenActivity extends Activity {
 
 		mStartTransfer = (EditText) findViewById(R.id.transfer_start_message);
 		mEndTransfer = (EditText) findViewById(R.id.transfer_end_message);
+		mCannotOpenWindowMessage = (EditText) findViewById(R.id.cannot_open_window_message);
 
 		mScrollableWindow = (CheckBox) findViewById(R.id.scrollable_window);
 
@@ -116,6 +118,9 @@ public class AddFormattedScreenActivity extends Activity {
 		mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
 		mTooltipButton = (ImageButton) findViewById(R.id.button_help_end_transfer);
+		mTooltipButton.setOnClickListener(tooltipsButtonListener);
+
+		mTooltipButton = (ImageButton) findViewById(R.id.button_help_cannot_open_message);
 		mTooltipButton.setOnClickListener(tooltipsButtonListener);
 
 		// В режиме редактирования, считываем позицию редактируемого окна
@@ -197,6 +202,9 @@ public class AddFormattedScreenActivity extends Activity {
 				case R.id.button_help_end_transfer:
 					tooltip = "Сообщение контроллеру об окончании передачи сообщений форматированного вывода";
 					break;
+				case R.id.button_help_cannot_open_message:
+					tooltip = "Сообщение контроллеру в случае невозможности в данный момент открыть окно форматированного вывода";
+					break;
 				default:
 					tooltip = "Если вы видите это сообщение, сообщите разработчику об ошибке, указав ситуацию, при которой вы увидели это сообщение";
 					break;
@@ -213,6 +221,7 @@ public class AddFormattedScreenActivity extends Activity {
 		mScreenName.setText(mApplication.mFormattedScreens.mFormattedScreens.get(mEditedPosition).mName);
 		mStartTransfer.setText(mApplication.mFormattedScreens.mFormattedScreens.get(mEditedPosition).mInputStart);
 		mEndTransfer.setText(mApplication.mFormattedScreens.mFormattedScreens.get(mEditedPosition).mInputEnd);
+		mCannotOpenWindowMessage.setText(mApplication.mFormattedScreens.mFormattedScreens.get(mEditedPosition).mCannotOpenWindowMessage);
 		
 		HashMap<String, String> pMap = mApplication.mFormattedScreens.mFormattedScreens.get(mEditedPosition).paramsMap;
 		
@@ -269,6 +278,7 @@ public class AddFormattedScreenActivity extends Activity {
 			if ((TextUtils.isEmpty(mScreenName.getText().toString().trim()))
 					|| (TextUtils.isEmpty(mStartTransfer.getText().toString().trim()))
 					|| (TextUtils.isEmpty(mEndTransfer.getText().toString().trim()))
+					|| (TextUtils.isEmpty(mCannotOpenWindowMessage.getText().toString().trim()))
 					|| (mGalleryPicker.getDrawable() == null) || (mGalleryPicker.getDrawable().toString().trim().isEmpty())) {
 				Notifications.showError(mContext, "Не все поля заполнены");
 				return;
@@ -276,6 +286,7 @@ public class AddFormattedScreenActivity extends Activity {
 				String name = mScreenName.getText().toString();
 				String start = mStartTransfer.getText().toString();
 				String end = mEndTransfer.getText().toString();
+				String cowm = mCannotOpenWindowMessage.getText().toString();
 
 				HashMap<String, String> mParamsMap = new HashMap<String, String>();
 				mParamsMap.put("GridImage", mGalleryPicker.getTag().toString());
@@ -295,9 +306,9 @@ public class AddFormattedScreenActivity extends Activity {
 				// В режиме редактирования меняем поля у существующего окна
 				// Иначе создаем новое окно
 				if (mEditMode) {
-					mApplication.mFormattedScreens.changeFormattedScreen(mContext, mEditedPosition, name, start, end, mParamsMap);
+					mApplication.mFormattedScreens.changeFormattedScreen(mContext, mEditedPosition, name, start, end, cowm, mParamsMap);
 				} else {
-					mApplication.mFormattedScreens.addFormattedScreen(mContext, name, start, end, mParamsMap);
+					mApplication.mFormattedScreens.addFormattedScreen(mContext, name, start, end, cowm, mParamsMap);
 				}
 			}
 			finish();

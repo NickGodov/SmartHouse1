@@ -182,6 +182,19 @@ public class MainMenuAdapterGrid extends BaseAdapter {
 		};
 	}
 
+//	View.OnClickListener mSettingsButtonListener() {
+//		return new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				Intent i = new Intent();
+//				i.setAction(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE);
+//				i.putExtra("message","#,2¶");
+//				mApplication.sendBroadcast(i);
+//			}
+//		};
+//	}
+
+
     // Если нажата кнопка "Настройки" - вызов диалога проверки пароля.
     // Если пароль верен - переход в SettingsActivity
 	View.OnClickListener mSettingsButtonListener() {

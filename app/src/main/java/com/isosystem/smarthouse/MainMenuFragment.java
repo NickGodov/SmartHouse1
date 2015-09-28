@@ -8,6 +8,7 @@
 
 package com.isosystem.smarthouse;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
@@ -37,6 +38,9 @@ import android.widget.TextView;
 import com.isosystem.smarthouse.logging.Logging;
 import com.isosystem.smarthouse.notifications.Notifications;
 import com.isosystem.smarthouse.settings.SettingsActivity;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Этот класс фрагмента окна основного меню. Выводит и обновляет ListView с
@@ -166,8 +170,9 @@ public class MainMenuFragment extends Fragment {
 		try {
 			mReceiver = new AlarmMessageReceiver();
 			IntentFilter filter = new IntentFilter();
-			filter.addAction("SMARTHOUSE.ALARM_MESSAGE_RECEIVED");
-			filter.addAction("SMARTHOUSE.POWER_SUPPLY_CHANGED");
+			filter.addAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
+			filter.addAction(Globals.BROADCAST_INTENT_POWER_SUPPLY_CHANGED);
+			filter.addAction(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE);
 			rootView.getContext().registerReceiver(mReceiver, filter);
 			Logging.v("Регистрируем ресивер MainActivity");
 		} catch (Exception e) {
@@ -341,10 +346,62 @@ public class MainMenuFragment extends Fragment {
 	class AlarmMessageReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			if (intent.getAction().equals("SMARTHOUSE.POWER_SUPPLY_CHANGED"))
+			if (intent.getAction().equals(Globals.BROADCAST_INTENT_POWER_SUPPLY_CHANGED))
 				checkPowerSupplyIcon();
 			checkUsbConnectionIcon();
 			setMessageNumberIcon();
+
+			// Если принудительное открытие окна, вызываем метод и передаем ему
+			// extra в виде сообщение от контроллера
+			if (intent.getAction().equals(Globals.BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE)) {
+				String msg = intent.getStringExtra("message");
+				forcedFormattedScreenStart(msg);
+			}
+		}
+	}
+
+	/**
+	 * Принудительное открытие окна форматированного вывода: <br />
+	 * 1. С помощью регулярного выражения ищем число в сообщении от контроллера; <br />
+	 * 2. Если число найдено, пытаемся перевести строку в INT; <br />
+	 * 3. Открываем нужное окно форматированного вывода. <br />
+	 * @param message сообщение от контроллера
+	 */
+	private void forcedFormattedScreenStart(String message){
+		String number = "";
+
+		Pattern p = Pattern.compile("[0-9]+");
+		Matcher m = p.matcher(message);
+		while (m.find()) {
+			number = m.group();
+		}
+
+		int screen_number = -1;
+		try {
+			screen_number = Integer.parseInt(number);
+			if (screen_number >=0 && screen_number < mApplication.mFormattedScreens.mFormattedScreens.size()) {
+				Intent intent = new Intent(getActivity(),
+						FormattedScreensActivity.class);
+				// Передаем номер нажатого окна в FormatterScreenActivity
+				intent.putExtra("formScreenIndex", screen_number);
+				getActivity().startActivity(intent);
+				getActivity().overridePendingTransition(R.anim.flipin, R.anim.flipout);
+			} else {
+				//throw new NumberFormatException("format screen number is out of bounds");
+			}
+		} catch (NumberFormatException e) {
+			Intent i = new Intent();
+			String alarmMessage = "Неверное обращение к форматированному выводу";
+			mApplication.mAlarmMessages.addAlarmMessage(
+					mApplication, alarmMessage,
+					Notifications.MessageType.ControllerMessage);
+			// Кидаем броадкаст
+			i.setAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
+			mApplication.sendBroadcast(i);
+
+			Logging.v("Исключение при попытке парсинга номера окна форматированного вывода." +
+					"Строка парсинга: " + number);
+			e.printStackTrace();
 		}
 	}
 

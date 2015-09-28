@@ -1,3 +1,0 @@
-D:\!Android\Projects\SmartHouse1\app\build\intermediates\classes\debug
-D:\!Android\Projects\SmartHouse1\app\build\intermediates\pre-dexed\debug\jeval-82a13d65b4de7865f42dd988ff7c7093cd14ea5f.jar
-D:\!Android\Projects\SmartHouse1\app\build\intermediates\pre-dexed\debug\android-support-v13-89b124c9c172c0dc85d20474476e1e3e438d32f9.jar

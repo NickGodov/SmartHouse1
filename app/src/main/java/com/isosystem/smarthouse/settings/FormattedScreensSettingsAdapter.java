@@ -24,6 +24,8 @@ import com.isosystem.smarthouse.R;
 import com.isosystem.smarthouse.dialogs.FormattedScreenShowDialog;
 import com.isosystem.smarthouse.notifications.Notifications;
 
+import org.w3c.dom.Text;
+
 public class FormattedScreensSettingsAdapter extends BaseAdapter {
 
 	private Context mContext;
@@ -75,6 +77,7 @@ public class FormattedScreensSettingsAdapter extends BaseAdapter {
 				"segoe.ttf");
 
 		TextView mTitle = (TextView) v.findViewById(R.id.textView1);
+		TextView mIndexNumberText = (TextView) v.findViewById(R.id.number_textview);
 		mTitle.setTypeface(font);
 		mTitle.setTextSize(18.0f);
 		mTitle.setTextColor(Color.BLACK);
@@ -85,15 +88,18 @@ public class FormattedScreensSettingsAdapter extends BaseAdapter {
 			mTitle.setText("ќкна форматированного вывода");
 		} else {
 			mTitle.setText("    " + mApplication.mFormattedScreens.mFormattedScreens.get(pos-1).mName);
+			mIndexNumberText.setText(String.valueOf(pos-1));
 		}
 		
 		//  нопки вверх/вниз
 		
 		ImageButton upButton = (ImageButton) v.findViewById(R.id.up_button);
 		ImageButton downButton = (ImageButton) v.findViewById(R.id.down_button);
+		mIndexNumberText.setVisibility(View.VISIBLE);
 		if (pos == 0) {
 			upButton.setVisibility(View.INVISIBLE);
 			downButton.setVisibility(View.INVISIBLE);
+			mIndexNumberText.setVisibility(View.GONE);
 		} else if (mApplication.mFormattedScreens.mFormattedScreens.size() == 1){
 			upButton.setVisibility(View.INVISIBLE);
 			downButton.setVisibility(View.INVISIBLE);

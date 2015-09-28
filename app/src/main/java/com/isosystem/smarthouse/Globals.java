@@ -40,6 +40,12 @@ public final class Globals {
 	public static final String BROADCAST_INTENT_VALUE_MESSAGE = "SMARTHOUSE.VALUE_MESSAGE_RECEIVED";
     /** Action для Broadcast Receiver для прихода сообщения для окон форматированного вывода */
 	public static final String BROADCAST_INTENT_FORMSCREEN_MESSAGE = "SMARTHOUSE.FORMSCREEN_MESSAGE_RECEIVED";
+    /** Action для Broadcast Receiver для прихода сообщения принуднительного открытия окна форматированного вывода */
+    public static final String BROADCAST_INTENT_FORCED_FORMSCREEN_MESSAGE = "SMARTHOUSE.FORCED_FORMSCREEN_MESSAGE_RECEIVED";
+    /** Action для Broadcast Receiver для прихода сообщения о смене режима питания устройства */
+    public static final String BROADCAST_INTENT_POWER_SUPPLY_CHANGED = "SMARTHOUSE.POWER_SUPPLY_CHANGED";
+    /** Action для Broadcast Receiver для прихода отладочного сообщения */
+    public static final String BROADCAST_INTENT_DEBUG_MESSAGE = "SMARTHOUSE.DEBUG_MESSAGE";
 
     /** Сервисный пароль для настроек */
     public static final String SERVICE_PASSWORD = "924";

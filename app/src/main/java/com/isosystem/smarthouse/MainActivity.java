@@ -15,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.isosystem.smarthouse.connection.USBReceiveService;
 import com.isosystem.smarthouse.logging.Logging;
 import com.isosystem.smarthouse.utils.ScreenDimActivity;
 import com.isosystem.smarthouse.utils.ScreenSaverActivity;
@@ -142,6 +143,10 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStart() {	
 		checkExternalDirectoryStructure();
+
+		Intent i = new Intent(getApplicationContext(),USBReceiveService.class);
+		startService(i);
+
 		super.onStart();
 	}
 

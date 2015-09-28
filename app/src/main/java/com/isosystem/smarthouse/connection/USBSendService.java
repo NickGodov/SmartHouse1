@@ -187,6 +187,8 @@ public class USBSendService extends IntentService {
 			try {
 				result = usbConnection.bulkTransfer(usbEndpointOut,
 						msg.getBytes(), msg.getBytes().length, 0);
+				wasSend = true;
+
 			} catch (Exception e) {
 				Logging.v("Исключение при попытке выслать сообщение");
 				e.printStackTrace();
@@ -203,14 +205,16 @@ public class USBSendService extends IntentService {
 				this.stopSelf();
 				return;
 			}
+
+			// DEBUG: 04.07.15 - убрана проверка на количество высланных символов
 			
-			if (result >= 0) {
-				wasSend = true;
-				Logging.v("Выслано сообщение: " + msg);
-			} else {
-				wasSend = false;
-				Logging.v("Не удалось выслать сообщение: " + msg);
-			}
+//			if (result >= 0) {
+//				wasSend = true;
+//				Logging.v("Выслано сообщение: " + msg);
+//			} else {
+//				wasSend = false;
+//				Logging.v("Не удалось выслать сообщение: " + msg);
+//			}
 		} else {
 			wasSend = false;
 			Logging.v("Не удалось выслать сообщение: " + msg + ". Скорее всего, USB-устройство не подключено");

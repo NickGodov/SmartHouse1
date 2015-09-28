@@ -19,6 +19,9 @@ import com.isosystem.smarthouse.notifications.Notifications;
  * запускает {@link USBSendService} и передает ему сформированное сообщение для отсылки
  *
  */
+
+
+
 public class MessageDispatcher {
 
 	private Context mContext;
@@ -40,7 +43,7 @@ public class MessageDispatcher {
 	 */
 	public String SendValueMessage(String prefix, String value, Boolean isSending) {
 		StringBuilder sendingMessage = new StringBuilder();
-		
+
 		sendingMessage.append(prefix);
 		sendingMessage.append(",");
 		sendingMessage.append(value);
@@ -84,13 +87,13 @@ public class MessageDispatcher {
 	/**
 	 * Формирование булевого значения контроллеру
 	 * Формат сообщения: [префикс],[0|1]
-	 * 
+	 *
 	 * @param value интовое значение (0 или 1)
 	 * @return Сформированное сообщение
 	 */
 	public String sendBooleanMessage (String prefix, int value, Boolean isSending) {
 		StringBuilder sendingMessage = new StringBuilder();
-		
+
 		sendingMessage.append(prefix);
 		sendingMessage.append(",");
 		sendingMessage.append(value);
@@ -98,7 +101,7 @@ public class MessageDispatcher {
 		if (isSending) {
 			Send(sendingMessage.toString());
 		}
-		
+
 		return sendingMessage.toString();
 	}
 
@@ -232,6 +235,7 @@ public class MessageDispatcher {
 	 * @param message сообщение
 	 */
 	private void Send(String message) {
+		//Notifications.showTooltip(mContext,message);
 		Intent i = new Intent(mContext.getApplicationContext(),
 				USBSendService.class);
 		i.putExtra("message", message);
