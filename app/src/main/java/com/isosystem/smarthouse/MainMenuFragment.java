@@ -17,6 +17,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Shader;
 import android.graphics.Typeface;
@@ -25,8 +26,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.v4.view.GestureDetectorCompat;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -34,11 +39,15 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.isosystem.smarthouse.logging.Logging;
 import com.isosystem.smarthouse.notifications.Notifications;
 import com.isosystem.smarthouse.settings.SettingsActivity;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -62,6 +71,8 @@ public class MainMenuFragment extends Fragment {
 
 	TextView mMessagesNumber;
 	ImageView mMessagesIcon;
+
+	Globals.ConnectionMode connectionMode = Globals.ConnectionMode.USB;
 
 	Boolean mFragmentLoaded = false;
 
@@ -167,6 +178,18 @@ public class MainMenuFragment extends Fragment {
 
 	@Override
 	public void onStart() {
+
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(mApplication);
+
+		// Тип подключения
+		String connection_type = prefs.getString("connection_type", "1");
+		if (connection_type.equals("0")) {
+			connectionMode = Globals.ConnectionMode.WIFI;
+		} else if (connection_type.equals("1")) {
+			connectionMode = Globals.ConnectionMode.USB;
+		}
+
 		try {
 			mReceiver = new AlarmMessageReceiver();
 			IntentFilter filter = new IntentFilter();
@@ -189,9 +212,6 @@ public class MainMenuFragment extends Fragment {
 		checkPowerSupplyIcon();
 		checkUsbConnectionIcon();
 		setMessageNumberIcon();
-
-		SharedPreferences prefs = PreferenceManager
-				.getDefaultSharedPreferences(mApplication);
 
 		// Если в настройках выставлено использование своего фона
 		if (!prefs.getBoolean("use_default_main_menu_background", true)) {
@@ -461,10 +481,17 @@ public class MainMenuFragment extends Fragment {
 
 	private void checkUsbConnectionIcon() {
 		if (mApplication.isUsbConnected) {
-			mUsbConnectedIcon.setImageResource(R.drawable.tablet_connection_on);
+			if (connectionMode == Globals.ConnectionMode.USB) {
+				mUsbConnectedIcon.setImageResource(R.drawable.tablet_connection_on);
+			} else if (connectionMode == Globals.ConnectionMode.WIFI) {
+				mUsbConnectedIcon.setImageResource(R.drawable.tablet_wifi_on);
+			}
 		} else {
-			mUsbConnectedIcon
-					.setImageResource(R.drawable.tablet_connection_off);
+			if (connectionMode == Globals.ConnectionMode.USB) {
+				mUsbConnectedIcon.setImageResource(R.drawable.tablet_connection_off);
+			} else if (connectionMode == Globals.ConnectionMode.WIFI) {
+				mUsbConnectedIcon.setImageResource(R.drawable.tablet_wifi_off);
+			}
 		}
 	}
 
@@ -531,5 +558,4 @@ public class MainMenuFragment extends Fragment {
 			}
 		};
 	}
-
 }

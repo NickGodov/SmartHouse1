@@ -16,7 +16,16 @@
     <PreferenceScreen
         android:key="input_messages"
         android:summary="Настройка обмена сообщениями с контроллером"
-        android:title="Взаимодействие с контроллером" >
+        android:title="Настройки соединения">
+
+        <ListPreference
+            android:title="Выбор типа соединения"
+            android:summary="Выберите один из типов соединения"
+            android:key="connection_type"
+            android:defaultValue="0"
+            android:entries="@array/connections_array"
+            android:entryValues="@array/connections_values" />
+
         <EditTextPreference
             android:defaultValue="2000"
             android:digits="0123456789"
@@ -25,6 +34,9 @@
             android:summary="Очистка буфера после N мсек. после прихода последнего сообщения"
             android:title="Период очистки буфера (мсек.)" >
         </EditTextPreference>
+
+
+
     </PreferenceScreen>
     <!-- Настройка звуковых сигналов -->
     <PreferenceScreen

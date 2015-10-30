@@ -44,20 +44,40 @@ public class Notifications {
 		LayoutInflater vi;
 		vi = LayoutInflater.from(c);
 		View v = vi.inflate(R.layout.toast_alarm_message, null);
-		
+
 		TextView text = (TextView) v.findViewById(R.id.toast_error_text);
 		text.setText(msg);
 		text.setTextSize(30);
 		text.setTextColor(Color.parseColor("white"));
 		text.setTypeface(font);
-		
-		Toast toast = new Toast(c);		
+
+		Toast toast = new Toast(c);
 		toast.setDuration(Toast.LENGTH_SHORT);
 		toast.setGravity(Gravity.FILL_HORIZONTAL|Gravity.CENTER_VERTICAL, 0, 0);
 		toast.setView(v);
 		toast.show();
 	}
-	
+
+	public static void showWifiMessage(Context c, String msg) {
+		Typeface font = Typeface.createFromAsset(c.getAssets(), "myfont.ttf");
+
+		LayoutInflater vi;
+		vi = LayoutInflater.from(c);
+		View v = vi.inflate(R.layout.toast_wifi_message, null);
+
+		TextView text = (TextView) v.findViewById(R.id.toast_error_text);
+		text.setText(msg);
+		text.setTextSize(30);
+		text.setTextColor(Color.parseColor("white"));
+		text.setTypeface(font);
+
+		Toast toast = new Toast(c);
+		toast.setDuration(Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.FILL_HORIZONTAL|Gravity.CENTER_VERTICAL, 0, 0);
+		toast.setView(v);
+		toast.show();
+	}
+
 	public static void showPowerSupplyMessage(Context c, String msg) {
 		Typeface font = Typeface.createFromAsset(c.getAssets(), "myfont.ttf");
 
@@ -168,7 +188,8 @@ public class Notifications {
 	public enum MessageType {
 		USBConnectionMessage("USB-соединение", R.drawable.usb, R.drawable.messages_activity_list_item_0,0),
 		ControllerMessage("Важное сообщение",R.drawable.message, R.drawable.messages_activity_list_item_1,1),
-		PowerSupplyMessage("Подключение к электросети",R.drawable.plug,R.drawable.messages_activity_list_item_0,2);
+		PowerSupplyMessage("Подключение к электросети",R.drawable.plug,R.drawable.messages_activity_list_item_0,2),
+		WIFIConnectionMessage("WIFI-соединение", R.drawable.wifi, R.drawable.messages_activity_list_item_0,3);
 
 		private int icon;
 		private String title;

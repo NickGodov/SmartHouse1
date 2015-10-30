@@ -9,7 +9,11 @@
 package com.isosystem.smarthouse;
 
 import android.app.Application;
+import android.graphics.Bitmap;
+import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.Toast;
 
 import com.isosystem.smarthouse.data.AlarmMessages;
 import com.isosystem.smarthouse.data.FormattedScreens;
@@ -17,6 +21,10 @@ import com.isosystem.smarthouse.data.MenuTree;
 import com.isosystem.smarthouse.logging.Logging;
 import com.isosystem.smarthouse.notifications.SoundMessages;
 import com.isosystem.smarthouse.processor.XMLProcessor;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Date;
 
 /**
  * Этот класс содержит объект дерева меню {@link MenuTree}, а также
@@ -53,6 +61,7 @@ public class MyApplication extends Application {
 	 */
 	@Override
 	public void onCreate() {
+		super.onCreate();
 
 		PreferenceManager.setDefaultValues(this, R.xml.application_preferences,
 				false);

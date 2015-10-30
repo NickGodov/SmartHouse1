@@ -224,8 +224,24 @@ public class USBReceiveService extends IntentService {
 			return;
 		}
 
-		// Добавляем сообщение в список сообщений
-		String msg = "USB-устройство присоединено";
+		String msg = "Подключение установлено";
+		MessageType msgType = MessageType.USBConnectionMessage;
+
+		prefs = PreferenceManager
+				.getDefaultSharedPreferences(mApplication);
+		// Тип подключения
+		String connection_type = prefs.getString("connection_type", "1");
+		if (connection_type.equals("0")) {
+			msg = "WIFI-подключение установлено";
+			msgType = MessageType.WIFIConnectionMessage;
+		} else if (connection_type.equals("1")) {
+			msg = "USB-подключение установлено";
+			msgType = MessageType.USBConnectionMessage;
+		}
+		// Алармовое сообщение + броадкаст
+
+		mApplication.mAlarmMessages.addAlarmMessage(
+				getApplicationContext(), msg, msgType);
 
 //		mApplication = (MyApplication) getApplicationContext();
 //
@@ -241,9 +257,6 @@ public class USBReceiveService extends IntentService {
 //			}
 //		}
 
-		mApplication.mAlarmMessages.addAlarmMessage(mApplication,
-				msg, MessageType.USBConnectionMessage);
-		
 		// Отсылаем броадкаст о том, что пришло алармовое сообщение
 		Intent i = new Intent();
 		i.setAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);
@@ -421,11 +434,24 @@ public class USBReceiveService extends IntentService {
 				mBufferCleanHandler.removeCallbacks(mBufferClearRunnable);
 			}
 
+			String msg = "Подключение разорвано";
+			MessageType msgType = MessageType.USBConnectionMessage;
+
+			SharedPreferences prefs = PreferenceManager
+					.getDefaultSharedPreferences(mApplication);
+			// Тип подключения
+			String connection_type = prefs.getString("connection_type", "1");
+			if (connection_type.equals("0")) {
+				msg = "WIFI-подключение разорвано";
+				msgType = MessageType.WIFIConnectionMessage;
+			} else if (connection_type.equals("1")) {
+				msg = "USB-подключение разорвано";
+				msgType = MessageType.USBConnectionMessage;
+			}
 			// Алармовое сообщение + броадкаст
-			String msg = "USB-устройство отсоединено";
+
 			mApplication.mAlarmMessages.addAlarmMessage(
-					getApplicationContext(), msg,
-					MessageType.USBConnectionMessage);
+					getApplicationContext(), msg, msgType);
 
 			Intent i = new Intent();
 			i.setAction(Globals.BROADCAST_INTENT_ALARM_MESSAGE);

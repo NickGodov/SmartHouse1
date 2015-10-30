@@ -130,4 +130,14 @@
     <!-- fragment_settings_logs.xml -->
     <string name = "settings_logs_write_to_file">Записать в файл</string>
 
+    <string-array name="connections_array">
+        <item>Wi-Fi</item>
+        <item>USB</item>
+    </string-array>
+
+    <string-array name="connections_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
 </resources>

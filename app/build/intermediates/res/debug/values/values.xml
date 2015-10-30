@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/arrays.xml -->
+    <!-- From: file:/C:/Users/NickGodov/OneDrive/Android/Projects/SmartHouse1/app/src/main/res/values/arrays.xml -->
     <eat-comment/>
     <string-array name="stretchModeArray">
         <item>Не растягивать</item>
@@ -14,15 +14,15 @@
         <item>2</item>
         <item>3</item>
     </string-array>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/NickGodov/OneDrive/Android/Projects/SmartHouse1/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="sage">#cceebb</color>
     <declare-styleable name="com.isosystem.smarthouse.Utils.SeekBarPreference"><attr format="integer" name="minValue"/><attr format="integer" name="maxValue"/></declare-styleable>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/C:/Users/NickGodov/OneDrive/Android/Projects/SmartHouse1/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="pic_size">96px</dimen>
     <dimen name="px">1px</dimen>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/NickGodov/OneDrive/Android/Projects/SmartHouse1/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Настройки</string>
     <string name="activity_page_send_back">Назад</string>
@@ -111,7 +111,7 @@
     <string name="title_activity_settings">Настройки</string>
     <string name="title_add_menu_item_activity">Добавить пункт меню</string>
     <string name="title_alarm_messages">Сообщения</string>
-    <!-- From: file:/D:/!Android/Projects/SmartHouse1/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/NickGodov/OneDrive/Android/Projects/SmartHouse1/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--

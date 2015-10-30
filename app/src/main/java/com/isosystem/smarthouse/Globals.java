@@ -55,4 +55,10 @@ public final class Globals {
 
     /** Ключ для настроечного XML файла, в котором хранится пароль */
 	public static final String PREFERENCES_PASSWORD_STRING = "PREFERENCES_PASSWORD";
+
+    public enum ConnectionMode{
+        WIFI,
+        USB
+    }
 }
+

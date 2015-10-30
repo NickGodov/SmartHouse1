@@ -13,8 +13,10 @@ public final class R {
         public static final int flipout=0x7f040001;
     }
     public static final class array {
-        public static final int stretchModeArray=0x7f070000;
-        public static final int stretchModeValues=0x7f070001;
+        public static final int connections_array=0x7f090000;
+        public static final int connections_values=0x7f090001;
+        public static final int stretchModeArray=0x7f090002;
+        public static final int stretchModeValues=0x7f090003;
     }
     public static final class attr {
         /** <p>Must be an integer value, such as "<code>100</code>".
@@ -35,12 +37,12 @@ containing a value of this type.
         public static final int minValue=0x7f010000;
     }
     public static final class color {
-        public static final int sage=0x7f080000;
+        public static final int sage=0x7f0a0000;
     }
     public static final class dimen {
-        public static final int activity_horizontal_margin=0x7f090002;
-        public static final int pic_size=0x7f090000;
-        public static final int px=0x7f090001;
+        public static final int activity_horizontal_margin=0x7f080000;
+        public static final int pic_size=0x7f080001;
+        public static final int px=0x7f080002;
     }
     public static final class drawable {
         public static final int backrepeat=0x7f020000;
@@ -111,15 +113,18 @@ containing a value of this type.
         public static final int tablet_connection_on=0x7f020041;
         public static final int tablet_power_off=0x7f020042;
         public static final int tablet_power_on=0x7f020043;
-        public static final int toast_alarm_message_item=0x7f020044;
-        public static final int toast_controller_message_item=0x7f020045;
-        public static final int toast_error=0x7f020046;
-        public static final int toast_error_item=0x7f020047;
-        public static final int toast_ok_item=0x7f020048;
-        public static final int toast_tooltip=0x7f020049;
-        public static final int toast_tooltip_item=0x7f02004a;
-        public static final int tooltip=0x7f02004b;
-        public static final int usb=0x7f02004c;
+        public static final int tablet_wifi_off=0x7f020044;
+        public static final int tablet_wifi_on=0x7f020045;
+        public static final int toast_alarm_message_item=0x7f020046;
+        public static final int toast_controller_message_item=0x7f020047;
+        public static final int toast_error=0x7f020048;
+        public static final int toast_error_item=0x7f020049;
+        public static final int toast_ok_item=0x7f02004a;
+        public static final int toast_tooltip=0x7f02004b;
+        public static final int toast_tooltip_item=0x7f02004c;
+        public static final int tooltip=0x7f02004d;
+        public static final int usb=0x7f02004e;
+        public static final int wifi=0x7f02004f;
     }
     public static final class id {
         public static final int FrameLayout1=0x7f0c0004;
@@ -466,115 +471,116 @@ containing a value of this type.
         public static final int toast_ok=0x7f030033;
         public static final int toast_power_supply_message=0x7f030034;
         public static final int toast_tooltip=0x7f030035;
+        public static final int toast_wifi_message=0x7f030036;
     }
     public static final class raw {
         public static final int ding=0x7f060000;
     }
     public static final class string {
-        public static final int action_settings=0x7f0a0000;
-        public static final int activity_page_send_back=0x7f0a0001;
-        public static final int activity_page_send_current_state=0x7f0a0002;
-        public static final int activity_page_send_current_value=0x7f0a0003;
-        public static final int activity_page_send_dummy_description_text=0x7f0a0004;
-        public static final int activity_page_send_dummy_header_text=0x7f0a0005;
-        public static final int activity_page_send_enter_password=0x7f0a0006;
-        public static final int activity_page_send_enter_value=0x7f0a0007;
-        public static final int activity_page_send_false_value_button=0x7f0a0008;
-        public static final int activity_page_send_new_state=0x7f0a0009;
-        public static final int activity_page_send_new_value=0x7f0a000a;
-        public static final int activity_page_send_set_up_value=0x7f0a000b;
-        public static final int activity_page_send_true_value_button=0x7f0a000c;
-        public static final int app_name=0x7f0a000d;
-        public static final int change_password_new_password=0x7f0a000e;
-        public static final int change_password_old_password=0x7f0a000f;
-        public static final int company_phone=0x7f0a0010;
-        public static final int company_url=0x7f0a0011;
-        public static final int dialog_title=0x7f0a0012;
-        public static final int exception_reload_menu_tree=0x7f0a0013;
-        public static final int general_settings_close_app=0x7f0a0014;
-        public static final int general_settings_import_export=0x7f0a0015;
-        public static final int general_settings_prefs=0x7f0a0016;
-        public static final int global_accept=0x7f0a0017;
-        public static final int global_back=0x7f0a0018;
-        public static final int global_cancel=0x7f0a0019;
-        public static final int header_text_tooltip=0x7f0a001a;
-        public static final int password=0x7f0a001b;
-        public static final int settings_add_menu_item_bool_incoming_false=0x7f0a001c;
-        public static final int settings_add_menu_item_bool_incoming_true=0x7f0a001d;
-        public static final int settings_add_menu_item_bool_labels_header=0x7f0a001e;
-        public static final int settings_add_menu_item_bool_outgoing_false=0x7f0a001f;
-        public static final int settings_add_menu_item_bool_outgoing_true=0x7f0a0020;
-        public static final int settings_add_menu_item_description=0x7f0a0021;
-        public static final int settings_add_menu_item_error=0x7f0a0022;
-        public static final int settings_add_menu_item_first_error=0x7f0a0023;
-        public static final int settings_add_menu_item_first_incoming_value_process_header=0x7f0a0024;
-        public static final int settings_add_menu_item_first_outgoing_message_process_header=0x7f0a0025;
-        public static final int settings_add_menu_item_fraction_digits=0x7f0a0026;
-        public static final int settings_add_menu_item_image_header=0x7f0a0027;
-        public static final int settings_add_menu_item_incoming_formula=0x7f0a0028;
-        public static final int settings_add_menu_item_incoming_message_process_header=0x7f0a0029;
-        public static final int settings_add_menu_item_labels_header=0x7f0a002a;
-        public static final int settings_add_menu_item_outgoing_bool_validation=0x7f0a002b;
-        public static final int settings_add_menu_item_outgoing_formula=0x7f0a002c;
-        public static final int settings_add_menu_item_outgoing_message_process_header=0x7f0a002d;
-        public static final int settings_add_menu_item_second_error=0x7f0a002e;
-        public static final int settings_add_menu_item_second_incoming_value_process_header=0x7f0a002f;
-        public static final int settings_add_menu_item_second_outgoing_message_process_header=0x7f0a0030;
-        public static final int settings_add_menu_item_send_message=0x7f0a0031;
-        public static final int settings_add_menu_item_send_message_get_value=0x7f0a0032;
-        public static final int settings_add_menu_item_send_message_header=0x7f0a0033;
-        public static final int settings_add_menu_item_send_message_prefix=0x7f0a0034;
-        public static final int settings_add_menu_item_title=0x7f0a0035;
-        public static final int settings_formscreen_add_screen_prefs_header=0x7f0a0036;
-        public static final int settings_formscreen_add_screen_title=0x7f0a0037;
-        public static final int settings_formscreen_end_transfer_message=0x7f0a0038;
-        public static final int settings_formscreen_grid_image=0x7f0a0039;
-        public static final int settings_formscreen_start_transfer_message=0x7f0a003a;
-        public static final int settings_import_export_formscreens_export=0x7f0a003b;
-        public static final int settings_import_export_formscreens_import=0x7f0a003c;
-        public static final int settings_import_export_header_export=0x7f0a003d;
-        public static final int settings_import_export_header_import=0x7f0a003e;
-        public static final int settings_import_export_mainmenu_export=0x7f0a003f;
-        public static final int settings_import_export_mainmenu_import=0x7f0a0040;
-        public static final int settings_import_export_settings_export=0x7f0a0041;
-        public static final int settings_import_export_settings_import=0x7f0a0042;
-        public static final int settings_logs_write_to_file=0x7f0a0043;
-        public static final int settings_mainmenu_add_grid_image=0x7f0a0044;
-        public static final int settings_mainmenu_add_menu_item_point=0x7f0a0045;
-        public static final int settings_mainmenu_add_menu_item_submenu=0x7f0a0046;
-        public static final int settings_mainmenu_add_menu_item_type=0x7f0a0047;
-        public static final int settings_mainmenu_add_move_to=0x7f0a0048;
-        public static final int settings_mainmenu_add_page_title=0x7f0a0049;
-        public static final int settings_mainmenu_add_point_type=0x7f0a004a;
-        public static final int settings_mainmenu_add_prefs_header=0x7f0a004b;
-        public static final int summary=0x7f0a004c;
-        public static final int time_dialog_end_time=0x7f0a004d;
-        public static final int time_dialog_screen_dim=0x7f0a004e;
-        public static final int time_dialog_start_time=0x7f0a004f;
-        public static final int title_activity_add_menu_item_send_bool=0x7f0a0050;
-        public static final int title_activity_add_menu_item_send_password=0x7f0a0051;
-        public static final int title_activity_add_menu_item_send_value=0x7f0a0052;
-        public static final int title_activity_main_settings=0x7f0a0053;
-        public static final int title_activity_settings=0x7f0a0054;
-        public static final int title_add_menu_item_activity=0x7f0a0055;
-        public static final int title_alarm_messages=0x7f0a0056;
+        public static final int action_settings=0x7f0b0000;
+        public static final int activity_page_send_back=0x7f0b0001;
+        public static final int activity_page_send_current_state=0x7f0b0002;
+        public static final int activity_page_send_current_value=0x7f0b0003;
+        public static final int activity_page_send_dummy_description_text=0x7f0b0004;
+        public static final int activity_page_send_dummy_header_text=0x7f0b0005;
+        public static final int activity_page_send_enter_password=0x7f0b0006;
+        public static final int activity_page_send_enter_value=0x7f0b0007;
+        public static final int activity_page_send_false_value_button=0x7f0b0008;
+        public static final int activity_page_send_new_state=0x7f0b0009;
+        public static final int activity_page_send_new_value=0x7f0b000a;
+        public static final int activity_page_send_set_up_value=0x7f0b000b;
+        public static final int activity_page_send_true_value_button=0x7f0b000c;
+        public static final int app_name=0x7f0b000d;
+        public static final int change_password_new_password=0x7f0b000e;
+        public static final int change_password_old_password=0x7f0b000f;
+        public static final int company_phone=0x7f0b0010;
+        public static final int company_url=0x7f0b0011;
+        public static final int dialog_title=0x7f0b0012;
+        public static final int exception_reload_menu_tree=0x7f0b0013;
+        public static final int general_settings_close_app=0x7f0b0014;
+        public static final int general_settings_import_export=0x7f0b0015;
+        public static final int general_settings_prefs=0x7f0b0016;
+        public static final int global_accept=0x7f0b0017;
+        public static final int global_back=0x7f0b0018;
+        public static final int global_cancel=0x7f0b0019;
+        public static final int header_text_tooltip=0x7f0b001a;
+        public static final int password=0x7f0b001b;
+        public static final int settings_add_menu_item_bool_incoming_false=0x7f0b001c;
+        public static final int settings_add_menu_item_bool_incoming_true=0x7f0b001d;
+        public static final int settings_add_menu_item_bool_labels_header=0x7f0b001e;
+        public static final int settings_add_menu_item_bool_outgoing_false=0x7f0b001f;
+        public static final int settings_add_menu_item_bool_outgoing_true=0x7f0b0020;
+        public static final int settings_add_menu_item_description=0x7f0b0021;
+        public static final int settings_add_menu_item_error=0x7f0b0022;
+        public static final int settings_add_menu_item_first_error=0x7f0b0023;
+        public static final int settings_add_menu_item_first_incoming_value_process_header=0x7f0b0024;
+        public static final int settings_add_menu_item_first_outgoing_message_process_header=0x7f0b0025;
+        public static final int settings_add_menu_item_fraction_digits=0x7f0b0026;
+        public static final int settings_add_menu_item_image_header=0x7f0b0027;
+        public static final int settings_add_menu_item_incoming_formula=0x7f0b0028;
+        public static final int settings_add_menu_item_incoming_message_process_header=0x7f0b0029;
+        public static final int settings_add_menu_item_labels_header=0x7f0b002a;
+        public static final int settings_add_menu_item_outgoing_bool_validation=0x7f0b002b;
+        public static final int settings_add_menu_item_outgoing_formula=0x7f0b002c;
+        public static final int settings_add_menu_item_outgoing_message_process_header=0x7f0b002d;
+        public static final int settings_add_menu_item_second_error=0x7f0b002e;
+        public static final int settings_add_menu_item_second_incoming_value_process_header=0x7f0b002f;
+        public static final int settings_add_menu_item_second_outgoing_message_process_header=0x7f0b0030;
+        public static final int settings_add_menu_item_send_message=0x7f0b0031;
+        public static final int settings_add_menu_item_send_message_get_value=0x7f0b0032;
+        public static final int settings_add_menu_item_send_message_header=0x7f0b0033;
+        public static final int settings_add_menu_item_send_message_prefix=0x7f0b0034;
+        public static final int settings_add_menu_item_title=0x7f0b0035;
+        public static final int settings_formscreen_add_screen_prefs_header=0x7f0b0036;
+        public static final int settings_formscreen_add_screen_title=0x7f0b0037;
+        public static final int settings_formscreen_end_transfer_message=0x7f0b0038;
+        public static final int settings_formscreen_grid_image=0x7f0b0039;
+        public static final int settings_formscreen_start_transfer_message=0x7f0b003a;
+        public static final int settings_import_export_formscreens_export=0x7f0b003b;
+        public static final int settings_import_export_formscreens_import=0x7f0b003c;
+        public static final int settings_import_export_header_export=0x7f0b003d;
+        public static final int settings_import_export_header_import=0x7f0b003e;
+        public static final int settings_import_export_mainmenu_export=0x7f0b003f;
+        public static final int settings_import_export_mainmenu_import=0x7f0b0040;
+        public static final int settings_import_export_settings_export=0x7f0b0041;
+        public static final int settings_import_export_settings_import=0x7f0b0042;
+        public static final int settings_logs_write_to_file=0x7f0b0043;
+        public static final int settings_mainmenu_add_grid_image=0x7f0b0044;
+        public static final int settings_mainmenu_add_menu_item_point=0x7f0b0045;
+        public static final int settings_mainmenu_add_menu_item_submenu=0x7f0b0046;
+        public static final int settings_mainmenu_add_menu_item_type=0x7f0b0047;
+        public static final int settings_mainmenu_add_move_to=0x7f0b0048;
+        public static final int settings_mainmenu_add_page_title=0x7f0b0049;
+        public static final int settings_mainmenu_add_point_type=0x7f0b004a;
+        public static final int settings_mainmenu_add_prefs_header=0x7f0b004b;
+        public static final int summary=0x7f0b004c;
+        public static final int time_dialog_end_time=0x7f0b004d;
+        public static final int time_dialog_screen_dim=0x7f0b004e;
+        public static final int time_dialog_start_time=0x7f0b004f;
+        public static final int title_activity_add_menu_item_send_bool=0x7f0b0050;
+        public static final int title_activity_add_menu_item_send_password=0x7f0b0051;
+        public static final int title_activity_add_menu_item_send_value=0x7f0b0052;
+        public static final int title_activity_main_settings=0x7f0b0053;
+        public static final int title_activity_settings=0x7f0b0054;
+        public static final int title_add_menu_item_activity=0x7f0b0055;
+        public static final int title_alarm_messages=0x7f0b0056;
     }
     public static final class style {
-        /** 
+        /**  API 11 theme customizations can go here. 
+ API 14 theme customizations can go here. 
+
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
 
         
- API 11 theme customizations can go here. 
- API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0b0000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f0b0001;
-        public static final int Theme_Transparent=0x7f0b0002;
-        public static final int button_text=0x7f0b0003;
+        public static final int AppTheme=0x7f070001;
+        public static final int Theme_Transparent=0x7f070002;
+        public static final int button_text=0x7f070003;
     }
     public static final class xml {
         public static final int application_preferences=0x7f050000;
